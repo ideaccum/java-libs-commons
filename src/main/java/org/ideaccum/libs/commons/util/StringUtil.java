@@ -2449,6 +2449,42 @@ public final class StringUtil {
 	}
 
 	/**
+	 * 文字列配列内に期待する文字列が存在するか判定します。<br>
+	 * @param strings 判定対象文字列配列
+	 * @param value 判定文字列
+	 * @return 存在する場合にtrueを返却
+	 */
+	public static boolean contains(String[] strings, String value) {
+		if (strings == null || strings.length <= 0) {
+			return false;
+		}
+		for (String string : strings) {
+			if (equals(string, value)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * 文字列配列内に期待する文字列が存在するか大文字小文字を区別せずに判定します。<br>
+	 * @param strings 判定対象文字列配列
+	 * @param value 判定文字列
+	 * @return 存在する場合にtrueを返却
+	 */
+	public static boolean containsIgnoreCase(String[] strings, String value) {
+		if (strings == null || strings.length <= 0) {
+			return false;
+		}
+		for (String string : strings) {
+			if (equalsIgnoreCase(string, value)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * 文字列同士を比較した結果を返却します。<br>
 	 * このメソッドではnullが考慮された処理を行い、null同士の場合は0、インスタンス存在から見たnullは1として判定します。<br>
 	 * @param string1 比較元文字列

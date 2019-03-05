@@ -2,7 +2,18 @@
 <project default="javadoc">
     <target name="javadoc">
         <javadoc access="protected"
-                 additionalparam="-encoding UTF-8 -J-Dfile.encoding=UTF-8"
+                 classpath="
+                 ../org.ideaccum.libs.commons/target/classes;
+                 "
+                 doctitle="org.ideaccum.libs.commons"
+                 additionalparam="
+                 -windowtitle org.ideaccum.libs.commons 
+                 -notimestamp 
+                 -quiet 
+                 -charset UTF-8 
+                 -encoding UTF-8 
+                 -J-Dfile.encoding=UTF-8 
+                 "
                  author="true"
                  nodeprecated="false"
                  nodeprecatedlist="false"
@@ -13,14 +24,10 @@
                  use="true"
                  version="true"
                  splitindex="true"
-                 doctitle="org.ideaccum.libs.commons"
                  destdir="./doc"
                  overview="./src/main/java/javadoc-overview.html"
                  stylesheetfile="./src/main/java/javadoc-style.css"
                  sourcepath="src/main/java;src/main/resources"
-                 classpath="
-                 ../org.ideaccum.libs.commons/target/classes;
-                 "
         />
     </target>
 </project>
