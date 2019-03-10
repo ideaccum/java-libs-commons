@@ -2,6 +2,8 @@ package org.ideaccum.libs.commons.util;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,13 +15,14 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
  * 文字列操作を行う際の支援的な操作メソッドを提供します。<br>
  * <p>
- * システム開発時に利用する文字列操作で利用頻度の高い文字列操作をメソッドとして提供します。<br>
+ * システム開発時に利用する文字列操作で利用頻度の高い操作を提供します。<br>
  * </p>
  * 
  * @author Kitagawa<br>
@@ -27,7 +30,7 @@ import java.util.regex.Pattern;
  *<!--
  * 更新日		更新者			更新内容
  * 2005/07/02	Kitagawa		新規作成
- * 2018/05/02	Kitagawa		再構築(最低保証バージョンをJava8として全面改訂)
+ * 2018/05/02	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 public final class StringUtil {
@@ -41,7 +44,7 @@ public final class StringUtil {
 	/** 全角-半角変換マップ(数字) */
 	private static final Map<Character, Character> MAP_J2A_NUMERIC;
 	static {
-		MAP_J2A_NUMERIC = new HashMap<Character, Character>();
+		MAP_J2A_NUMERIC = new HashMap<>();
 		MAP_J2A_NUMERIC.put('０', '0');
 		MAP_J2A_NUMERIC.put('１', '1');
 		MAP_J2A_NUMERIC.put('２', '2');
@@ -57,7 +60,7 @@ public final class StringUtil {
 	/** 半角-全角変換マップ(数字) */
 	private static final Map<Character, Character> MAP_A2J_NUMERIC;
 	static {
-		MAP_A2J_NUMERIC = new HashMap<Character, Character>();
+		MAP_A2J_NUMERIC = new HashMap<>();
 		MAP_A2J_NUMERIC.put('0', '０');
 		MAP_A2J_NUMERIC.put('1', '１');
 		MAP_A2J_NUMERIC.put('2', '２');
@@ -73,7 +76,7 @@ public final class StringUtil {
 	/** 全角-半角変換マップ(英字) */
 	private static final Map<Character, Character> MAP_J2A_ALPHABET;
 	static {
-		MAP_J2A_ALPHABET = new HashMap<Character, Character>();
+		MAP_J2A_ALPHABET = new HashMap<>();
 		MAP_J2A_ALPHABET.put('Ａ', 'A');
 		MAP_J2A_ALPHABET.put('Ｂ', 'B');
 		MAP_J2A_ALPHABET.put('Ｃ', 'C');
@@ -131,7 +134,7 @@ public final class StringUtil {
 	/** 半角-全角変換マップ(英字) */
 	private static final Map<Character, Character> MAP_A2J_ALPHABET;
 	static {
-		MAP_A2J_ALPHABET = new HashMap<Character, Character>();
+		MAP_A2J_ALPHABET = new HashMap<>();
 		MAP_A2J_ALPHABET.put('A', 'Ａ');
 		MAP_A2J_ALPHABET.put('B', 'Ｂ');
 		MAP_A2J_ALPHABET.put('C', 'Ｃ');
@@ -189,7 +192,7 @@ public final class StringUtil {
 	/** 全角-半角変換マップ(かな) */
 	private static final Map<Character, String> MAP_J2A_KANA;
 	static {
-		MAP_J2A_KANA = new HashMap<Character, String>();
+		MAP_J2A_KANA = new HashMap<>();
 		MAP_J2A_KANA.put('あ', "ｱ");
 		MAP_J2A_KANA.put('い', "ｲ");
 		MAP_J2A_KANA.put('う', "ｳ");
@@ -359,7 +362,7 @@ public final class StringUtil {
 	private static final Map<String, Character> MAP_A2J_KANA;
 	static {
 		// 濁点文字列が含まれるため、優先順位保証が必要であり、LinkedHashMapを利用する
-		MAP_A2J_KANA = new LinkedHashMap<String, Character>();
+		MAP_A2J_KANA = new LinkedHashMap<>();
 		MAP_A2J_KANA.put("ｶﾞ", 'ガ');
 		MAP_A2J_KANA.put("ｷﾞ", 'ギ');
 		MAP_A2J_KANA.put("ｸﾞ", 'グ');
@@ -448,7 +451,7 @@ public final class StringUtil {
 	/** 全角-半角変換マップ(記号) */
 	private static final Map<Character, Character> MAP_J2A_SIGN;
 	static {
-		MAP_J2A_SIGN = new HashMap<Character, Character>();
+		MAP_J2A_SIGN = new HashMap<>();
 		MAP_J2A_SIGN.put('　', ' ');
 		MAP_J2A_SIGN.put('、', '､');
 		MAP_J2A_SIGN.put('。', '｡');
@@ -522,7 +525,7 @@ public final class StringUtil {
 	/** 半角-全角変換マップ(記号) */
 	private static final Map<Character, Character> MAP_A2J_SIGN;
 	static {
-		MAP_A2J_SIGN = new HashMap<Character, Character>();
+		MAP_A2J_SIGN = new HashMap<>();
 		MAP_A2J_SIGN.put(' ', '　');
 		MAP_A2J_SIGN.put('､', '、');
 		MAP_A2J_SIGN.put('｡', '。');
@@ -596,7 +599,7 @@ public final class StringUtil {
 	/** ひらがな-カタカナ変換マップ */
 	private static final Map<Character, Character> MAP_HIRA2KANA;
 	static {
-		MAP_HIRA2KANA = new HashMap<Character, Character>();
+		MAP_HIRA2KANA = new HashMap<>();
 		MAP_HIRA2KANA.put('あ', 'ア');
 		MAP_HIRA2KANA.put('い', 'イ');
 		MAP_HIRA2KANA.put('う', 'ウ');
@@ -682,7 +685,7 @@ public final class StringUtil {
 	/** カタカナ-ひらがな変換マップ */
 	private static final Map<Character, Character> MAP_KANA2HIRA;
 	static {
-		MAP_KANA2HIRA = new HashMap<Character, Character>();
+		MAP_KANA2HIRA = new HashMap<>();
 		MAP_KANA2HIRA.put('ア', 'あ');
 		MAP_KANA2HIRA.put('イ', 'い');
 		MAP_KANA2HIRA.put('ウ', 'う');
@@ -765,19 +768,143 @@ public final class StringUtil {
 		MAP_KANA2HIRA.put('ポ', 'ぽ');
 	}
 
+	/** 不明なレガシー全角文字 */
+	public static final String UNKOWN_LERGACY_JCHAR = "〓";
+
+	/** 不明なレガシー半角文字 */
+	public static final String UNKOWN_LEGACY_ACHAR = "?";
+
+	/** EBCDICデコードSJISコードマッピング配列(0x00～0xFF) */
+	private static final int EBCDIC_SJIS_MAP[] = new int[] { //
+			//
+			0, 1, 2, 3, 156, 9, 134, 127, 151, 141, 142, 11, 12, 13, 14, 15, //
+			16, 17, 18, 19, 157, 10, 8, 135, 24, 25, 146, 143, 28, 29, 30, 31, //
+			128, 129, 130, 131, 132, 133, 23, 27, 136, 137, 138, 139, 140, 5, 6, 7, //
+			144, 145, 22, 147, 148, 149, 150, 4, 152, 153, 154, 155, 20, 21, 158, 26, //
+			32, 160, 161, 162, 163, 164, 165, 166, 167, 168, 91, 46, 60, 40, 43, 33, //
+			38, 169, 170, 171, 172, 173, 174, 175, 176, 177, 93, 92, 42, 41, 59, 94, //
+			45, 47, 178, 179, 180, 181, 182, 183, 184, 185, 124, 44, 37, 95, 62, 63, //
+			186, 187, 188, 189, 190, 191, 192, 193, 194, 96, 58, 35, 64, 39, 61, 34, //
+			195, 97, 98, 99, 100, 101, 102, 103, 104, 105, 196, 197, 198, 199, 200, 201, //
+			202, 106, 107, 108, 109, 110, 111, 112, 113, 114, 203, 204, 205, 206, 207, 208, //
+			209, 126, 115, 116, 117, 118, 119, 120, 121, 122, 210, 211, 212, 213, 214, 215, //
+			216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, //
+			123, 65, 66, 67, 68, 69, 70, 71, 72, 73, 232, 233, 234, 235, 236, 237, //
+			125, 74, 75, 76, 77, 78, 79, 80, 81, 82, 238, 239, 240, 241, 242, 243, //
+			36, 32, 83, 84, 85, 86, 87, 88, 89, 90, 244, 245, 246, 247, 248, 249, //
+			48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 250, 251, 252, 253, 254, 255, //
+			//
+	};
+
+	/** EBCDIKデコードSJISコードマッピング配列(0x00～0xFF) */
+	private static final int EBCDIK_SJIS_MAP[] = new int[] { //
+			//
+			0, 1, 2, 3, 156, 9, 134, 127, 151, 141, 142, 11, 12, 13, 14, 15, //
+			16, 17, 18, 19, 157, 10, 8, 135, 24, 25, 146, 143, 28, 29, 30, 31, //
+			128, 129, 130, 131, 132, 133, 23, 27, 136, 137, 138, 139, 140, 5, 6, 7, //
+			144, 145, 22, 147, 148, 149, 150, 4, 152, 153, 154, 155, 20, 21, 158, 26, //
+			32, 161, 162, 163, 164, 165, 166, 167, 168, 169, 91, 46, 60, 40, 43, 33, //
+			38, 170, 171, 172, 173, 174, 175, 160, 176, 97, 93, 92, 42, 41, 59, 94, //
+			45, 47, 98, 99, 100, 101, 102, 103, 104, 105, 124, 44, 37, 95, 62, 63, //
+			106, 107, 108, 109, 110, 111, 112, 113, 114, 96, 58, 35, 64, 39, 61, 34, //
+			115, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 116, 187, 188, 189, 190, //
+			191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 117, 118, 202, 203, 204, //
+			119, 126, 205, 206, 207, 208, 209, 210, 211, 212, 213, 120, 214, 215, 216, 217, //
+			121, 122, 224, 225, 226, 227, 228, 229, 230, 231, 218, 219, 220, 221, 222, 223, //
+			123, 65, 66, 67, 68, 69, 70, 71, 72, 73, 232, 233, 234, 235, 236, 237, //
+			125, 74, 75, 76, 77, 78, 79, 80, 81, 82, 238, 239, 240, 241, 242, 243, //
+			36, 159, 83, 84, 85, 86, 87, 88, 89, 250, 244, 245, 246, 247, 248, 249, //
+			48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 250, 251, 252, 253, 254, 255, //
+			//
+	};
+
+	/** EBCDIKデーコード外字マップ */
+	private static final Map<String, String> EBCDIK_GAIJI_MAP;
+	static {
+		EBCDIK_GAIJI_MAP = new LinkedHashMap<>();
+		try {
+			Properties properties = PropertiesUtil.load("/" + StringUtil.class.getPackage().getName().replace('.', '/') + "/StringUtil-EBCDIK-Gaiji.properties");
+			for (Object key : properties.keySet()) {
+				EBCDIK_GAIJI_MAP.put((String) key, properties.getProperty((String) key));
+			}
+		} catch (Throwable e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	/** KEIS83デコード上位バイトSJIS変換先コード範囲定義(0x81～0x9F、0xE0～0xEF) */
+	private static final int KEIS83_SJIS_MAP_UPPER[] = new int[] { //
+			//
+			129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, // 0x81～
+			145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, // ～0x9F
+			224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, // 0xE0～0xEF
+			//
+	};
+
+	/** KEIS83デコード下位バイトSJIS変換先コード範囲定義(0x40～0x7E、0x80～0xFC) */
+	private static final int KEIS83_SJIS_MAP_LOWER[] = new int[] { //
+			//
+			64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, // 0x40～
+			80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, //
+			96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, //
+			112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, // ～0x7E 
+			128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, // 0x80～
+			145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, //
+			162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, //
+			179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, //
+			196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, //
+			213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, //
+			230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, //
+			247, 248, 249, 250, 251, 252, // ～0xFC
+			//
+	};
+
+	/**
+	 * EBCDICコードタイプ列挙型クラス<br>
+	 * 
+	 * @author Kitagawa<br>
+	 * 
+	 *<!--
+	 * 更新日		更新者			更新内容
+	 * 2011/05/17	Kitagawa		新規作成
+	 * 2018/05/02	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+	 *-->
+	 */
+	public enum EBCDICType {
+
+		/** EBCDIC */
+		EBCDIC("EBCDIC"),
+
+		/** EBCDIK */
+		EBCDIK("EBCDIK"),
+
+		;
+
+		/** EBCDICタイプ */
+		private String type;
+
+		/**
+		 * コンストラクタ<br>
+		 * @param type EBCDICタイプ
+		 */
+		private EBCDICType(String type) {
+			this.type = type;
+		}
+
+		/**
+		 * EBCDICタイプを取得します。<br>
+		 * @return EBCDICタイプ
+		 */
+		public String getType() {
+			return type;
+		}
+	}
+
 	/**
 	 * コンストラクタ<br>
 	 */
 	private StringUtil() {
 		super();
-	}
-
-	/**
-	 * スタティックイニシャライザ<br>
-	 */
-	static {
-		// JUnit+EclEmmaによるコードカバレッジの為のダミーコード
-		new StringUtil();
 	}
 
 	/**
@@ -1040,7 +1167,7 @@ public final class StringUtil {
 		if (strings == null) {
 			return new BigDecimal[0];
 		}
-		List<BigDecimal> list = new LinkedList<BigDecimal>();
+		List<BigDecimal> list = new LinkedList<>();
 		for (String value : strings) {
 			list.add(toBigDecimal(value, pattern));
 		}
@@ -1079,7 +1206,7 @@ public final class StringUtil {
 		if (strings == null) {
 			return new Boolean[0];
 		}
-		List<Boolean> list = new LinkedList<Boolean>();
+		List<Boolean> list = new LinkedList<>();
 		for (String value : strings) {
 			list.add(toBoolean(value));
 		}
@@ -1119,7 +1246,7 @@ public final class StringUtil {
 		if (strings == null) {
 			return new Long[0];
 		}
-		List<Long> list = new LinkedList<Long>();
+		List<Long> list = new LinkedList<>();
 		for (String value : strings) {
 			list.add(toLong(value, pattern));
 		}
@@ -1169,7 +1296,7 @@ public final class StringUtil {
 		if (strings == null) {
 			return new Integer[0];
 		}
-		List<Integer> list = new LinkedList<Integer>();
+		List<Integer> list = new LinkedList<>();
 		for (String value : strings) {
 			list.add(toInteger(value, pattern));
 		}
@@ -1219,7 +1346,7 @@ public final class StringUtil {
 		if (strings == null) {
 			return new Short[0];
 		}
-		List<Short> list = new LinkedList<Short>();
+		List<Short> list = new LinkedList<>();
 		for (String value : strings) {
 			list.add(toShort(value, pattern));
 		}
@@ -1269,7 +1396,7 @@ public final class StringUtil {
 		if (strings == null) {
 			return new Double[0];
 		}
-		List<Double> list = new LinkedList<Double>();
+		List<Double> list = new LinkedList<>();
 		for (String value : strings) {
 			list.add(toDouble(value, pattern));
 		}
@@ -1319,7 +1446,7 @@ public final class StringUtil {
 		if (strings == null) {
 			return new Float[0];
 		}
-		List<Float> list = new LinkedList<Float>();
+		List<Float> list = new LinkedList<>();
 		for (String value : strings) {
 			list.add(toFloat(value, pattern));
 		}
@@ -2746,7 +2873,7 @@ public final class StringUtil {
 		if (!skipEmpty && !trim) {
 			return tokens;
 		}
-		List<String> list = new LinkedList<String>();
+		List<String> list = new LinkedList<>();
 		for (String token : tokens) {
 			String value = trim ? token.trim() : token;
 			if (skipEmpty && isEmpty(value)) {
@@ -3400,7 +3527,7 @@ public final class StringUtil {
 	 * @param chars 補正対象文字群
 	 * @return 編集後文字列
 	 */
-	public static String padding(String string, int length, CharLoop chars) {
+	public static String padding(String string, int length, StringBelt chars) {
 		if (chars == null) {
 			throw new NullPointerException("CharLoop");
 		}
@@ -3463,7 +3590,7 @@ public final class StringUtil {
 	 * @param charset キャラクタセット
 	 * @return 編集後文字列
 	 */
-	public static String paddingb(String string, int length, CharLoop chars, String charset) {
+	public static String paddingb(String string, int length, StringBelt chars, String charset) {
 		if (chars == null) {
 			throw new NullPointerException("CharLoop");
 		}
@@ -3493,7 +3620,7 @@ public final class StringUtil {
 	 * @param chars 補正対象文字群
 	 * @return 編集後文字列
 	 */
-	public static String paddingb(String string, int length, CharLoop chars) {
+	public static String paddingb(String string, int length, StringBelt chars) {
 		return paddingb(string, length, chars, null);
 	}
 
@@ -3531,7 +3658,7 @@ public final class StringUtil {
 	 * @param chars 補正対象文字群
 	 * @return 編集後文字列
 	 */
-	public static String paddinga(String string, int length, CharLoop chars) {
+	public static String paddinga(String string, int length, StringBelt chars) {
 		if (chars == null) {
 			throw new NullPointerException("CharLoop");
 		}
@@ -3575,7 +3702,7 @@ public final class StringUtil {
 	 * @param chars 補正対象文字群
 	 * @return 編集後文字列
 	 */
-	public static String insert(String string, int length, CharLoop chars) {
+	public static String insert(String string, int length, StringBelt chars) {
 		if (chars == null) {
 			throw new NullPointerException("CharLoop");
 		}
@@ -3639,7 +3766,7 @@ public final class StringUtil {
 	 * @param charset キャラクタセット
 	 * @return 編集後文字列
 	 */
-	public static String insertb(String string, int length, CharLoop chars, String charset) {
+	public static String insertb(String string, int length, StringBelt chars, String charset) {
 		if (chars == null) {
 			throw new NullPointerException("CharLoop");
 		}
@@ -3670,7 +3797,7 @@ public final class StringUtil {
 	 * @param chars 補正対象文字群
 	 * @return 編集後文字列
 	 */
-	public static String insertb(String string, int length, CharLoop chars) {
+	public static String insertb(String string, int length, StringBelt chars) {
 		return insertb(string, length, chars, null);
 	}
 
@@ -3708,7 +3835,7 @@ public final class StringUtil {
 	 * @param chars 補正対象文字群
 	 * @return 編集後文字列
 	 */
-	public static String inserta(String string, int length, CharLoop chars) {
+	public static String inserta(String string, int length, StringBelt chars) {
 		if (chars == null) {
 			throw new NullPointerException("CharLoop");
 		}
@@ -4053,5 +4180,537 @@ public final class StringUtil {
 		buffer = replace(buffer, "'", "&#039;");
 		buffer = replace(buffer, " ", "&nbsp;");
 		return buffer;
+	}
+
+	/**
+	 * 文字列をURL文字列ににエンコードします。<br>
+	 * @param value 対象文字列
+	 * @param charset キャラクタセット
+	 * @return エンコードされたURL文字列
+	 */
+	public static String encodeURL(String value, String charset) {
+		try {
+			return URLEncoder.encode(nvl(value), charset);
+		} catch (UnsupportedEncodingException e) {
+			throw new IllegalArgumentException("unsupported charset (" + charset + ")");
+		}
+	}
+
+	/**
+	 * URLにエンコードされた文字列を通常の文字列にデコードします。<br>
+	 * @param value 変対象文字列
+	 * @param charset キャラクタセット
+	 * @return デコードされた文字列
+	 */
+	public static String decodeURL(String value, String charset) {
+		try {
+			return URLDecoder.decode(nvl(value), charset);
+		} catch (UnsupportedEncodingException e) {
+			throw new IllegalArgumentException("unsupported charset (" + charset + ")");
+		}
+	}
+
+	/**
+	 * 正規表現に合致する指定グループの文字列を取得します。<br>
+	 * @param value 対象文字列
+	 * @param regexp 正規表現(グループ取得可能とする為に"()"を正規表現文字列に含める必要があります)
+	 * @param group 取得グループ番号(1～)
+	 * @return 正規表現に合致した文字列結果配列
+	 */
+	public static String[] find(String value, String regexp, int group) {
+		Matcher matcher = Pattern.compile(regexp).matcher(value);
+		List<String> result = new LinkedList<>();
+		while (matcher.find()) {
+			if (group >= 1) {
+				if (group <= matcher.groupCount()) {
+					result.add(matcher.group(group));
+				}
+			} else {
+				for (int i = 1; i <= matcher.groupCount(); i++) {
+					result.add(matcher.group(i));
+				}
+			}
+		}
+		return result.toArray(new String[0]);
+	}
+
+	/**
+	 * 正規表現に合致する文字列を全て取得します。<br>
+	 * @param value 対象文字列
+	 * @param regexp 正規表現(グループ取得可能とする為に"()"を正規表現文字列に含める必要があります)
+	 * @return 正規表現に合致した文字列結果配列
+	 */
+	public static String[] find(String value, String regexp) {
+		return find(value, regexp, 0);
+	}
+
+	/**
+	 * 正規表現で最初に合致する文字列を取得します。<br>
+	 * @param value 検索対象文字列
+	 * @param regexp 正規表現(グループ取得可能とする為に"()"を正規表現文字列に含める必要があります)
+	 * @return 正規表現に合致した文字列結果
+	 */
+	public static String findAtFirst(String value, String regexp) {
+		String[] result = find(value, regexp, 1);
+		return result.length > 0 ? result[0] : "";
+	}
+
+	/**
+	 * 文字列がマッチするインデックスをバイト位置ベースで取得します。<br>
+	 * @param value 対象文字列
+	 * @param match 検索文字列
+	 * @param charset バイト処理を行う際のキャラクタセット
+	 * @return インデックス
+	 */
+	public static int indexbOf(String value, String match, String charset) {
+		if (isEmpty(value)) {
+			return -1;
+		}
+		if (isEmpty(match)) {
+			return 0;
+		}
+		int position = value.indexOf(match);
+		if (position < 0) {
+			return -1;
+		}
+		return lenb(value.substring(0, position), charset);
+	}
+
+	/**
+	 * 文字列がマッチするインデックスをバイト位置ベースで取得します。<br>
+	 * @param value 対象文字列
+	 * @param match 検索文字列
+	 * @return インデックス
+	 */
+	public static int indexbOf(String value, String match) {
+		return indexbOf(value, match, null);
+	}
+
+	/**
+	 * EBCDIC文字の16進コードが制御文字であるか判定します。<br>
+	 * @param hex EBCDIC文字の16進コード表記文字列
+	 * @return 制御文字である場合にtrueを返却
+	 */
+	public static boolean isEBCDICControlCharacter(String hex) {
+		if (!hex.matches("[A-Za-z0-9]+")) {
+			throw new IllegalArgumentException(hex + " not [A-Za-z0-9]+");
+		}
+		int code = Integer.decode("0x" + hex).intValue();
+		if (code > EBCDIC_SJIS_MAP.length - 1) {
+			return true;
+		}
+		if (code < 0) {
+			return true;
+		}
+		int b = EBCDIC_SJIS_MAP[code];
+		if ((b >= 0 && b <= 31) || (b >= 128 && b <= 160) || (b >= 224 && b <= 255) || (b == 127)) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * EBCDIK文字の16進コードが制御文字であるか判定します。<br>
+	 * @param hex EBCDIK文字の16進コード表記文字列
+	 * @return 制御文字である場合にtrueを返却
+	 */
+	public static boolean isEBCDIKControlCharacter(String hex) {
+		if (!hex.matches("[A-Za-z0-9]+")) {
+			throw new IllegalArgumentException(hex + " not [A-Za-z0-9]+");
+		}
+		int code = Integer.decode("0x" + hex).intValue();
+		if (code > EBCDIK_SJIS_MAP.length - 1) {
+			return true;
+		}
+		if (code < 0) {
+			return true;
+		}
+		int b = EBCDIK_SJIS_MAP[code];
+		if ((b >= 0 && b <= 31) || (b >= 128 && b <= 160) || (b >= 224 && b <= 255) || (b == 127)) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * KEIS83文字列の16進コードをデコードするうえで制御文字が含まれるか判定します。<br>
+	 * @param hex KEIS83文字列の16進コード表記文字列
+	 * @param type EBCDICコードタイプ
+	 * @param so デコード処理時にシフトアウト状態で実行する場合にtrueを指定
+	 * @return 制御文字が含まれる場合にtrueを返却
+	 */
+	public static boolean containsKEIS83ControlCharacter(String hex, EBCDICType type, boolean so) {
+		try {
+			decodeKEIS83(hex, type, so, true);
+		} catch (IllegalArgumentException e) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * KEIS83文字列の16進コードをデコードするうえで制御文字が含まれるか判定します。<br>
+	 * シフトイン、シフトアウト状態については、シフトイン状態で判定した際に制御文字が含まれる際に、再帰的にシフトアウト状態で判定処理を行った結果を返却します。<br>
+	 * これは利用者がシフトイン、シフトアウト状態を曖昧な状態で当処理を利用することを想定した動作仕様となります。<br>
+	 * @param hex KEIS83文字列の16進コード表記文字列
+	 * @param type EBCDICコードタイプ
+	 * @return 制御文字が含まれる場合にtrueを返却
+	 */
+	public static boolean containsKEIS83ControlCharacter(String hex, EBCDICType type) {
+		if (containsKEIS83ControlCharacter(hex, type, false)) {
+			if (!containsKEIS83ControlCharacter(hex, type, true)) {
+				return false;
+			} else {
+				return true;
+			}
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * EBCDIC文字の16進コードをデコードした文字を提供します。<br>
+	 * @param hex EBCDIC文字の16進コード表記文字列
+	 * @return デコードした文字
+	 */
+	public static char decodeEBCDICCharacter(String hex) {
+		if (!hex.matches("[A-Za-z0-9]+")) {
+			throw new IllegalArgumentException(hex + " not [A-Za-z0-9]+");
+		}
+		int code = Integer.decode("0x" + hex).intValue();
+		if (code > EBCDIC_SJIS_MAP.length - 1) {
+			throw new IllegalArgumentException("0x" + hex + " > 255");
+		}
+		if (code < 0) {
+			throw new IllegalArgumentException("0x" + hex + " < 0");
+		}
+		try {
+			int b = EBCDIC_SJIS_MAP[code];
+			//return new String(new byte[] { (byte) b }, "Windows-31J").charAt(0);
+			return new String(new byte[] { (byte) b }, "Shift_JIS").charAt(0);
+		} catch (UnsupportedEncodingException e) {
+			throw new IllegalArgumentException(hex, e);
+		}
+	}
+
+	/**
+	 * EBCDIK文字の16進コードをデコードした文字を提供します。<br>
+	 * @param hex EBCDIK文字の16進コード表記文字列
+	 * @return デコードした文字
+	 */
+	public static char decodeEBCDIKCharacter(String hex) {
+		if (!hex.matches("[A-Za-z0-9]+")) {
+			throw new IllegalArgumentException(hex + " not [A-Za-z0-9]+");
+		}
+		int code = Integer.decode("0x" + hex).intValue();
+		if (code > EBCDIK_SJIS_MAP.length - 1) {
+			throw new IllegalArgumentException("0x" + hex + " > 255");
+		}
+		if (code < 0) {
+			throw new IllegalArgumentException("0x" + hex + " < 0");
+		}
+		try {
+			int b = EBCDIK_SJIS_MAP[code];
+			//return new String(new byte[] { (byte) b }, "Windows-31J").charAt(0);
+			return new String(new byte[] { (byte) b }, "Shift_JIS").charAt(0);
+		} catch (UnsupportedEncodingException e) {
+			throw new IllegalArgumentException(hex, e);
+		}
+	}
+
+	/**
+	 * KEIS83文字の16進コードをデコードした文字を提供します。<br>
+	 * @param hex KEIS83文字の16進コード表記文字列
+	 * @return デコードした文字
+	 */
+	public static char decodeKEIS83Character(String hex) {
+		try {
+			// 4文字byte文字列でない場合は半角スペースを返却
+			if (hex.length() != 4) {
+				//throw new IllegalArgumentException("hex.length != 4");
+				return ' ';
+			}
+
+			/*
+			 * 特殊コード対応
+			 */
+			// 0x4040の場合は全角スペース変換
+			if ("4040".equals(hex)) {
+				return '　';
+			}
+			// 0xA1A1の場合は全角スペース変換
+			if ("A1A1".equals(hex)) {
+				return '　';
+			}
+
+			/*
+			 * KEIS上位/下位バイト分割
+			 */
+			int keis_hi_byte = Integer.decode("0x" + hex.substring(0, 2)).intValue();
+			int keis_lo_byte = Integer.decode("0x" + hex.substring(2)).intValue();
+
+			/*
+			 * 上位/下位バイトの開始位置からのオフセットインデックス算出
+			 * (KEIS上位/下位バイト範囲:A1(161)～FE(254) -> 00(0)～5D(93))
+			 */
+			int index_hb = keis_hi_byte - 161;
+			int index_lb = keis_lo_byte - 161;
+			int index = (index_hb * 94) + index_lb;
+
+			// 1byte目変換
+			int rhb = 0;
+			rhb += KEIS83_SJIS_MAP_UPPER[index / KEIS83_SJIS_MAP_LOWER.length];
+
+			// 2byte目変換
+			int rlb = 0;
+			rlb += KEIS83_SJIS_MAP_LOWER[index - ((index / KEIS83_SJIS_MAP_LOWER.length) * KEIS83_SJIS_MAP_LOWER.length)];
+
+			// 文字列変換
+			byte[] bs = new byte[2];
+			bs[0] = (byte) rhb;
+			bs[1] = (byte) rlb;
+			String value = "";
+			try {
+				//value = new String(bs, "Windows-31J");
+				value = new String(bs, "Shift_JIS");
+			} catch (UnsupportedEncodingException e) {
+				throw new IllegalArgumentException(hex, e);
+			}
+
+			/*
+			 * UnicodeチルダとWindows-31Jチルダ置換
+			 */
+			if ("〜".equals(value)) {
+				value = "～";
+			}
+
+			return value.charAt(0);
+		} catch (Throwable e) {
+			throw new IllegalArgumentException(hex, e);
+		}
+	}
+
+	/**
+	 * KEIS83文字列の16進コードをデコードして提供します。<br>
+	 * @param hex KEIS83文字の16進コード表記文字列
+	 * @param type EBCDICコードタイプ
+	 * @param so デコード処理時にシフトアウト状態で実行する場合にtrueを指定
+	 * @param errorOnControl 半角制御文字が含まれる場合に例外としてスローする場合はtrueを指定
+	 * @return 変換後文字列
+	 */
+	public static String decodeKEIS83(String hex, EBCDICType type, boolean so, boolean errorOnControl) {
+		StringBuilder buffer = new StringBuilder();
+
+		/*
+		 * 解析対象文字列に全角文字がある場合は、そのままの文字列として返却する
+		 * (KEISコード指定方法が厳密でない定義資源から利用する場合に利用元で処理分岐が必要となる事を回避するため)
+		 */
+		if (!isAscii(hex)) {
+			return hex;
+		}
+
+		/*
+		 * シフトアウト状態(全角解析中)デコードが1byteの場合はエラー
+		 */
+		if (so && hex.length() < 4) {
+			if (errorOnControl) {
+				throw new IllegalArgumentException("0x" + hex + " is illegal character code.");
+			} else {
+				return UNKOWN_LERGACY_JCHAR;
+			}
+		}
+
+		for (int i = 0; i <= hex.length() - 1; i += 4) {
+			/*
+			 * 上位ビット、下位ビット特定
+			 */
+			String value = substrb(hex, i, 4);
+			String valueH = substrb(value, 0, 2).trim();
+			if (valueH.length() == 0) {
+				valueH = "00";
+			}
+			String valueL = substrb(value, 2, 2).trim();
+			if (valueL.length() == 0) {
+				valueL = "00";
+			}
+			int codeH = Integer.decode("0x" + valueH).intValue();
+			int codeL = Integer.decode("0x" + valueL).intValue();
+
+			/*
+			 * 機能キャラクタ範囲内処理(無変換)
+			 */
+			if ("0A41".equals(value) || "0A42".equals(value)) {
+				i += 4;
+				// 末尾が機能キャラクタの場合は処理終了
+				if (i > hex.length() - 1) {
+					break;
+				}
+				while (true) {
+					value = substrb(hex, i, 4);
+					if ("0A41".equals(value) || "0A42".equals(value)) {
+						break;
+					}
+					value = substrb(hex, i, 2);
+					if (EBCDICType.EBCDIC.equals(type)) {
+						buffer.append(decodeEBCDICCharacter(value));
+						//} else if (EBCDICType.EBCDIK.equals(type)) {
+					} else {
+						buffer.append(decodeEBCDIKCharacter(value));
+					}
+					i += 2;
+					if (i > hex.length() - 1) {
+						break;
+					}
+				}
+				continue;
+			}
+
+			/*
+			 * SI/SO解析対象の場合のシフトコードは無変換
+			 */
+			//if (!shiftOut && ("28".equals(valueH) || "38".equals(valueH))) {
+			if ("28".equals(valueH) || "38".equals(valueH)) {
+				i -= 2;
+				so = true;
+				continue;
+			}
+			//if (shiftOut && ("29".equals(valueH))) {
+			if ("29".equals(valueH)) {
+				i -= 2;
+				so = false;
+				continue;
+			}
+
+			/*
+			 * シフトアウト状態での全角スペース変換
+			 */
+			if (so) {
+				// 0x4040の場合は全角スペース変換
+				if ("4040".equals(value)) {
+					buffer.append("　");
+					continue;
+				}
+				// 0xA1A1の場合は全角スペース変換
+				if ("A1A1".equals(value)) {
+					buffer.append("　");
+					continue;
+				}
+			}
+
+			/*
+			 * 1バイトコード(EBCDIKコード/EBCDICコード)判別(上位バイトが0x00～0x40)
+			 */
+			//boolean asciiCode = (charcode >= 0x00 && charcode <= 0x40);
+			boolean asciiCode = true // 
+					&& !(codeH >= 0x00 && codeH <= 0x30) //
+					&& !(codeH >= 0x41 && codeH <= 0x41) //
+					&& !(codeH >= 0xB8 && codeH <= 0xBF) //
+					&& !(codeH >= 0xCA && codeH <= 0xCF) //
+					&& !(codeH >= 0xDA && codeH <= 0xDF) //
+					&& !(codeH >= 0xE1 && codeH <= 0xE1) //
+					&& !(codeH >= 0xEA && codeH <= 0xEF) //
+					&& !(codeH >= 0xFA && codeH <= 0xFF) //
+			;
+
+			/*
+			 * シフトイン状態(半角解析中)で半角コードではない場合はエラー
+			 */
+			if (!so && !asciiCode) {
+				if (errorOnControl) {
+					throw new IllegalArgumentException("0x" + valueH + " is illegal character code.");
+				} else {
+					buffer.append(UNKOWN_LEGACY_ACHAR);
+					i -= 2;
+					continue;
+				}
+			}
+
+			/*
+			 * シフトイン状態(半角解析中)は半角コードとして変換
+			 */
+			if (!so) {
+				if (EBCDICType.EBCDIC.equals(type)) {
+					buffer.append(decodeEBCDICCharacter(valueH));
+					//} else if (EBCDICType.EBCDIK.equals(type)) {
+				} else {
+					buffer.append(decodeEBCDIKCharacter(valueH));
+				}
+				i -= 2;
+				continue;
+			}
+
+			/*
+			 * SJIS外字コード(上位バイトが0x41～0xA0かつ下位バイトが0xA1～FE)
+			 */
+			if (true //
+					&& (codeH >= 0x41 && codeH <= 0xA0) //
+					&& (codeL >= 0xA1 && codeL <= 0xFE) //
+			) {
+				String sjisHex = (Integer.toHexString(codeH) + Integer.toHexString(codeL)).toUpperCase();
+				if (EBCDIK_GAIJI_MAP.containsKey(sjisHex)) {
+					buffer.append(EBCDIK_GAIJI_MAP.get(sjisHex));
+				} else {
+					buffer.append(UNKOWN_LERGACY_JCHAR);
+				}
+				continue;
+			}
+
+			/*
+			 * SJIS未対応コード(上位バイトが0x41～0xFEかつ下位バイトが0x00～0x0A、または上位バイトが0xFF、または下位バイトが0xFF)
+			 */
+			if (false //
+					|| (codeH >= 0x41 && codeH <= 0xFE && codeL >= 0x00 && codeL <= 0x0A) //
+					|| (codeH == 0xFF || codeL == 0xFF) //
+			) {
+				String sjisHex = (Integer.toHexString(codeH) + Integer.toHexString(codeL)).toUpperCase();
+				if (EBCDIK_GAIJI_MAP.containsKey(sjisHex)) {
+					buffer.append(EBCDIK_GAIJI_MAP.get(sjisHex));
+				} else {
+					buffer.append(UNKOWN_LERGACY_JCHAR);
+				}
+				continue;
+			}
+
+			// 全角文字変換
+			try {
+				buffer.append(decodeKEIS83Character(value));
+			} catch (IllegalArgumentException e) {
+				if (errorOnControl) {
+					throw e;
+				}
+			}
+		}
+
+		return buffer.toString();
+	}
+
+	/**
+	 * KEIS83文字列の16進コードをデコードして提供します。<br>
+	 * @param hex KEIS83文字の16進コード表記文字列
+	 * @param type EBCDICコードタイプ
+	 * @param so デコード処理時にシフトアウト状態で実行する場合にtrueを指定
+	 * @return 変換後文字列
+	 */
+	public static String decodeKEIS83(String hex, EBCDICType type, boolean so) {
+		return decodeKEIS83(hex, type, so, false);
+	}
+
+	/**
+	 * KEIS83文字列の16進コードをデコードして提供します。<br>
+	 * デコード対象文字列のシフトイン、シフトアウト状態については、{@link #containsKEIS83ControlCharacter(String, EBCDICType)}の判定仕様に基づいて自動判定を行います。<br>
+	 * @param hex KEIS83文字の16進コード表記文字列
+	 * @param type EBCDICコードタイプ
+	 * @return 変換後文字列
+	 */
+	public static String decodeKEIS83(String hex, EBCDICType type) {
+		if (containsKEIS83ControlCharacter(hex, type, false)) {
+			if (!containsKEIS83ControlCharacter(hex, type, true)) {
+				return decodeKEIS83(hex, type, true);
+			} else {
+				return decodeKEIS83(hex, type, false);
+			}
+		} else {
+			return decodeKEIS83(hex, type, false);
+		}
 	}
 }

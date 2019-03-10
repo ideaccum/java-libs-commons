@@ -13,7 +13,7 @@ import java.io.StringWriter;
 /**
  * 入出力ストリーム操作を行う際の支援的な操作メソッドを提供します。<br>
  * <p>
- * システム開発時に利用するストリーム操作で利用頻度の高い文字列操作をメソッドとして提供します。<br>
+ * システム開発時に利用するストリーム操作で利用頻度の高い操作を提供します。<br>
  * </p>
  * 
  * @author Kitagawa<br>
@@ -21,13 +21,13 @@ import java.io.StringWriter;
  *<!--
  * 更新日		更新者			更新内容
  * 2008/11/05	Kitagawa		新規作成
- * 2018/05/02	Kitagawa		再構築(最低保証バージョンをJava8として全面改訂)
+ * 2018/05/02	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 public final class StreamUtil {
 
-	/** ストリームバッファサイズ */
-	public static final int BUFFER_SIZE = 2048;
+	/** ディフォルトストリームバッファサイズ */
+	public static final int DEFAULT_BUFFER_SIZE = 2048;
 
 	/**
 	 * コンストラクタ<br>
@@ -37,51 +37,61 @@ public final class StreamUtil {
 	}
 
 	/**
-	 * スタティックイニシャライザ<br>
-	 */
-	static {
-		// JUnit+EclEmmaによるコードカバレッジの為のダミーコード
-		new StreamUtil();
-	}
-
-	/**
 	 * 入力ストリームが提供するデータを別の出力ストリームに転送します。<br>
-	 * @param is 入力ストリームオブジェクト
-	 * @param os 出力ストリームオブジェクト
+	 * 出力ストリームにnullが指定された場合、入力ストリームが提供するデータはすべて切り捨てられます。<br>
+	 * @param is 入力ストリーム
+	 * @param os 出力ストリーム
+	 * @param bufferSize ストリーム処理時のバッファサイズ
+	 * @return 転送されたバイトサイズ
 	 * @throws IOException ストリーム操作時に入出力例外が発生した場合にスローされます
 	 */
 	@SuppressWarnings("resource")
-	public static void pipe(InputStream is, OutputStream os) throws IOException {
+	public static int pipe(InputStream is, OutputStream os, int bufferSize) throws IOException {
 		if (is == null) {
-			return;
+			return 0;
 		}
+		int total = 0;
 		BufferedOutputStream bos = os == null ? null : new BufferedOutputStream(os);
 		while (true) {
-			byte[] data = new byte[BUFFER_SIZE];
-			int readedsize = is.read(data);
-			if (readedsize == -1) {
+			byte[] data = new byte[bufferSize];
+			int readed = is.read(data);
+			if (readed == -1) {
 				break;
 			}
+			total += readed;
 			if (bos != null) {
-				bos.write(data, 0, readedsize);
+				bos.write(data, 0, readed);
 				bos.flush();
 			}
 		}
 		if (bos != null) {
 			bos.flush();
 		}
+		return total;
 	}
 
 	/**
-	 * 入力ストリームから指定された長さのバイトデータを取得します。<br>
+	 * 入力ストリームが提供するデータを別の出力ストリームに転送します。<br>
+	 * @param is 入力ストリームオブジェクト
+	 * @param os 出力ストリームオブジェクト
+	 * @return 転送されたバイトサイズ
+	 * @throws IOException ストリーム操作時に入出力例外が発生した場合にスローされます
+	 */
+	public static int pipe(InputStream is, OutputStream os) throws IOException {
+		return pipe(is, os, DEFAULT_BUFFER_SIZE);
+	}
+
+	/**
+	 * 入力ストリームから指定された長さのデータを読み込み、バイトデータとして提供します。<br>
 	 * 尚、指定されたサイズまでのデータが存在しなかった場合は、読み込めたデータ長のバイト配列が返却されます。<br>
 	 * また、取得長に0以下の数値を指定した場合は、入力ストリームから読み込むことが可能な全てバイトデータを返却します。<br>
 	 * @param is Input入力ストリームオブジェクト
 	 * @param length 取得するバイト長
+	 * @param bufferSize ストリーム処理時のバッファサイズ
 	 * @return 取得されたバイトデータ
 	 * @throws IOException ストリーム操作時に入出力例外が発生した場合にスローされます
 	 */
-	public static byte[] reads(InputStream is, int length) throws IOException {
+	public static byte[] reads(InputStream is, int length, int bufferSize) throws IOException {
 		if (is == null) {
 			return new byte[0];
 		}
@@ -90,17 +100,17 @@ public final class StreamUtil {
 		while (true) {
 			int readsize = -1;
 			if (length > 0) {
-				readsize = length < total + BUFFER_SIZE ? length - total : BUFFER_SIZE;
+				readsize = length < total + bufferSize ? length - total : bufferSize;
 			} else {
-				readsize = BUFFER_SIZE;
+				readsize = bufferSize;
 			}
 			byte[] data = new byte[readsize];
-			int readedsize = is.read(data);
-			if (readedsize == -1) {
+			int readed = is.read(data);
+			if (readed == -1) {
 				break;
 			}
-			total += readedsize;
-			bos.write(data, 0, readedsize);
+			total += readed;
+			bos.write(data, 0, readed);
 			if (length > 0) {
 				if (total >= length) {
 					break;
@@ -108,6 +118,29 @@ public final class StreamUtil {
 			}
 		}
 		return bos.toByteArray();
+	}
+
+	/**
+	 * 入力ストリームから指定された長さのデータを読み込み、バイトデータとして提供します。<br>
+	 * 尚、指定されたサイズまでのデータが存在しなかった場合は、読み込めたデータ長のバイト配列が返却されます。<br>
+	 * また、取得長に0以下の数値を指定した場合は、入力ストリームから読み込むことが可能な全てバイトデータを返却します。<br>
+	 * @param is Input入力ストリームオブジェクト
+	 * @param length 取得するバイト長
+	 * @return 取得されたバイトデータ
+	 * @throws IOException ストリーム操作時に入出力例外が発生した場合にスローされます
+	 */
+	public static byte[] reads(InputStream is, int length) throws IOException {
+		return reads(is, length, DEFAULT_BUFFER_SIZE);
+	}
+
+	/**
+	 * 入力ストリームからすべてのバイトデータを読み込み、バイトデータとして提供します。<br>
+	 * @param is Input入力ストリームオブジェクト
+	 * @return 取得されたバイトデータ
+	 * @throws IOException ストリーム操作時に入出力例外が発生した場合にスローされます
+	 */
+	public static byte[] reads(InputStream is) throws IOException {
+		return reads(is, -1, DEFAULT_BUFFER_SIZE);
 	}
 
 	/**

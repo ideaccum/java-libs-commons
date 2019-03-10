@@ -9,7 +9,7 @@
  *<!--
  * 更新日		更新者			更新内容
  * 2007/02/02	Kitagawa		新規作成
- * 2018/05/16	Kitagawa		再構築(最低保証バージョンをJava8として全面改訂)
+ * 2018/05/16	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 package org.ideaccum.libs.commons.util;

@@ -2,22 +2,19 @@ package org.ideaccum.libs.commons.util;
 
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLDecoder;
+import java.nio.file.Paths;
 import java.util.jar.JarFile;
 
 import javax.swing.ImageIcon;
@@ -33,13 +30,10 @@ import javax.swing.ImageIcon;
  *<!--
  * 更新日		更新者			更新内容
  * 2009/04/16	Kitagawa		新規作成
- * 2018/05/16	Kitagawa		再構築(最低保証バージョンをJava8として全面改訂)
+ * 2018/05/16	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 public final class ResourceUtil {
-
-	/** バイトバッファサイズ */
-	private static final int BYTE_BUFFER = 2048;
 
 	/**
 	 * コンストラクタ<br>
@@ -49,24 +43,20 @@ public final class ResourceUtil {
 	}
 
 	/**
-	 * スタティックイニシャライザ<br>
-	 */
-	static {
-		// JUnit+EclEmmaによるコードカバレッジの為のダミーコード
-		new ResourceUtil();
-	}
-
-	/**
-	 * 指定されたリソースパスからリソースURLを取得します。<br>
-	 * URL変換対象リソースパスはクラスローダから提供されるリソース、
-	 * ファイルシステムから提供されるリソースの順序で検索が行われます。<br>
-	 * @param name リソースパス
+	 * リソースパス文字列からリソースにアクセスする際のURLオブジェクトを取得します。<br>
+	 * 当処理におけるリソースパスの検索は下記の優先順序で取得試行を行い、取得が行えたタイミングのURLを返却します。<br>
+	 * 下記の順序で存在するリソースが見つからなかった場合、必ず指定されたパスを物理パスと見立てたファイルオブジェクトが提供するURLが返却されることに注意してください	。<br>
+	 * <ul>
+	 * <li>指定リソースパスでのリソース取得</li>
+	 * <li>指定リソースパスの先頭に"/"を付与したパスでのリソース取得</li>
+	 * <li>指定リソースパスの先頭に"META-INF/"を付与したパスでのリソース取得</li>
+	 * <li>指定リソースパスの先頭が"META-INF/"の場合にそれを除いたパスでのリソース取得</li>
+	 * <li>指定リソースパスを物理パスに見立てたリソース取得</li>
+	 * </ul>
+	 * @param path リソースパス
 	 * @return 指定されたリソースパスのURLオブジェクト
-	 * @throws IOException 指定されたリソース名からURLに変換することが出来なかった場合にスローされます
 	 */
-	@SuppressWarnings("deprecation")
-	public static URL getURL(String name) throws IOException {
-		Class<?> clazz = ResourceUtil.class;
+	public static URL getURL(String path) {
 		ClassLoader loader = null;
 		URL url = null;
 
@@ -76,197 +66,160 @@ public final class ResourceUtil {
 		loader = Thread.currentThread().getContextClassLoader();
 		if (loader != null) {
 			if (url == null) {
-				url = loader.getResource(name);
+				url = loader.getResource(path);
 			}
 			if (url == null) {
-				url = loader.getResource("/" + name);
+				url = loader.getResource("/" + path);
 			}
 			if (url == null) {
-				url = loader.getResource("META-INF/" + name);
+				url = loader.getResource("META-INF/" + path);
 			}
-			if (url == null && name.startsWith("META-INF/")) {
-				url = loader.getResource("/" + name.substring(9));
+			if (url == null && path.startsWith("META-INF/")) {
+				url = loader.getResource("/" + path.substring(9));
 			}
 		}
 
 		/*
-		 * クラスローダーによるロード試行
+		 * システムクラスローダーによるロード試行
 		 */
-		loader = clazz.getClassLoader();
+		loader = ClassLoader.getSystemClassLoader();
 		if (loader != null) {
 			if (url == null) {
-				url = loader.getResource(name);
+				url = loader.getResource(path);
 			}
 			if (url == null) {
-				url = loader.getResource("/" + name);
+				url = loader.getResource("/" + path);
 			}
 			if (url == null) {
-				url = loader.getResource("META-INF/" + name);
+				url = loader.getResource("META-INF/" + path);
 			}
-			if (url == null && name.startsWith("META-INF/")) {
-				url = loader.getResource("/" + name.substring(9));
+			if (url == null && path.startsWith("META-INF/")) {
+				url = loader.getResource("/" + path.substring(9));
 			}
 		}
 
 		/*
-		 * クラスによるロード試行
+		 * 当クラスによるロード試行
 		 */
 		if (url == null) {
-			url = clazz.getResource(name);
+			url = ResourceUtil.class.getResource(path);
 		}
 		if (url == null) {
-			url = clazz.getResource("/" + name);
+			url = ResourceUtil.class.getResource("/" + path);
 		}
 		if (url == null) {
-			url = clazz.getResource("META-INF/" + name);
+			url = ResourceUtil.class.getResource("META-INF/" + path);
 		}
-		if (url == null && name.startsWith("META-INF/")) {
-			url = clazz.getResource("/" + name.substring(9));
+		if (url == null && path.startsWith("META-INF/")) {
+			url = ResourceUtil.class.getResource("/" + path.substring(9));
 		}
 
 		/*
 		 * 物理ファイルによるロード試行
 		 */
 		if (url == null) {
-			File file = new File(name);
+			File file = new File(path);
 			if (file.exists()) {
-				url = file.toURL();
+				try {
+					url = file.toURI().toURL();
+				} catch (MalformedURLException e) {
+					// Resume next
+				}
 			} else {
-				file = new File("classes/" + name);
+				file = new File("classes/" + path);
 				if (file.exists()) {
-					url = file.toURL();
+					try {
+						url = file.toURI().toURL();
+					} catch (MalformedURLException e) {
+						// Resume next
+					}
 				}
 			}
 		}
 		if (url == null) {
-			File file = new File(name);
-			url = file.toURL();
+			File file = new File(path);
+			try {
+				url = file.toURI().toURL();
+			} catch (MalformedURLException e) {
+				// Resume next
+			}
 		}
 
 		return url;
 	}
 
 	/**
-	 * 指定されたリソースパスからリソースURIを取得します。<br>
-	 * URI変換対象リソースパスはクラスローダから提供されるリソース、
-	 * ファイルシステムから提供されるリソースの順序で検索が行われます。<br>
-	 * @param name リソースパス
+	 * リソースパス文字列からリソースにアクセスする際のURIオブジェクトを取得します。<br>
+	 * 指定されたリソースパスに対するリソースの検索方法は{@link #getURL(String)}の挙動に依存します。<br>
+	 * @param path リソースパス
 	 * @return 指定されたリソースパスのURIオブジェクト
-	 * @throws IOException 指定されたリソース名からURLに変換することが出来なかった場合にスローされます
-	 * @throws URISyntaxException URLからURIへの変換時に不正なURIパス文字列となった場合にスローされます
 	 */
-	public static URI getURI(String name) throws IOException, URISyntaxException {
-		return getURL(name).toURI();
+	public static URI getURI(String path) {
+		URL url = getURL(path);
+		try {
+			return url.toURI();
+		} catch (URISyntaxException e) {
+			// この処理におけるURISyntaxExceptionは発生しない想定
+			throw new RuntimeException(e);
+		}
 	}
 
 	/**
-	 * 指定されたリソースパスからリソースファイルオブジェクトを取得します。<br>
-	 * URI変換対象リソースパスはクラスローダから提供されるリソース、
-	 * ファイルシステムから提供されるリソースの順序で検索が行われます。<br>
-	 * @param name リソースパス
-	 * @return 指定されたリソースパスのファイルオブジェクトオブジェクト
-	 * @throws IOException 指定されたリソース名からURLに変換することが出来なかった場合にスローされます
-	 * @throws URISyntaxException URLからURIへの変換時に不正なURIパス文字列となった場合にスローされます
+	 * リソースパス文字列からリソースにアクセスする際のファイルオブジェクトを取得します。<br>
+	 * 指定されたリソースパスに対するリソースの検索方法は{@link #getURL(String)}の挙動に依存します。<br>
+	 * @param path リソースパス
+	 * @return 指定されたリソースパスのファイルオブジェクト
 	 */
-	public static File getFile(String name) throws IOException, URISyntaxException {
-		//return new File(getURI(name));
-		return new File(getURI(name).toURL().getFile());
+	public static File getFile(String path) {
+		URI uri = getURI(path);
+		return Paths.get(uri).toFile();
 	}
 
 	/**
-	 * 指定されたリソースパスからJarリソースファイルオブジェクトを取得します。<br>
-	 * URI変換対象リソースパスはクラスローダから提供されるリソース、
-	 * ファイルシステムから提供されるリソースの順序で検索が行われます。<br>
-	 * @param name リソースパス
-	 * @return 指定されたリソースパスのファイルオブジェクトオブジェクト
-	 * @throws IOException 指定されたリソース名からURLに変換することが出来なかった場合にスローされます
-	 * @throws URISyntaxException URLからURIへの変換時に不正なURIパス文字列となった場合にスローされます
+	 * リソースパス文字列からリソースにアクセスする際のJarファイルオブジェクトを取得します。<br>
+	 * 指定されたリソースパスに対するリソースの検索方法は{@link #getURL(String)}の挙動に依存します。<br>
+	 * @param path リソースパス
+	 * @return 指定されたリソースパスのJarファイルオブジェクト、但し、リソースパスがJarファイルでない場合や存在しないパスの場合はnullが返却されます
+	 * @throws IOException リソースパスからJarファイルリソースパスとして正しくパス提供が行えない場合にスローれます
 	 */
-	public static JarFile getJarFile(String name) throws IOException, URISyntaxException {
-		String jarPath = getURI(name).toURL().getPath().substring(5, getURI(name).toURL().getPath().indexOf("!"));
+	public static JarFile getJarFile(String path) throws IOException {
+		URL url = getURL(path);
+		String urlPath = url.getPath();
+		if (urlPath.indexOf(".jar!") < 0) {
+			return null;
+		}
+		String jarPath = urlPath.substring(5, urlPath.indexOf("!"));
 		return new JarFile(URLDecoder.decode(jarPath, "UTF-8"));
 	}
 
 	/**
-	 * 呼び出し元クラスパッケージから見た相対リソース物理パスを取得します。<br>
-	 * @param name リソース名
-	 * @return リソース物理パス
-	 * @throws IOException 指定されたリソース名からURLに変換することが出来なかった場合にスローされます
+	 * リソースパスのリソースが提供される形式を取得します。<br>
+	 * @param path リソースパス
+	 * @return リソースが提供される形式
 	 */
-	public static String getPath(String name) throws IOException {
-		String packagename;
-		try {
-			packagename = Class.forName(new Throwable().getStackTrace()[1].getClassName()).getPackage().getName();
-		} catch (ClassNotFoundException e) {
-			packagename = "java.lang";
-		}
-		packagename = packagename.replaceAll("\\.", "/");
-		packagename = packagename + "/";
-		return ResourceUtil.getURL(packagename + name).getFile();
+	public static String getProtocol(String path) {
+		URL url = getURL(path);
+		return url.getProtocol();
 	}
 
 	/**
-	 * 指定されたリソースがリソースパス又はファイルシステムに存在するか判定します。<br>
-	 * @param name リソースパス
-	 * @return 指定したリソースが存在する場合にtrueを返却します
-	 * @throws IOException リソースの存在チェックが正しく行えなかった場合にスローされます
-	 */
-	public static boolean isExistResource(String name) throws IOException {
-		URL url = null;
-		URI uri = null;
-		try {
-			url = getURL(name);
-			if (url == null) {
-				return false;
-			}
-			uri = new URI(url.toString().replaceAll(" ", "%20"));
-			if (uri != null && uri.toString().startsWith("jar:")) {
-				return true;
-			} else if (uri != null && uri.toString().startsWith("rsrc:")) {
-				return true;
-			} else if (uri != null && uri.toString().startsWith("vfszip:")) {
-				return true;
-			} else if (uri != null && uri.toString().startsWith("vfs:")) {
-				return true;
-			} else if (uri != null && uri.toString().startsWith("vfsfile:")) {
-				return true;
-			} else {
-				return new File(new URI(getURL(name).toString().replaceAll(" ", "%20"))).exists();
-			}
-		} catch (Throwable e) {
-			throw new IOException(name + " (" + e.getMessage() + ") / URL=" + url + " / URI=" + uri, e);
-		}
-	}
-
-	/**
-	 * 指定されたリソースがJarリソース内のものであるか判定します。<br>
-	 * @param name リソースパス
-	 * @return 指定されたリソースがJarリソース内のものである場合にtrueを返却
-	 * @throws IOException リソース種別の判定が正しく行えなかった場合にスローされます
-	 */
-	public static boolean isJarFile(String name) throws IOException {
-		return "jar".equals(getURL(name).getProtocol());
-	}
-
-	/**
-	 * 指定されたリソースパスから入力ストリームを取得します。<br>
-	 * @param name リソースパス
+	 * リソースパスに存在するリソースの入力ストリームを取得します。<br>
+	 * @param path リソースパス
 	 * @return 入力ストリームオブジェクト
-	 * @throws IOException ストリーム操作時に入出力例外が発生した場合にスローされます
+	 * @throws IOException リソース入力ストリームをオープンすることができなかった場合にスローされます
 	 */
-	public static InputStream getInputStream(String name) throws IOException {
-		URL url = getURL(name);
-		return url == null ? null : url.openStream();
+	public static InputStream getInputStream(String path) throws IOException {
+		URL url = getURL(path);
+		return url.openStream();
 	}
 
 	/**
-	 * 指定されたリソースパスから出力ストリームを取得します。<br>
-	 * @param name リソースパス
+	 * リソースパスに存在するリソースの出力ストリームを取得します。<br>
+	 * @param path リソースパス
 	 * @return 出力ストリームオブジェクト
-	 * @throws IOException ストリーム操作時に入出力例外が発生した場合にスローされます
+	 * @throws IOException リソース出力ストリームをオープンすることができなかった場合にスローされます
 	 */
 	public static OutputStream getOutputStream(String name) throws IOException {
-		//return new FileOutputStream(new File(getURL(name).getFile()));
 		URL url = getURL(name);
 		if ("file".equals(url.getProtocol())) {
 			File file = new File(getURL(name).getFile());
@@ -282,122 +235,112 @@ public final class ResourceUtil {
 	}
 
 	/**
-	 * 指定されたリソースパスからイメージを取得します。<br>
-	 * @param name リソースパス
+	 * リソースパスに存在するリソースをイメージリソースとして取得します。<br>
+	 * @param path リソースパス
 	 * @return イメージオブジェクト
-	 * @throws IOException 不正なリソースパスが指定された場合にスローされます
 	 */
-	public static Image getImage(String name) throws IOException {
-		return Toolkit.getDefaultToolkit().getImage(getURL(name));
+	public static Image getImage(String path) {
+		return Toolkit.getDefaultToolkit().getImage(getURL(path));
 	}
 
 	/**
-	 * 指定されたリソースパスからイメージアイコンを取得します。<br>
-	 * @param name リソースパス
+	 * リソースパスに存在するリソースをイメージアイコンリソースとして取得します。<br>
+	 * @param path リソースパス
 	 * @return イメージアイコンオブジェクト
-	 * @throws IOException 不正なリソースパスが指定された場合にスローされます
 	 */
-	public static ImageIcon getImageIcon(String name) throws IOException {
-		return new ImageIcon(getImage(name));
+	public static ImageIcon getImageIcon(String path) {
+		return new ImageIcon(getImage(path));
 	}
 
 	/**
-	 * 指定されたリソースパスからテキストを取得します。<br>
-	 * @param name リソースパス
+	 * リソースパスに存在するリソースをテキストファイルとして取得します。<br>
+	 * @param path リソースパス
 	 * @param charset キャラクタセット
-	 * @return リソース内に記述されている文字列
-	 * @throws IOException ストリーム操作時に入出力例外が発生した場合にスローされます
+	 * @return テキストファイル内容文字列
+	 * @throws IOException リソースに対する入出力操作でエラーが発生した場合にスローされます
 	 */
-	public static String getText(String name, String charset) throws IOException {
-		BufferedReader reader = null;
-		if (charset == null) {
-			reader = new BufferedReader(new InputStreamReader(getInputStream(name)));
-		} else {
-			reader = new BufferedReader(new InputStreamReader(getInputStream(name), charset));
-		}
-		StringBuffer buffer = new StringBuffer();
-		while (reader.ready()) {
-			buffer.append(reader.readLine());
-			if (reader.ready()) {
-				buffer.append("\n");
+	public static String getText(String path, String charset) throws IOException {
+		InputStream is = null;
+		try {
+			is = getInputStream(path);
+			String text = StreamUtil.readString(is, charset);
+			return text;
+		} finally {
+			if (is != null) {
+				is.close();
 			}
 		}
-		reader.close();
-		return buffer.toString();
 	}
 
 	/**
-	 * 指定されたリソースパスからテキストを取得します。<br>
-	 * @param name リソースパス
-	 * @return リソース内に記述されている文字列
-	 * @throws IOException ストリーム操作時に入出力例外が発生した場合にスローされます
+	 * リソースパスに存在するリソースをテキストファイルとして取得します。<br>
+	 * @param path リソースパス
+	 * @return テキストファイル内容文字列
+	 * @throws IOException リソースに対する入出力操作でエラーが発生した場合にスローされます
 	 */
-	public static String getText(String name) throws IOException {
-		return getText(name, null);
+	public static String getText(String path) throws IOException {
+		return getText(path, null);
 	}
 
 	/**
-	 * 指定されたリソースパスに対してテキストを出力します。<br>
-	 * @param name リソースパス
-	 * @param text テキスト文字列
-	 * @param charset キャラクタセット
+	 * リソースパスに存在するリソースをバイトデータとして取得します。<br>
+	 * @param path リソースパス
+	 * @return バイト配列
 	 * @throws IOException ストリーム操作時に入出力例外が発生した場合にスローされます
 	 */
-	public static void writeText(String name, String text, String charset) throws IOException {
-		BufferedWriter writer = null;
-		if (charset == null) {
-			writer = new BufferedWriter(new OutputStreamWriter(getOutputStream(name)));
-		} else {
-			writer = new BufferedWriter(new OutputStreamWriter(getOutputStream(name), charset));
+	public static byte[] getBytes(String path) throws IOException {
+		InputStream is = null;
+		try {
+			is = getInputStream(path);
+			byte[] data = StreamUtil.reads(is);
+			return data;
+		} finally {
+			if (is != null) {
+				is.close();
+			}
 		}
-		writer.write(text);
-		writer.flush();
-		writer.close();
 	}
 
 	/**
-	 * 指定されたリソースパスに対してテキストを出力します。<br>
-	 * @param name リソースパス
-	 * @param text テキスト文字列
-	 * @throws IOException ストリーム操作時に入出力例外が発生した場合にスローされます
-	 */
-	public static void writeText(String name, String text) throws IOException {
-		writeText(name, text, null);
-	}
-
-	/**
-	 * 指定されたリソースパスからバイトデータを取得します。<br>
-	 * @param name リソースパス
-	 * @return リソースデータバイト配列
-	 * @throws IOException ストリーム操作時に入出力例外が発生した場合にスローされます
-	 */
-	public static byte[] getBytes(String name) throws IOException {
-		InputStream inputStream = getInputStream(name);
-		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		int length = -1;
-		byte[] buffer = new byte[BYTE_BUFFER];
-		while ((length = inputStream.read(buffer)) != -1) {
-			outputStream.write(buffer, 0, length);
-		}
-		byte[] result = outputStream.toByteArray();
-
-		inputStream.close();
-		outputStream.close();
-
-		return result;
-	}
-
-	/**
-	 * 指定されたリソースパスからシリアライズされたオブジェクトを読み込みます。<br>
-	 * @param name リソースパス
-	 * @return 復元されたオブジェクト
+	 * リソースパスに存在するリソースをシリアライズされたオブジェクトとして取得します。<br>
+	 * @param path リソースパス
+	 * @return オブジェクト
 	 * @throws IOException ストリーム操作時に入出力例外が発生した場合にスローされます
 	 * @throws ClassNotFoundException シリアライズオブジェクトのクラスが不明な場合にスローされます
 	 */
-	public static Object getObject(String name) throws IOException, ClassNotFoundException {
-		ObjectInputStream inputStream = new ObjectInputStream(getInputStream(name));
-		Object object = inputStream.readObject();
-		inputStream.close();
-		return object;
+	public static Object getObject(String path) throws IOException, ClassNotFoundException {
+		ObjectInputStream is = null;
+		try {
+			is = new ObjectInputStream(getInputStream(path));
+			Object object = is.readObject();
+			return object;
+		} finally {
+			if (is != null) {
+				is.close();
+			}
+		}
+	}
+
+	/**
+	 * リソースが参照できる場所に存在するか判定します。<br>
+	 * @param path リソースパス
+	 * @return リソースが参照できる場所に存在する場合にtrueを返却します
+	 */
+	public static boolean exists(String path) {
+		URL url = getURL(path);
+		if ("file".equals(url.getProtocol())) {
+			return getFile(path).exists();
+		} else {
+			return true;
+		}
+	}
+
+	/**
+	 * リソースパスのリソースがJarファイルに内包されて提供されるリソースであるかを判定します。<br>
+	 * @param path リソースパス
+	 * @return Jarファイルに内包されて提供されるリソースである場合にtrueを返却
+	 */
+	public static boolean isJarProvide(String path) {
+		return "jar".equals(getProtocol(path));
 	}
 }

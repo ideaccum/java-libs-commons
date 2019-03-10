@@ -43,7 +43,7 @@ import java.util.List;
  *<!--
  * 更新日		更新者			更新内容
  * 2016/09/14	Kitagawa		新規作成
- * 2018/06/29	Kitagawa		新規作成(最低保証バージョンをJava8として全面改訂)
+ * 2018/06/29	Kitagawa		新規作成(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 public final class Loop<T> {
@@ -117,7 +117,7 @@ public final class Loop<T> {
 				if (iterable == null) {
 					return null;
 				}
-				List<T> list = new LinkedList<T>();
+				List<T> list = new LinkedList<>();
 				for (T e : iterable) {
 					list.add(0, e);
 				}
@@ -144,7 +144,7 @@ public final class Loop<T> {
 	 * @return ラップされた反復オブジェクト
 	 */
 	public static <T> Iterable<Loop<T>> each(final Iterable<T> iterable, int offset) {
-		return each(iterable == null ? new ArrayList<T>() : iterable, offset, false);
+		return each(iterable == null ? new ArrayList<>() : iterable, offset, false);
 	}
 
 	/**
@@ -154,7 +154,7 @@ public final class Loop<T> {
 	 * @return ラップされた反復オブジェクト
 	 */
 	public static <T> Iterable<Loop<T>> each(final Iterable<T> iterable) {
-		return each(iterable == null ? new ArrayList<T>() : iterable, 0, false);
+		return each(iterable == null ? new ArrayList<>() : iterable, 0, false);
 	}
 
 	/**
@@ -165,7 +165,7 @@ public final class Loop<T> {
 	 * @return ラップされた反復オブジェクト
 	 */
 	public static <T> Iterable<Loop<T>> each(final Enumeration<T> enumeration, int offset) {
-		return each(enumeration == null ? new ArrayList<T>() : Collections.list(enumeration), offset, false);
+		return each(enumeration == null ? new ArrayList<>() : Collections.list(enumeration), offset, false);
 	}
 
 	/**
@@ -175,7 +175,7 @@ public final class Loop<T> {
 	 * @return ラップされた反復オブジェクト
 	 */
 	public static <T> Iterable<Loop<T>> each(final Enumeration<T> enumeration) {
-		return each(enumeration == null ? new ArrayList<T>() : Collections.list(enumeration), 0, false);
+		return each(enumeration == null ? new ArrayList<>() : Collections.list(enumeration), 0, false);
 	}
 
 	/**
@@ -186,7 +186,7 @@ public final class Loop<T> {
 	 * @return ラップされた反復オブジェクト
 	 */
 	public static <T> Iterable<Loop<T>> each(final T[] array, int offset) {
-		return each(array == null ? new ArrayList<T>() : Arrays.asList(array), offset, false);
+		return each(array == null ? new ArrayList<>() : Arrays.asList(array), offset, false);
 	}
 
 	/**
@@ -196,7 +196,7 @@ public final class Loop<T> {
 	 * @return ラップされた反復オブジェクト
 	 */
 	public static <T> Iterable<Loop<T>> each(final T[] array) {
-		return each(array == null ? new ArrayList<T>() : Arrays.asList(array), 0, false);
+		return each(array == null ? new ArrayList<>() : Arrays.asList(array), 0, false);
 	}
 
 	/**
@@ -208,7 +208,7 @@ public final class Loop<T> {
 	 * @return ラップされた反復オブジェクト
 	 */
 	public static <T> Iterable<Loop<T>> reverse(final Iterable<T> iterable, int offset) {
-		return each(iterable == null ? new ArrayList<T>() : iterable, offset, true);
+		return each(iterable == null ? new ArrayList<>() : iterable, offset, true);
 	}
 
 	/**
@@ -219,7 +219,7 @@ public final class Loop<T> {
 	 * @return ラップされた反復オブジェクト
 	 */
 	public static <T> Iterable<Loop<T>> reverse(final Iterable<T> iterable) {
-		return each(iterable == null ? new ArrayList<T>() : iterable, 0, true);
+		return each(iterable == null ? new ArrayList<>() : iterable, 0, true);
 	}
 
 	/**
@@ -254,7 +254,7 @@ public final class Loop<T> {
 	 * @return ラップされた反復オブジェクト
 	 */
 	public static <T> Iterable<Loop<T>> reverse(final T[] array, int offset) {
-		return each(array == null ? new ArrayList<T>() : Arrays.asList(array), offset, true);
+		return each(array == null ? new ArrayList<>() : Arrays.asList(array), offset, true);
 	}
 
 	/**
@@ -265,7 +265,7 @@ public final class Loop<T> {
 	 * @return ラップされた反復オブジェクト
 	 */
 	public static <T> Iterable<Loop<T>> reverse(final T[] array) {
-		return each(array == null ? new ArrayList<T>() : Arrays.asList(array), 0, true);
+		return each(array == null ? new ArrayList<>() : Arrays.asList(array), 0, true);
 	}
 
 	/**

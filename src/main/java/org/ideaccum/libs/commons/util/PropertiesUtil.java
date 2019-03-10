@@ -9,8 +9,7 @@ import java.util.Properties;
 /**
  * プロパティリソースに対する操作を行う際の支援的な操作メソッドを提供します。<br>
  * <p>
- * {@link java.util.Properties}を利用したプロパティリソース読み込み時のコーディングをラップして単一行でのプロパティロードを行う為の操作や、
- * プロパティ値を取得する際に目的の方へのパースを行う処理をラップしたメソッド等を提供します。<br>
+ * 単一行でのプロパティロードを行う為の操作や目的型でのプロパティ値を取得メソッド等を提供します。<br>
  * </p>
  *
  * @author Kitagawa<br>
@@ -18,7 +17,7 @@ import java.util.Properties;
  *<!--
  * 更新日		更新者			更新内容
  * 2007/02/02	Kitagawa		新規作成
- * 2018/05/16	Kitagawa		再構築(最低保証バージョンをJava8として全面改訂)
+ * 2018/05/16	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 public final class PropertiesUtil {
@@ -31,18 +30,10 @@ public final class PropertiesUtil {
 	}
 
 	/**
-	 * スタティックイニシャライザ<br>
-	 */
-	static {
-		// JUnit+EclEmmaによるコードカバレッジの為のダミーコード
-		new PropertiesUtil();
-	}
-
-	/**
-	 * ストリームオブジェクトからプロパティリソースを読み込みます。<br>
+	 * 入力ストリームからプロパティリソースを読み込みます。<br>
 	 * @param stream 入力ストリームオブジェクト
 	 * @return プロパティオブジェクト
-	 * @throws IOException 読込み時に入出力例外が発生した場合にスローされます
+	 * @throws IOException プロパティリソースの読込み時に失敗した場合にスローされます
 	 */
 	public static Properties load(InputStream stream) throws IOException {
 		Properties properties = new Properties();
@@ -54,10 +45,10 @@ public final class PropertiesUtil {
 	}
 
 	/**
-	 * リーダーオブジェクトからプロパティファイルを読み込みます。<br>
-	 * @param reader リーダーオブジェクト
+	 * 入力ストリームからプロパティリソースを読み込みます。<br>
+	 * @param reader 入力ストリームオブジェクト
 	 * @return プロパティオブジェクト
-	 * @throws IOException 読込み時に入出力例外が発生した場合にスローされます
+	 * @throws IOException プロパティリソースの読込み時に失敗した場合にスローされます
 	 */
 	public static Properties load(Reader reader) throws IOException {
 		Properties properties = new Properties();
@@ -69,35 +60,33 @@ public final class PropertiesUtil {
 	}
 
 	/**
-	 * 指定されたファイル名のプロパティファイルを読み込みます。<br>
-	 * @param filename ファイル名
+	 * リソースパスに存在するプロパティリソースを読み込みます。<br>
+	 * @param path プロパティリソースパス
 	 * @param locale ロケールを指定した場合プロパティリソース名のサフィックスに該当のロケール文字列を含むものを優先に読み込みます
 	 * @return プロパティオブジェクト
-	 * @throws IOException 読込み時に入出力例外が発生した場合にスローされます
+	 * @throws IOException プロパティリソースの読込み時に失敗した場合にスローされます
 	 */
-	public static Properties load(String filename, Locale locale) throws IOException {
-		String basename = filename.substring(0, filename.lastIndexOf("."));
+	public static Properties load(String path, Locale locale) throws IOException {
+		String basename = path.substring(0, path.lastIndexOf("."));
 		String target = null;
 		if (locale != null) {
 			target = basename + "_" + locale.getLanguage() + "_" + locale.getCountry() + ".properties";
-			if (!ResourceUtil.isExistResource(target)) {
+			if (!ResourceUtil.exists(target)) {
 				target = basename + "_" + locale.getLanguage() + ".properties";
 			}
-			if (!ResourceUtil.isExistResource(target)) {
+			if (!ResourceUtil.exists(target)) {
 				target = basename + "_" + locale.getCountry() + ".properties";
 			}
-			if (!ResourceUtil.isExistResource(target)) {
+			if (!ResourceUtil.exists(target)) {
 				target = basename + ".properties";
 			}
 		} else {
-			target = filename;
+			target = path;
 		}
 		InputStream stream = ResourceUtil.getInputStream(target);
 		if (stream != null) {
 			try {
 				return load(stream);
-			} catch (Throwable e) {
-				throw new IOException(e);
 			} finally {
 				stream.close();
 			}
@@ -107,96 +96,116 @@ public final class PropertiesUtil {
 	}
 
 	/**
-	 * 指定されたファイル名のプロパティファイルを読み込みます。<br>
-	 * @param filename ファイル名
+	 * リソースパスに存在するプロパティリソースを読み込みます。<br>
+	 * @param path プロパティリソースパス
 	 * @return プロパティオブジェクト
-	 * @throws IOException 読込み時に入出力例外が発生した場合にスローされます
+	 * @throws IOException プロパティリソースの読込み時に失敗した場合にスローされます
 	 */
-	public static Properties load(String filename) throws IOException {
-		return load(filename, null);
+	public static Properties load(String path) throws IOException {
+		return load(path, Locale.getDefault());
 	}
 
 	/**
 	 * プロパティ値を文字列として取得します。<br>
-	 * 正常にプロパティ値を取得できない場合は例外はスローせずに空文字を返却します。<br>
+	 * プロパティが存在しない場合は空文字を返却します。<br>
 	 * @param properties 対象プロパティオブジェクト
-	 * @param key プロパティキー
+	 * @param name プロパティ名
 	 * @return プロパティ値
 	 */
-	public static String getString(Properties properties, String key) {
-		String value = properties == null ? "" : properties.getProperty(key);
+	public static String getString(Properties properties, String name) {
+		String value = properties == null ? "" : properties.getProperty(name);
 		return value == null ? "" : value;
 	}
 
 	/**
 	 * 指定されたキーのプロパティ値をshort型として取得します。<br>
-	 * 正常にプロパティ値を取得できない場合は例外はスローせずに0を返却します。<br>
+	 * プロパティが存在しない場合は0を返却します。<br>
 	 * @param properties 対象プロパティオブジェクト
-	 * @param key プロパティキー
+	 * @param name プロパティ名
 	 * @return プロパティ値
 	 */
-	public static int getShort(Properties properties, String key) {
-		String value = properties == null ? "" : properties.getProperty(key);
+	public static int getShort(Properties properties, String name) {
+		String value = properties == null ? "" : properties.getProperty(name);
 		return StringUtil.toPShort(value);
 	}
 
 	/**
 	 * 指定されたキーのプロパティ値をint型として取得します。<br>
-	 * 正常にプロパティ値を取得できない場合は例外はスローせずに0を返却します。<br>
+	 * プロパティが存在しない場合は0を返却します。<br>
 	 * @param properties 対象プロパティオブジェクト
-	 * @param key プロパティキー
+	 * @param name プロパティ名
 	 * @return プロパティ値
 	 */
-	public static int getInteger(Properties properties, String key) {
-		String value = properties == null ? "" : properties.getProperty(key);
+	public static int getInteger(Properties properties, String name) {
+		String value = properties == null ? "" : properties.getProperty(name);
 		return StringUtil.toPInt(value);
 	}
 
 	/**
 	 * 指定されたキーのプロパティ値をlong型として取得します。<br>
-	 * 正常にプロパティ値を取得できない場合は例外はスローせずに0を返却します。<br>
+	 * プロパティが存在しない場合は0を返却します。<br>
 	 * @param properties 対象プロパティオブジェクト
-	 * @param key プロパティキー
+	 * @param name プロパティ名
 	 * @return プロパティ値
 	 */
-	public static long getLong(Properties properties, String key) {
-		String value = properties == null ? "" : properties.getProperty(key);
+	public static long getLong(Properties properties, String name) {
+		String value = properties == null ? "" : properties.getProperty(name);
 		return StringUtil.toPLong(value);
 	}
 
 	/**
 	 * 指定されたキーのプロパティ値をfloat型として取得します。<br>
-	 * 正常にプロパティ値を取得できない場合は例外はスローせずに0を返却します。<br>
+	 * プロパティが存在しない場合は0を返却します。<br>
 	 * @param properties 対象プロパティオブジェクト
-	 * @param key プロパティキー
+	 * @param name プロパティ名
 	 * @return プロパティ値
 	 */
-	public static float getFloat(Properties properties, String key) {
-		String value = properties == null ? "" : properties.getProperty(key);
+	public static float getFloat(Properties properties, String name) {
+		String value = properties == null ? "" : properties.getProperty(name);
 		return StringUtil.toPFloat(value);
 	}
 
 	/**
-	 * 指定されたキーのプロパティ値をfloat型として取得します。<br>
-	 * 正常にプロパティ値を取得できない場合は例外はスローせずに0を返却します。<br>
+	 * 指定されたキーのプロパティ値をdouble型として取得します。<br>
+	 * プロパティが存在しない場合は0を返却します。<br>
 	 * @param properties 対象プロパティオブジェクト
-	 * @param key プロパティキー
+	 * @param name プロパティ名
 	 * @return プロパティ値
 	 */
-	public static double getDouble(Properties properties, String key) {
-		String value = properties == null ? "" : properties.getProperty(key);
+	public static double getDouble(Properties properties, String name) {
+		String value = properties == null ? "" : properties.getProperty(name);
 		return StringUtil.toPDouble(value);
 	}
 
 	/**
 	 * 指定されたキーのプロパティ値をboolean型として取得します。<br>
-	 * 正常にプロパティ値を取得できない場合は例外はスローせずにfalseを返却します。<br>
+	 * プロパティが存在しない場合はfalseを返却します。<br>
 	 * @param properties 対象プロパティオブジェクト
-	 * @param key プロパティキー
+	 * @param name プロパティ名
 	 * @return プロパティ値
 	 */
-	public static boolean getBoolean(Properties properties, String key) {
-		String value = properties == null ? "" : properties.getProperty(key);
+	public static boolean getBoolean(Properties properties, String name) {
+		String value = properties == null ? "" : properties.getProperty(name);
 		return StringUtil.toPBoolean(value);
+	}
+
+	/**
+	 * 指定されたキーのプロパティ値を指定された列挙型として取得します。<br>
+	 * プロパティが存在しない場合や一致する列挙型が存在しない場合はnullを返却します。<br>
+	 * @param properties 対象プロパティオブジェクト
+	 * @param name プロパティ名
+	 * @return プロパティ値
+	 */
+	public static <E extends Enum<E>> E getEnum(Properties properties, String name, Class<E> enumClass) {
+		String value = properties == null ? "" : properties.getProperty(name);
+		if (enumClass == null) {
+			return null;
+		}
+		for (E e : enumClass.getEnumConstants()) {
+			if (StringUtil.equalsIgnoreCase(e.name(), value)) {
+				return e;
+			}
+		}
+		return null;
 	}
 }

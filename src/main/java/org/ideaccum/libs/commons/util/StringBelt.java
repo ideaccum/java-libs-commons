@@ -21,7 +21,7 @@ import java.io.Serializable;
  * 2018/05/15	Kitagawa		新規作成
  *-->
  */
-public class CharLoop implements Serializable {
+public class StringBelt implements Serializable {
 
 	/** 繰返し対象文字群 */
 	private char[] chars;
@@ -36,7 +36,7 @@ public class CharLoop implements Serializable {
 	 * コンストラクタ<br>
 	 * @param string 繰返し対象文字列
 	 */
-	public CharLoop(String string) {
+	public StringBelt(String string) {
 		super();
 		this.chars = StringUtil.nvl(string).toCharArray();
 		this.index = 0;
@@ -50,7 +50,7 @@ public class CharLoop implements Serializable {
 	 * コンストラクタ<br>
 	 * @param chars 繰返し対象文字群
 	 */
-	public CharLoop(char... chars) {
+	public StringBelt(char... chars) {
 		super();
 		this.chars = chars;
 		this.index = 0;

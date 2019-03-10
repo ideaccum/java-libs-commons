@@ -2,8 +2,14 @@ package org.ideaccum.libs.commons.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,7 +17,7 @@ import java.util.List;
 /**
  * オブジェクトに対する操作を行う際の支援的な操作メソッドを提供します。<br>
  * <p>
- * システム開発時に利用するオブジェクト操作で利用頻度の高い文字列操作をメソッドとして提供します。<br>
+ * システム開発時に利用するオブジェクト操作で利用頻度の高い操作を提供します。<br>
  * </p>
  * 
  * @author Kitagawa<br>
@@ -19,7 +25,7 @@ import java.util.List;
  *<!--
  * 更新日		更新者			更新内容
  * 2005/07/02	Kitagawa		新規作成
- * 2018/05/02	Kitagawa		新規作成(最低保証バージョンをJava8として全面改訂)
+ * 2018/05/02	Kitagawa		新規作成(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 public final class ObjectUtil {
@@ -29,14 +35,6 @@ public final class ObjectUtil {
 	 */
 	private ObjectUtil() {
 		super();
-	}
-
-	/**
-	 * スタティックイニシャライザ<br>
-	 */
-	static {
-		// JUnit+EclEmmaによるコードカバレッジの為のダミーコード
-		new ObjectUtil();
 	}
 
 	/**
@@ -105,6 +103,126 @@ public final class ObjectUtil {
 	}
 
 	/**
+	 * シリアライズ可能なオブジェクトを出力ストリームに対して出力します。<br>
+	 * @param object シリアライズ可能なオブジェクト
+	 * @param stream 出力ストリーム
+	 * @throws IOException ストリーム出力時に入出力例外が発生した場合にスローされます
+	 */
+	public static void save(Serializable object, OutputStream stream) throws IOException {
+		ObjectOutputStream os = new ObjectOutputStream(stream);
+		os.writeObject(object);
+		os.flush();
+	}
+
+	/**
+	 * シリアライズ可能なオブジェクトをファイルに出力します。<br>
+	 * @param object シリアライズ可能なオブジェクト
+	 * @param file ファイルオブジェクト
+	 * @throws IOException ファイル出力時に入出力例外が発生した場合にスローされます
+	 */
+	public static void save(Serializable object, File file) throws IOException {
+		FileOutputStream os = null;
+		try {
+			os = new FileOutputStream(file);
+			save(object, os);
+		} finally {
+			if (os != null) {
+				os.close();
+			}
+		}
+	}
+
+	/**
+	 * シリアライズ可能なオブジェクトをファイルに出力します。<br>
+	 * @param object シリアライズ可能なオブジェクト
+	 * @param path ファイルパス
+	 * @throws IOException ファイル出力時に入出力例外が発生した場合にスローされます
+	 */
+	public static void save(Serializable object, String path) throws IOException {
+		save(object, ResourceUtil.getFile(path));
+	}
+
+	/**
+	 * 入力ストリームからオブジェクトを読み込みます。<br>
+	 * @param stream 入力ストリーム
+	 * @param <T> 読み込む対象のオブジェクト型
+	 * @return 読み込んだオブジェクト
+	 * @throws IOException ストリーム読み込み時に入出力例外が発生した場合にスローされます
+	 * @throws ClassNotFoundException 対象のオブジェクトのクラスが存在しない場合にスローされます
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T extends Serializable> T load(InputStream stream, Class<T> type) throws IOException, ClassNotFoundException {
+		ObjectInputStream is = new ObjectInputStream(stream);
+		Object object = is.readObject();
+		return (T) object;
+	}
+
+	/**
+	 * 入力ストリームからオブジェクトを読み込みます。<br>
+	 * @param stream 入力ストリーム
+	 * @return 読み込んだオブジェクト
+	 * @throws IOException ストリーム読み込み時に入出力例外が発生した場合にスローされます
+	 * @throws ClassNotFoundException 対象のオブジェクトのクラスが存在しない場合にスローされます
+	 */
+	public static Serializable load(InputStream stream) throws IOException, ClassNotFoundException {
+		return load(stream, Serializable.class);
+	}
+
+	/**
+	 * ファイルからオブジェクトを読み込みます。<br>
+	 * @param file ファイルオブジェクト
+	 * @param <T> 読み込む対象のオブジェクト型
+	 * @return 読み込んだオブジェクト
+	 * @throws IOException ファイル読み込み時に入出力例外が発生した場合にスローされます
+	 * @throws ClassNotFoundException 対象のオブジェクトのクラスが存在しない場合にスローされます
+	 */
+	public static <T extends Serializable> T load(File file, Class<T> type) throws IOException, ClassNotFoundException {
+		FileInputStream is = null;
+		try {
+			is = new FileInputStream(file);
+			T object = load(is, type);
+			is.close();
+			return object;
+		} finally {
+			if (is != null) {
+				is.close();
+			}
+		}
+	}
+
+	/**
+	 * ファイルからオブジェクトを読み込みます。<br>
+	 * @param file ファイルオブジェクト
+	 * @return 読み込んだオブジェクト
+	 * @throws IOException ファイル読み込み時に入出力例外が発生した場合にスローされます
+	 * @throws ClassNotFoundException 対象のオブジェクトのクラスが存在しない場合にスローされます
+	 */
+	public static Serializable load(File file) throws IOException, ClassNotFoundException {
+		return load(file, Serializable.class);
+	}
+
+	/**
+	 * ファイルからオブジェクトを読み込みます。<br>
+	 * @param path ファイルパス
+	 * @param <T> 読み込む対象のオブジェクト型
+	 * @throws IOException ファイル読み込み時に入出力例外が発生した場合にスローされます
+	 * @throws ClassNotFoundException 対象のオブジェクトのクラスが存在しない場合にスローされます
+	 */
+	public static <T extends Serializable> T load(String path, Class<T> type) throws IOException, ClassNotFoundException {
+		return load(ResourceUtil.getFile(path), type);
+	}
+
+	/**
+	 * ファイルからオブジェクトを読み込みます。<br>
+	 * @param path ファイルパス
+	 * @throws IOException ファイル読み込み時に入出力例外が発生した場合にスローされます
+	 * @throws ClassNotFoundException 対象のオブジェクトのクラスが存在しない場合にスローされます
+	 */
+	public static Serializable load(String path) throws IOException, ClassNotFoundException {
+		return load(ResourceUtil.getFile(path), Serializable.class);
+	}
+
+	/**
 	 * 16ビット整数配列のプリミティブ型－オブジェクト間のキャスト処理を行います。<br>
 	 * @param chars 16ビット整数配列
 	 * @return 16ビット整数オブジェクト配列
@@ -113,7 +231,7 @@ public final class ObjectUtil {
 		if (chars == null) {
 			return null;
 		}
-		List<Character> list = new LinkedList<Character>();
+		List<Character> list = new LinkedList<>();
 		for (char c : chars) {
 			list.add(c);
 		}
@@ -152,7 +270,7 @@ public final class ObjectUtil {
 		if (bytes == null) {
 			return null;
 		}
-		List<Byte> list = new LinkedList<Byte>();
+		List<Byte> list = new LinkedList<>();
 		for (byte c : bytes) {
 			list.add(c);
 		}
@@ -191,7 +309,7 @@ public final class ObjectUtil {
 		if (shorts == null) {
 			return null;
 		}
-		List<Short> list = new LinkedList<Short>();
+		List<Short> list = new LinkedList<>();
 		for (short c : shorts) {
 			list.add(c);
 		}
@@ -230,7 +348,7 @@ public final class ObjectUtil {
 		if (ints == null) {
 			return null;
 		}
-		List<Integer> list = new LinkedList<Integer>();
+		List<Integer> list = new LinkedList<>();
 		for (int c : ints) {
 			list.add(c);
 		}
@@ -269,7 +387,7 @@ public final class ObjectUtil {
 		if (longs == null) {
 			return null;
 		}
-		List<Long> list = new LinkedList<Long>();
+		List<Long> list = new LinkedList<>();
 		for (long c : longs) {
 			list.add(c);
 		}
@@ -308,7 +426,7 @@ public final class ObjectUtil {
 		if (floats == null) {
 			return null;
 		}
-		List<Float> list = new LinkedList<Float>();
+		List<Float> list = new LinkedList<>();
 		for (float c : floats) {
 			list.add(c);
 		}
@@ -347,7 +465,7 @@ public final class ObjectUtil {
 		if (doubles == null) {
 			return null;
 		}
-		List<Double> list = new LinkedList<Double>();
+		List<Double> list = new LinkedList<>();
 		for (double c : doubles) {
 			list.add(c);
 		}

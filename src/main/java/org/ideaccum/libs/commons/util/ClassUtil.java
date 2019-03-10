@@ -19,7 +19,7 @@ import java.util.List;
  *<!--
  * 更新日		更新者			更新内容
  * 2012/10/02	Kitagawa		新規作成
- * 2018/05/24	Kitagawa		再構築(最低保証バージョンをJava8として全面改訂)
+ * 2018/05/24	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 public final class ClassUtil {
@@ -32,16 +32,8 @@ public final class ClassUtil {
 	}
 
 	/**
-	 * スタティックイニシャライザ<br>
-	 */
-	static {
-		// JUnit+EclEmmaによるコードカバレッジの為のダミーコード
-		new ClassUtil();
-	}
-
-	/**
 	 * クラスが継承する親クラス情報を再上位まで再帰的に検索して提供します。<br>
-	 * 提供される順序は対象としたクラスの直上のクラスを先頭にした最上位に向かったクラス継承順となります。<br>
+	 * 提供されるクラス順序は対象としたクラスが直接継承するクラスを先頭にした最上位に向かったクラス継承順となります。<br>
 	 * @param clazz 対象クラス
 	 * @return クラスが継承する親クラス配列
 	 */
@@ -52,27 +44,13 @@ public final class ClassUtil {
 		if (clazz.getSuperclass() == null) {
 			return new Class[0];
 		}
-		List<Class<?>> list = new LinkedList<Class<?>>();
+		List<Class<?>> classes = new LinkedList<>();
 		for (Class<?> parent = clazz.getSuperclass(); parent != null; parent = parent.getSuperclass()) {
-			if (!list.contains(parent)) {
-				list.add(parent);
+			if (!classes.contains(parent)) {
+				classes.add(parent);
 			}
 		}
-		return list.toArray(new Class[0]);
-	}
-
-	/**
-	 * オブジェクトのクラスが継承する親クラス情報を再上位まで再帰的に検索して提供します。<br>
-	 * 提供される順序は対象としたオブジェクトクラスの直上のクラスを先頭にした最上位に向かったクラス継承順となります。<br>
-	 * オブジェクトがnullの場合は空の情報が提供されることに注意して下さい。<br>
-	 * @param object 対象オブジェクト
-	 * @return オブジェクトのクラスが継承する親クラス配列
-	 */
-	public static Class<?>[] getSuperClasses(Object object) {
-		if (object == null) {
-			return new Class[0];
-		}
-		return getSuperClasses(object.getClass());
+		return classes.toArray(new Class[0]);
 	}
 
 	/**
@@ -87,38 +65,25 @@ public final class ClassUtil {
 		if (clazz.getInterfaces() == null) {
 			return new Class[0];
 		}
-		List<Class<?>> list = new LinkedList<Class<?>>();
-		for (Class<?> interfaceClass : clazz.getInterfaces()) {
-			if (!list.contains(interfaceClass)) {
-				list.add(interfaceClass);
-				for (Class<?> extendedInterface : getSuperClasses(interfaceClass)) {
-					if (!list.contains(extendedInterface)) {
-						list.add(extendedInterface);
+		List<Class<?>> classes = new LinkedList<Class<?>>();
+		for (Class<?> type : clazz.getInterfaces()) {
+			if (!classes.contains(type)) {
+				classes.add(type);
+				for (Class<?> parent : getSuperClasses(type)) {
+					if (!classes.contains(parent)) {
+						classes.add(parent);
 					}
 				}
 			}
 		}
-		for (Class<?> superClass : getSuperClasses(clazz)) {
-			for (Class<?> superInterface : getInterfaces(superClass)) {
-				if (!list.contains(superInterface)) {
-					list.add(superInterface);
+		for (Class<?> parent : getSuperClasses(clazz)) {
+			for (Class<?> type : getInterfaces(parent)) {
+				if (!classes.contains(type)) {
+					classes.add(type);
 				}
 			}
 		}
-		return list.toArray(new Class[0]);
-	}
-
-	/**
-	 * オブジェクトのクラスが実装するインタフェースを親クラスまで再帰的に検索して提供します。<br>
-	 * オブジェクトがnullの場合は空の情報が提供されることに注意して下さい。<br>
-	 * @param object 対象オブジェクト
-	 * @return オブジェクトのクラスが実装するインタフェースクラス配列
-	 */
-	public static Class<?>[] getInterfaces(Object object) {
-		if (object == null) {
-			return new Class[0];
-		}
-		return getInterfaces(object.getClass());
+		return classes.toArray(new Class[0]);
 	}
 
 	/**
@@ -126,22 +91,22 @@ public final class ClassUtil {
 	 * アノテーションにおいてInheritが指定されていない場合でもクラスが継承する親クラスが持つアノテーションを検索します。<br>
 	 * @param <A> アノテーションクラスタイプ
 	 * @param clazz 対象クラス
-	 * @param annotationClass 取得アノテーションクラス
+	 * @param type 取得アノテーションクラス
 	 * @return アノテーションクラス
 	 */
-	public static <A extends Annotation> A getAnnotation(Class<?> clazz, Class<A> annotationClass) {
+	public static <A extends Annotation> A getAnnotation(Class<?> clazz, Class<A> type) {
 		if (clazz == null) {
 			return null;
 		}
-		if (annotationClass == null) {
+		if (type == null) {
 			return null;
 		}
-		List<Class<?>> classList = new LinkedList<>();
-		classList.add(clazz);
-		classList.addAll(Arrays.asList(getSuperClasses(clazz)));
-		for (Class<?> e : classList) {
+		List<Class<?>> classes = new LinkedList<>();
+		classes.add(clazz);
+		classes.addAll(Arrays.asList(getSuperClasses(clazz)));
+		for (Class<?> e : classes) {
 			try {
-				A annotation = e.getDeclaredAnnotation(annotationClass);
+				A annotation = e.getDeclaredAnnotation(type);
 				if (annotation == null) {
 					continue;
 				}
@@ -153,189 +118,126 @@ public final class ClassUtil {
 	}
 
 	/**
-	 * オブジェクトのクラスが提供するアノテーションを取得します。<br>
-	 * アノテーションにおいてInheritが指定されていない場合でもクラスが継承する親クラスが持つアノテーションを検索します。<br>
-	 * @param <A> アノテーションクラスタイプ
-	 * @param object 対象オブジェクト
-	 * @param annotationClass 取得アノテーションクラス
-	 * @return オブジェクトのアノテーションクラス
-	 */
-	public static <A extends Annotation> A getAnnotation(Object object, Class<A> annotationClass) {
-		if (object == null) {
-			return null;
-		}
-		return getAnnotation(object.getClass(), annotationClass);
-	}
-
-	/**
 	 * メソッドが提供するアノテーションを取得します。<br>
 	 * @param <A> アノテーションクラスタイプ
 	 * @param method 対象メソッド
-	 * @param annotationClass 取得アノテーションクラス
+	 * @param type 取得アノテーションクラス
 	 * @return アノテーションクラス
 	 */
-	public static <A extends Annotation> A getAnnotation(Method method, Class<A> annotationClass) {
+	public static <A extends Annotation> A getAnnotation(Method method, Class<A> type) {
 		if (method == null) {
 			return null;
 		}
 		method.setAccessible(true);
-		return method.getAnnotation(annotationClass);
+		return method.getAnnotation(type);
 	}
 
 	/**
 	 * フィールドが提供するアノテーションを取得します。<br>
 	 * @param <A> アノテーションクラスタイプ
 	 * @param field 対象フィールド
-	 * @param annotationClass 取得アノテーションクラス
+	 * @param type 取得アノテーションクラス
 	 * @return アノテーションクラス
 	 */
-	public static <A extends Annotation> A getAnnotation(Field field, Class<A> annotationClass) {
+	public static <A extends Annotation> A getAnnotation(Field field, Class<A> type) {
 		if (field == null) {
 			return null;
 		}
 		field.setAccessible(true);
-		return field.getAnnotation(annotationClass);
+		return field.getAnnotation(type);
 	}
 
 	/**
 	 * クラスが指定されたインタフェースを実装するクラスであるか判定します。<br>
-	 * 尚、自分自身のクラスが指定された場合も実装クラスとして判定されることに注意して下さい。<br>
-	 * これは利用者が該当クラスに対してインタフェースが利用可能かの判定の為に利用することを目的に利用する事を想定した仕様です。<br>
 	 * @param clazz 対象クラス
-	 * @param interfaceClass 判定対象インタフェースクラス
+	 * @param type 判定対象インタフェースクラス
 	 * @return クラスが指定されたインタフェースを実装するクラスである場合にtrueを返却
 	 */
-	public static boolean isImplemented(Class<?> clazz, Class<?> interfaceClass) {
+	public static boolean isImplemented(Class<?> clazz, Class<?> type) {
 		if (clazz == null) {
 			return false;
 		}
-		if (interfaceClass == null) {
+		if (type == null) {
 			return false;
 		}
-		if (clazz.isInterface() && clazz.equals(interfaceClass)) {
+		if (clazz.isInterface() && clazz.equals(type)) {
 			return true;
 		}
-		for (Class<?> implemented : getInterfaces(clazz)) {
-			if (interfaceClass.equals(implemented)) {
+		for (Class<?> c : getInterfaces(clazz)) {
+			if (type.equals(c)) {
 				return true;
 			}
 		}
 		return false;
-	}
-
-	/**
-	 * オブジェクトのクラスが指定されたインタフェースを実装するクラスであるか判定します。<br>
-	 * 尚、自分自身のクラスが指定された場合も実装クラスとして判定されることに注意して下さい。<br>
-	 * これは利用者が該当クラスに対してインタフェースが利用可能かの判定の為に利用することを目的に利用する事を想定した仕様です。<br>
-	 * @param object 対象オブジェクト
-	 * @param interfaceClass 判定対象インタフェースクラス
-	 * @return オブジェクトのクラスが指定されたインタフェースを実装するクラスである場合にtrueを返却
-	 */
-	public static boolean isImplemented(Object object, Class<?> interfaceClass) {
-		if (object == null) {
-			return false;
-		}
-		return isImplemented(object.getClass(), interfaceClass);
 	}
 
 	/**
 	 * クラスが指定されたクラスを継承するクラスであるか判定します。<br>
-	 * 尚、自分自身のクラスが指定された場合も継承クラスとして判定されることに注意して下さい。<br>
-	 * これは利用者が該当クラスに対して継承元のクラスが利用可能かの判定の為に利用することを目的に利用する事を想定した仕様です。<br>
 	 * @param clazz 対象クラス
-	 * @param superClass 判定対象親クラス
+	 * @param type 判定対象親クラス
 	 * @return クラスが指定されたクラスを継承するクラスである場合にtrueを返却
 	 */
-	public static boolean isInherited(Class<?> clazz, Class<?> superClass) {
+	public static boolean isInherited(Class<?> clazz, Class<?> type) {
 		if (clazz == null) {
 			return false;
 		}
-		if (superClass == null) {
+		if (type == null) {
 			return false;
 		}
-		if (superClass.equals(clazz)) {
+		if (type.equals(clazz)) {
 			return true;
 		}
-		for (Class<?> inherited : getSuperClasses(clazz)) {
-			if (superClass.equals(inherited)) {
+		for (Class<?> c : getSuperClasses(clazz)) {
+			if (type.equals(c)) {
 				return true;
 			}
 		}
 		return false;
-	}
-
-	/**
-	 * オブジェクトのクラスが指定されたクラスを継承するクラスであるか判定します。<br>
-	 * 尚、自分自身のクラスが指定された場合も継承クラスとして判定されることに注意して下さい。<br>
-	 * これは利用者が該当クラスに対して継承元のクラスが利用可能かの判定の為に利用することを目的に利用する事を想定した仕様です。<br>
-	 * @param object 対象オブジェクト
-	 * @param superClass 判定対象親クラス
-	 * @return オブジェクトのクラスが指定されたクラスを継承するクラスである場合にtrueを返却
-	 */
-	public static boolean isInherited(Object object, Class<?> superClass) {
-		if (object == null) {
-			return false;
-		}
-		return isInherited(object.getClass(), superClass);
 	}
 
 	/**
 	 * クラスがアノテーションを提供するか判定します。<br>
 	 * @param <A> アノテーションクラスタイプ
 	 * @param clazz 対象クラス
-	 * @param annotationClass 判定対象アノテーションクラス
+	 * @param type 判定対象アノテーションクラス
 	 * @return クラスがアノテーションを提供する場合にtrueを返却します
 	 */
-	public static <A extends Annotation> boolean isAnnotated(Class<?> clazz, Class<A> annotationClass) {
-		return getAnnotation(clazz, annotationClass) != null;
-	}
-
-	/**
-	 * オブジェクトのクラスがアノテーションを提供するか判定します。<br>
-	 * @param <A> アノテーションクラスタイプ
-	 * @param object 対象オブジェクト
-	 * @param annotationClass 判定対象アノテーションクラス
-	 * @return オブジェクトのクラスがアノテーションを提供する場合にtrueを返却します
-	 */
-	public static <A extends Annotation> boolean isAnnotated(Object object, Class<A> annotationClass) {
-		if (object == null) {
-			return false;
-		}
-		return isAnnotated(object.getClass(), annotationClass);
+	public static <A extends Annotation> boolean isAnnotated(Class<?> clazz, Class<A> type) {
+		return getAnnotation(clazz, type) != null;
 	}
 
 	/**
 	 * メソッドがアノテーションを提供するか判定します。<br>
 	 * @param <A> アノテーションクラスタイプ
 	 * @param method 対象メソッド
-	 * @param annotationClass 判定対象アノテーションクラス
-	 * @return オブジェクトのクラスがアノテーションを提供する場合にtrueを返却します
+	 * @param type 判定対象アノテーションクラス
+	 * @return メソッドがアノテーションを提供する場合にtrueを返却します
 	 */
-	public static <A extends Annotation> boolean isAnnotated(Method method, Class<A> annotationClass) {
+	public static <A extends Annotation> boolean isAnnotated(Method method, Class<A> type) {
 		if (method == null) {
 			return false;
 		}
-		return getAnnotation(method, annotationClass) != null;
+		return getAnnotation(method, type) != null;
 	}
 
 	/**
 	 * フィールドがアノテーションを提供するか判定します。<br>
 	 * @param <A> アノテーションクラスタイプ
 	 * @param method 対象メソッド
-	 * @param annotationClass 判定対象アノテーションクラス
-	 * @return オブジェクトのクラスがアノテーションを提供する場合にtrueを返却します
+	 * @param type 判定対象アノテーションクラス
+	 * @return フィールドがアノテーションを提供する場合にtrueを返却します
 	 */
-	public static <A extends Annotation> boolean isAnnotated(Field method, Class<A> annotationClass) {
+	public static <A extends Annotation> boolean isAnnotated(Field method, Class<A> type) {
 		if (method == null) {
 			return false;
 		}
-		return getAnnotation(method, annotationClass) != null;
+		return getAnnotation(method, type) != null;
 	}
 
 	/**
 	 * クラスが提供するフィールドを親クラスまで再帰的に検索して名称に合致するフィールドを取得します。<br>
+	 * 継承している親クラスまでのフィールドを再帰検索する際に同一名称のフィールドが存在する場合は、自身から見て一番近いクラスのフィールドが提供されます。<br>
 	 * 尚、ここで提供されるフィールドアクセス修飾子はpublicに限定しない全てのフィールドとなります。<br>
-	 * また、継承している親クラスまでのフィールドを再帰検索する際に同一名称のフィールドが存在する場合は、自身から見て一番近いクラスのフィールドが提供されます。<br>
 	 * @param clazz 対象クラス
 	 * @param name フィールド名
 	 * @return クラスが提供するフィールド
@@ -347,10 +249,10 @@ public final class ClassUtil {
 		if (StringUtil.isBlank(name)) {
 			return null;
 		}
-		List<Class<?>> classList = new LinkedList<>();
-		classList.add(clazz);
-		classList.addAll(Arrays.asList(getSuperClasses(clazz)));
-		for (Class<?> e : classList) {
+		List<Class<?>> classes = new LinkedList<>();
+		classes.add(clazz);
+		classes.addAll(Arrays.asList(getSuperClasses(clazz)));
+		for (Class<?> e : classes) {
 			try {
 				Field field = e.getDeclaredField(name.trim());
 				field.setAccessible(true);
@@ -363,22 +265,6 @@ public final class ClassUtil {
 	}
 
 	/**
-	 * オブジェクトのクラスが提供するフィールドを親クラスまで再帰的に検索して名称に合致するフィールドを取得します。<br>
-	 * 尚、ここで提供されるフィールドアクセス修飾子はpublicに限定しない全てのフィールドとなります。<br>
-	 * また、継承している親クラスまでのフィールドを再帰検索する際に同一名称のフィールドが存在する場合は、自身から見て一番近いクラスのフィールドが提供されます。<br>
-	 * オブジェクトがnullの場合は空の情報が提供されることに注意して下さい。<br>
-	 * @param object 対象オブジェクト
-	 * @param name フィールド名
-	 * @return オブジェクトのクラスが提供するフィールド
-	 */
-	public static Field getField(Object object, String name) {
-		if (object == null) {
-			return null;
-		}
-		return getField(object.getClass(), name);
-	}
-
-	/**
 	 * クラスが提供するフィールドを親クラスまで再帰的に検索して取得します。<br>
 	 * 尚、ここで提供されるフィールドアクセス修飾子はpublicに限定しない全てのフィールドとなります。<br>
 	 * @param clazz 対象クラス
@@ -388,40 +274,26 @@ public final class ClassUtil {
 		if (clazz == null) {
 			return new Field[0];
 		}
-		List<Field> fieldList = new LinkedList<>();
-		List<Class<?>> classList = new LinkedList<>();
-		classList.add(clazz);
-		classList.addAll(Arrays.asList(getSuperClasses(clazz)));
-		for (Class<?> e : classList) {
+		List<Field> fields = new LinkedList<>();
+		List<Class<?>> classes = new LinkedList<>();
+		classes.add(clazz);
+		classes.addAll(Arrays.asList(getSuperClasses(clazz)));
+		for (Class<?> e : classes) {
 			try {
-				fieldList.addAll(Arrays.asList(e.getDeclaredFields()));
+				fields.addAll(Arrays.asList(e.getDeclaredFields()));
 			} catch (SecurityException ex) {
 			}
 		}
-		for (Field field : fieldList) {
+		for (Field field : fields) {
 			field.setAccessible(true);
 		}
-		return fieldList.toArray(new Field[0]);
-	}
-
-	/**
-	 * オブジェクトのクラスが提供するフィールドを親クラスまで再帰的に検索して取得します。<br>
-	 * 尚、ここで提供されるフィールドアクセス修飾子はpublicに限定しない全てのフィールドとなります。<br>
-	 * オブジェクトがnullの場合は空の情報が提供されることに注意して下さい。<br>
-	 * @param object 対象オブジェクト
-	 * @return オブジェクトのクラスが提供するフィールド配列
-	 */
-	public static Field[] getFields(Object object) {
-		if (object == null) {
-			return new Field[0];
-		}
-		return getFields(object.getClass());
+		return fields.toArray(new Field[0]);
 	}
 
 	/**
 	 * クラスが提供するメソッドを親クラスまで再帰的に検索して取得します。<br>
+	 * 継承している親クラスまでのメソッドを再帰検索する際に同一名称のメソッドが存在する場合は、自身から見て一番近いクラスのメソッドが提供されます。<br>
 	 * 尚、ここで提供されるメソッドアクセス修飾子はpublicに限定しない全てのメソッドとなります。<br>
-	 * また、継承している親クラスまでのメソッドを再帰検索する際に同一名称のメソッドが存在する場合は、自身から見て一番近いクラスのメソッドが提供されます。<br>
 	 * @param clazz 対象クラス
 	 * @param name メソッド名
 	 * @param parameterTypes パラメータクラス
@@ -434,10 +306,10 @@ public final class ClassUtil {
 		if (StringUtil.isBlank(name)) {
 			return null;
 		}
-		List<Class<?>> classList = new LinkedList<>();
-		classList.add(clazz);
-		classList.addAll(Arrays.asList(getSuperClasses(clazz)));
-		for (Class<?> e : classList) {
+		List<Class<?>> classes = new LinkedList<>();
+		classes.add(clazz);
+		classes.addAll(Arrays.asList(getSuperClasses(clazz)));
+		for (Class<?> e : classes) {
 			try {
 				Method method = e.getDeclaredMethod(name.trim(), parameterTypes);
 				method.setAccessible(true);
@@ -450,22 +322,6 @@ public final class ClassUtil {
 	}
 
 	/**
-	 * オブジェクトのクラスが提供するメソッドを親クラスまで再帰的に検索して取得します。<br>
-	 * 尚、ここで提供されるメソッドアクセス修飾子はpublicに限定しない全てのメソッドとなります。<br>
-	 * また、継承している親クラスまでのメソッドを再帰検索する際に同一名称のメソッドが存在する場合は、自身から見て一番近いクラスのメソッドが提供されます。<br>
-	 * @param object 対象オブジェクト
-	 * @param name メソッド名
-	 * @param parameterTypes パラメータクラス
-	 * @return オブジェクトのクラスが提供するメソッド
-	 */
-	public static Method getMethod(Object object, String name, Class<?>... parameterTypes) {
-		if (object == null) {
-			return null;
-		}
-		return getMethod(object.getClass(), name, parameterTypes);
-	}
-
-	/**
 	 * クラスが提供するメソッドを親クラスまで再帰的に検索して取得します。<br>
 	 * 尚、ここで提供されるメソッドアクセス修飾子はpublicに限定しない全てのメソッドとなります。<br>
 	 * @param clazz 対象クラス
@@ -475,34 +331,20 @@ public final class ClassUtil {
 		if (clazz == null) {
 			return new Method[0];
 		}
-		List<Method> fieldList = new LinkedList<>();
-		List<Class<?>> classList = new LinkedList<>();
-		classList.add(clazz);
-		classList.addAll(Arrays.asList(getSuperClasses(clazz)));
-		for (Class<?> e : classList) {
+		List<Method> fields = new LinkedList<>();
+		List<Class<?>> classes = new LinkedList<>();
+		classes.add(clazz);
+		classes.addAll(Arrays.asList(getSuperClasses(clazz)));
+		for (Class<?> e : classes) {
 			try {
-				fieldList.addAll(Arrays.asList(e.getDeclaredMethods()));
+				fields.addAll(Arrays.asList(e.getDeclaredMethods()));
 			} catch (SecurityException ex) {
 			}
 		}
-		for (Method field : fieldList) {
+		for (Method field : fields) {
 			field.setAccessible(true);
 		}
-		return fieldList.toArray(new Method[0]);
-	}
-
-	/**
-	 * オブジェクトのクラスが提供するメソッドを親クラスまで再帰的に検索して取得します。<br>
-	 * 尚、ここで提供されるメソッドアクセス修飾子はpublicに限定しない全てのメソッドとなります。<br>
-	 * オブジェクトがnullの場合は空の情報が提供されることに注意して下さい。<br>
-	 * @param object 対象オブジェクト
-	 * @return オブジェクトのクラスが提供するメソッド配列
-	 */
-	public static Method[] getMethods(Object object) {
-		if (object == null) {
-			return new Method[0];
-		}
-		return getMethods(object.getClass());
+		return fields.toArray(new Method[0]);
 	}
 
 	/**
@@ -535,7 +377,7 @@ public final class ClassUtil {
 	 * @param clazz 対象クラス
 	 * @return 配列の型を返却します
 	 */
-	public static Class<?> getComponentType(Class<?> clazz) {
+	public static Class<?> getArrayComponent(Class<?> clazz) {
 		if (clazz == null) {
 			return null;
 		}
@@ -552,11 +394,11 @@ public final class ClassUtil {
 	 * @param field 対象フィールド
 	 * @return 配列の型を返却します
 	 */
-	public static Class<?> getComponentType(Field field) {
+	public static Class<?> getArrayComponent(Field field) {
 		if (field == null) {
 			return null;
 		}
-		return getComponentType(field.getType());
+		return getArrayComponent(field.getType());
 	}
 
 	/**
@@ -707,24 +549,24 @@ public final class ClassUtil {
 		if (StringUtil.isBlank(name)) {
 			return null;
 		}
-		StringBuilder methodInfo = new StringBuilder();
-		methodInfo.append(object.getClass().getName());
-		methodInfo.append("#");
-		methodInfo.append(name.trim());
-		methodInfo.append("(");
+		StringBuilder info = new StringBuilder();
+		info.append(object.getClass().getName());
+		info.append("#");
+		info.append(name.trim());
+		info.append("(");
 		for (Loop<Class<?>> loop : Loop.each(parameterTypes)) {
-			methodInfo.append(loop.value());
-			methodInfo.append(loop.hasNext() ? ", " : "");
+			info.append(loop.value());
+			info.append(loop.hasNext() ? ", " : "");
 		}
-		methodInfo.append(")");
+		info.append(")");
 		Method method = getMethod(object.getClass(), name, parameterTypes);
 		if (method == null) {
-			throw new NoSuchMethodError(methodInfo.toString());
+			throw new NoSuchMethodError(info.toString());
 		}
 		try {
 			return method.invoke(object, parameters);
 		} catch (Throwable e) {
-			throw new RuntimeException("Failed to invoke method(" + methodInfo.toString() + ")", e);
+			throw new RuntimeException("Failed to invoke method(" + info.toString() + ")", e);
 		}
 	}
 
@@ -754,24 +596,24 @@ public final class ClassUtil {
 		if (StringUtil.isBlank(name)) {
 			return null;
 		}
-		StringBuilder methodInfo = new StringBuilder();
-		methodInfo.append(clazz.getName());
-		methodInfo.append("#");
-		methodInfo.append(name.trim());
-		methodInfo.append("(");
+		StringBuilder info = new StringBuilder();
+		info.append(clazz.getName());
+		info.append("#");
+		info.append(name.trim());
+		info.append("(");
 		for (Loop<Class<?>> loop : Loop.each(parameterTypes)) {
-			methodInfo.append(loop.value());
-			methodInfo.append(loop.hasNext() ? ", " : "");
+			info.append(loop.value());
+			info.append(loop.hasNext() ? ", " : "");
 		}
-		methodInfo.append(")");
+		info.append(")");
 		Method method = getMethod(clazz, name, parameterTypes);
 		if (method == null) {
-			throw new NoSuchMethodError(methodInfo.toString());
+			throw new NoSuchMethodError(info.toString());
 		}
 		try {
 			return method.invoke(null, parameters);
 		} catch (Throwable e) {
-			throw new RuntimeException("Failed to invoke method(" + methodInfo.toString() + ")", e);
+			throw new RuntimeException("Failed to invoke method(" + info.toString() + ")", e);
 		}
 	}
 
@@ -800,7 +642,7 @@ public final class ClassUtil {
 			T instance = constructor.newInstance();
 			return instance;
 		} catch (Throwable e) {
-			throw new RuntimeException("Failed to create instance(" + clazz.getName() + ")");
+			throw new RuntimeException("Failed to create instance(" + clazz.getName() + ")", e);
 		}
 	}
 
@@ -821,7 +663,7 @@ public final class ClassUtil {
 			T instance = constructor.newInstance(parameters);
 			return instance;
 		} catch (Throwable e) {
-			throw new RuntimeException("Failed to create instance(" + clazz.getName() + ")");
+			throw new RuntimeException("Failed to create instance(" + clazz.getName() + ")", e);
 		}
 	}
 }

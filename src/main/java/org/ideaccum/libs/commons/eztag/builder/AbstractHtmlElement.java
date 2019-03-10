@@ -38,7 +38,7 @@ public abstract class AbstractHtmlElement<T extends AbstractHtmlElement<T>> impl
 	public final String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("{");
-		for (Loop<Field> loop : Loop.each(ClassUtil.getFields(this))) {
+		for (Loop<Field> loop : Loop.each(ClassUtil.getFields(getClass()))) {
 			Field field = loop.value();
 			String name = field.getName();
 			ElementText text = ClassUtil.getAnnotation(field, ElementText.class);
@@ -80,7 +80,7 @@ public abstract class AbstractHtmlElement<T extends AbstractHtmlElement<T>> impl
 	 * @return タグ要素名
 	 */
 	public final String getTagName() {
-		ElementTag elementTag = ClassUtil.getAnnotation(this, ElementTag.class);
+		ElementTag elementTag = ClassUtil.getAnnotation(getClass(), ElementTag.class);
 		return elementTag.name();
 	}
 
@@ -89,7 +89,7 @@ public abstract class AbstractHtmlElement<T extends AbstractHtmlElement<T>> impl
 	 * @return 閉じタグを出力するタグである場合にtrueを返却
 	 */
 	public final boolean isTagClosable() {
-		ElementTag elementTag = ClassUtil.getAnnotation(this, ElementTag.class);
+		ElementTag elementTag = ClassUtil.getAnnotation(getClass(), ElementTag.class);
 		return elementTag.closable();
 	}
 

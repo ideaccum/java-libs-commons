@@ -7,7 +7,7 @@ import java.util.Vector;
 /**
  * リストに対する操作を行う際の支援的な操作メソッドを提供します。<br>
  * <p>
- * リスト操作で利用頻度の高い文字列操作をメソッドとして提供します。<br>
+ * リスト操作で利用頻度の高いリスト操作を提供します。<br>
  * </p>
  *
  * @author Kitagawa<br>
@@ -24,14 +24,6 @@ public final class ListUtil {
 	 */
 	private ListUtil() {
 		super();
-	}
-
-	/**
-	 * スタティックイニシャライ	ザ<br>
-	 */
-	static {
-		// JUnit+EclEmmaによるコードカバレッジの為のダミーコード
-		new ListUtil();
 	}
 
 	/**
