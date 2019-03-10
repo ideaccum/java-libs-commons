@@ -2,7 +2,7 @@
 Commonsは、Java実装における利用頻度の高い操作を簡潔に実装するための各種ユーティリティを提供するライブラリパッケージです。  
 
 ## Documentation
-ライブラリに関する詳細なAPI仕様は各クラスのJavadocにて記載しています。  
+ライブラリに関するAPI仕様は各クラスのJavadocにて記載しています。  
 
 ## Source Code
 最新のプログラムソースはすべて[GitHub](https://github.com/ideaccum/org.ideaccum.libs.commons)で管理しています。  
