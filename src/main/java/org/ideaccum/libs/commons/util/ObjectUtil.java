@@ -228,195 +228,234 @@ public final class ObjectUtil {
 	}
 
 	/**
-	 * 16ビット整数配列のプリミティブ型－オブジェクト間のキャスト処理を行います。<br>
-	 * @param chars 16ビット整数配列
-	 * @return 16ビット整数オブジェクト配列
+	 * 真偽値のプリミティブ型－オブジェクト間のキャスト処理を行います。<br>
+	 * @param values 真偽値配列
+	 * @return 真偽値配列
 	 */
-	public static Character[] cast(char[] chars) {
-		if (chars == null) {
+	public static Boolean[] cast(boolean[] values) {
+		if (values == null) {
+			return null;
+		}
+		List<Boolean> list = new LinkedList<>();
+		for (boolean value : values) {
+			list.add(value);
+		}
+		return list.toArray(new Boolean[0]);
+	}
+
+	/**
+	 * 真偽値のオブジェクト－プリミティブ型間のキャスト処理を行います。<br>
+	 * 配列内にnull要素が含まれる場合、該当要素はfalseとして設定されます。<br>
+	 * @param values 真偽値配列
+	 * @return 真偽値配列
+	 */
+	public static boolean[] cast(Boolean[] values) {
+		if (values == null) {
+			return null;
+		}
+		boolean[] array = new boolean[values.length];
+		for (Loop<Boolean> loop : Loop.each(values)) {
+			int i = loop.index();
+			Boolean value = loop.value();
+			if (value == null) {
+				array[i] = false;
+			} else {
+				array[i] = value;
+			}
+		}
+		return array;
+	}
+
+	/**
+	 * 文字配列のプリミティブ型－オブジェクト間のキャスト処理を行います。<br>
+	 * @param values 文字配列
+	 * @return 文字配列
+	 */
+	public static Character[] cast(char[] values) {
+		if (values == null) {
 			return null;
 		}
 		List<Character> list = new LinkedList<>();
-		for (char c : chars) {
-			list.add(c);
+		for (char value : values) {
+			list.add(value);
 		}
 		return list.toArray(new Character[0]);
 	}
 
 	/**
-	 * 16ビット整数配列のオブジェクト－プリミティブ型間のキャスト処理を行います。<br>
-	 * 尚、オブジェクト配列内にnullが存在する場合はnull16ビット整数が要素として設定されます。<br>
-	 * @param chars 16ビット整数オブジェクト配列
-	 * @return 16ビット整数配列
+	 * 文字配列のオブジェクト－プリミティブ型間のキャスト処理を行います。<br>
+	 * 配列内にnull要素が含まれる場合、該当要素は\0として設定されます。<br>
+	 * @param values 文字配列
+	 * @return 文字配列
 	 */
-	public static char[] cast(Character[] chars) {
-		if (chars == null) {
+	public static char[] cast(Character[] values) {
+		if (values == null) {
 			return null;
 		}
-		char[] array = new char[chars.length];
-		for (Loop<Character> loop : Loop.each(chars)) {
+		char[] array = new char[values.length];
+		for (Loop<Character> loop : Loop.each(values)) {
 			int i = loop.index();
-			Character c = loop.value();
-			if (c == null) {
+			Character value = loop.value();
+			if (value == null) {
 				array[i] = '\0';
 			} else {
-				array[i] = c;
+				array[i] = value;
 			}
 		}
 		return array;
 	}
 
 	/**
-	 * 8ビット整数配列のプリミティブ型－オブジェクト間のキャスト処理を行います。<br>
-	 * @param bytes 8ビット整数配列
-	 * @return 8ビット整数オブジェクト配列
+	 * バイト配列のプリミティブ型－オブジェクト間のキャスト処理を行います。<br>
+	 * @param values バイト配列
+	 * @return バイト配列
 	 */
-	public static Byte[] cast(byte[] bytes) {
-		if (bytes == null) {
+	public static Byte[] cast(byte[] values) {
+		if (values == null) {
 			return null;
 		}
 		List<Byte> list = new LinkedList<>();
-		for (byte c : bytes) {
-			list.add(c);
+		for (byte value : values) {
+			list.add(value);
 		}
 		return list.toArray(new Byte[0]);
 	}
 
 	/**
-	 * 8ビット整数配列のオブジェクト－プリミティブ型間のキャスト処理を行います。<br>
-	 * 尚、オブジェクト配列内にnullが存在する場合は0が要素として設定されます。<br>
-	 * @param bytes 8ビット整数オブジェクト配列
-	 * @return 8ビット整数配列
+	 * バイト配列のオブジェクト－プリミティブ型間のキャスト処理を行います。<br>
+	 * 配列内にnull要素が含まれる場合、該当要素は0x00として設定されます。<br>
+	 * @param values バイト配列
+	 * @return バイト配列
 	 */
-	public static byte[] cast(Byte[] bytes) {
-		if (bytes == null) {
+	public static byte[] cast(Byte[] values) {
+		if (values == null) {
 			return null;
 		}
-		byte[] array = new byte[bytes.length];
-		for (Loop<Byte> loop : Loop.each(bytes)) {
+		byte[] array = new byte[values.length];
+		for (Loop<Byte> loop : Loop.each(values)) {
 			int i = loop.index();
-			Byte c = loop.value();
-			if (c == null) {
+			Byte value = loop.value();
+			if (value == null) {
 				array[i] = 0x00;
 			} else {
-				array[i] = c;
+				array[i] = value;
 			}
 		}
 		return array;
 	}
 
 	/**
-	 * 16ビット整数配列のプリミティブ型－オブジェクト間のキャスト処理を行います。<br>
-	 * @param shorts 16ビット整数配列
-	 * @return 16ビット整数オブジェクト配列
+	 * Short配列のプリミティブ型－オブジェクト間のキャスト処理を行います。<br>
+	 * @param values Short配列
+	 * @return Short配列
 	 */
-	public static Short[] cast(short[] shorts) {
-		if (shorts == null) {
+	public static Short[] cast(short[] values) {
+		if (values == null) {
 			return null;
 		}
 		List<Short> list = new LinkedList<>();
-		for (short c : shorts) {
-			list.add(c);
+		for (short value : values) {
+			list.add(value);
 		}
 		return list.toArray(new Short[0]);
 	}
 
 	/**
-	 * 16ビット整数配列のオブジェクト－プリミティブ型間のキャスト処理を行います。<br>
-	 * 尚、オブジェクト配列内にnullが存在する場合は0が要素として設定されます。<br>
-	 * @param shorts 16ビット整数オブジェクト配列
-	 * @return 16ビット整数配列
+	 * Short配列のオブジェクト－プリミティブ型間のキャスト処理を行います。<br>
+	 * 配列内にnull要素が含まれる場合、該当要素は0として設定されます。<br>
+	 * @param values Short配列
+	 * @return Short配列
 	 */
-	public static short[] cast(Short[] shorts) {
-		if (shorts == null) {
+	public static short[] cast(Short[] values) {
+		if (values == null) {
 			return null;
 		}
-		short[] array = new short[shorts.length];
-		for (Loop<Short> loop : Loop.each(shorts)) {
+		short[] array = new short[values.length];
+		for (Loop<Short> loop : Loop.each(values)) {
 			int i = loop.index();
-			Short c = loop.value();
-			if (c == null) {
+			Short value = loop.value();
+			if (value == null) {
 				array[i] = 0;
 			} else {
-				array[i] = c;
+				array[i] = value;
 			}
 		}
 		return array;
 	}
 
 	/**
-	 * 32ビット整数配列のプリミティブ型－オブジェクト間のキャスト処理を行います。<br>
-	 * @param ints 32ビット整数配列
-	 * @return 32ビット整数オブジェクト配列
+	 * Ingeter配列のプリミティブ型－オブジェクト間のキャスト処理を行います。<br>
+	 * @param values Ingeter配列
+	 * @return Ingeter配列
 	 */
-	public static Integer[] cast(int[] ints) {
-		if (ints == null) {
+	public static Integer[] cast(int[] values) {
+		if (values == null) {
 			return null;
 		}
 		List<Integer> list = new LinkedList<>();
-		for (int c : ints) {
-			list.add(c);
+		for (int value : values) {
+			list.add(value);
 		}
 		return list.toArray(new Integer[0]);
 	}
 
 	/**
-	 * 32ビット整数配列のオブジェクト－プリミティブ型間のキャスト処理を行います。<br>
-	 * 尚、オブジェクト配列内にnullが存在する場合は0が要素として設定されます。<br>
-	 * @param ints 32ビット整数オブジェクト配列
-	 * @return 32ビット整数配列
+	 * Ingeter配列のオブジェクト－プリミティブ型間のキャスト処理を行います。<br>
+	 * 配列内にnull要素が含まれる場合、該当要素は0として設定されます。<br>
+	 * @param values Ingeter配列
+	 * @return Ingeter配列
 	 */
-	public static int[] cast(Integer[] ints) {
-		if (ints == null) {
+	public static int[] cast(Integer[] values) {
+		if (values == null) {
 			return null;
 		}
-		int[] array = new int[ints.length];
-		for (Loop<Integer> loop : Loop.each(ints)) {
+		int[] array = new int[values.length];
+		for (Loop<Integer> loop : Loop.each(values)) {
 			int i = loop.index();
-			Integer c = loop.value();
-			if (c == null) {
+			Integer value = loop.value();
+			if (value == null) {
 				array[i] = 0;
 			} else {
-				array[i] = c;
+				array[i] = value;
 			}
 		}
 		return array;
 	}
 
 	/**
-	 * 64ビット整数配列のプリミティブ型－オブジェクト間のキャスト処理を行います。<br>
-	 * @param longs 64ビット整数配列
-	 * @return 64ビット整数オブジェクト配列
+	 * Long配列のプリミティブ型－オブジェクト間のキャスト処理を行います。<br>
+	 * @param values Long配列
+	 * @return Long配列
 	 */
-	public static Long[] cast(long[] longs) {
-		if (longs == null) {
+	public static Long[] cast(long[] values) {
+		if (values == null) {
 			return null;
 		}
 		List<Long> list = new LinkedList<>();
-		for (long c : longs) {
-			list.add(c);
+		for (long value : values) {
+			list.add(value);
 		}
 		return list.toArray(new Long[0]);
 	}
 
 	/**
-	 * 64ビット整数配列のオブジェクト－プリミティブ型間のキャスト処理を行います。<br>
-	 * 尚、オブジェクト配列内にnullが存在する場合は0が要素として設定されます。<br>
-	 * @param longs 64ビット整数オブジェクト配列
-	 * @return 64ビット整数配列
+	 * Long配列のオブジェクト－プリミティブ型間のキャスト処理を行います。<br>
+	 * 配列内にnull要素が含まれる場合、該当要素は0として設定されます。<br>
+	 * @param values Long配列
+	 * @return Long配列
 	 */
-	public static long[] cast(Long[] longs) {
-		if (longs == null) {
+	public static long[] cast(Long[] values) {
+		if (values == null) {
 			return null;
 		}
-		long[] array = new long[longs.length];
-		for (Loop<Long> loop : Loop.each(longs)) {
+		long[] array = new long[values.length];
+		for (Loop<Long> loop : Loop.each(values)) {
 			int i = loop.index();
-			Long c = loop.value();
-			if (c == null) {
+			Long value = loop.value();
+			if (value == null) {
 				array[i] = 0;
 			} else {
-				array[i] = c;
+				array[i] = value;
 			}
 		}
 		return array;
@@ -424,38 +463,38 @@ public final class ObjectUtil {
 
 	/**
 	 * 単精度浮動小数配列のプリミティブ型－オブジェクト間のキャスト処理を行います。<br>
-	 * @param floats 単精度浮動小数配列
+	 * @param values 単精度浮動小数配列
 	 * @return 単精度浮動小数オブジェクト配列
 	 */
-	public static Float[] cast(float[] floats) {
-		if (floats == null) {
+	public static Float[] cast(float[] values) {
+		if (values == null) {
 			return null;
 		}
 		List<Float> list = new LinkedList<>();
-		for (float c : floats) {
-			list.add(c);
+		for (float value : values) {
+			list.add(value);
 		}
 		return list.toArray(new Float[0]);
 	}
 
 	/**
 	 * 単精度浮動小数配列のオブジェクト－プリミティブ型間のキャスト処理を行います。<br>
-	 * 尚、オブジェクト配列内にnullが存在する場合は0が要素として設定されます。<br>
-	 * @param floats 単精度浮動小数オブジェクト配列
+	 * 配列内にnull要素が含まれる場合、該当要素は0として設定されます。<br>
+	 * @param values 単精度浮動小数オブジェクト配列
 	 * @return 単精度浮動小数配列
 	 */
-	public static float[] cast(Float[] floats) {
-		if (floats == null) {
+	public static float[] cast(Float[] values) {
+		if (values == null) {
 			return null;
 		}
-		float[] array = new float[floats.length];
-		for (Loop<Float> loop : Loop.each(floats)) {
+		float[] array = new float[values.length];
+		for (Loop<Float> loop : Loop.each(values)) {
 			int i = loop.index();
-			Float c = loop.value();
-			if (c == null) {
+			Float value = loop.value();
+			if (value == null) {
 				array[i] = 0;
 			} else {
-				array[i] = c;
+				array[i] = value;
 			}
 		}
 		return array;
@@ -463,38 +502,38 @@ public final class ObjectUtil {
 
 	/**
 	 * 倍精度浮動小数配列のプリミティブ型－オブジェクト間のキャスト処理を行います。<br>
-	 * @param doubles 倍精度浮動小数配列
+	 * @param values 倍精度浮動小数配列
 	 * @return 倍精度浮動小数オブジェクト配列
 	 */
-	public static Double[] cast(double[] doubles) {
-		if (doubles == null) {
+	public static Double[] cast(double[] values) {
+		if (values == null) {
 			return null;
 		}
 		List<Double> list = new LinkedList<>();
-		for (double c : doubles) {
-			list.add(c);
+		for (double value : values) {
+			list.add(value);
 		}
 		return list.toArray(new Double[0]);
 	}
 
 	/**
 	 * 倍精度浮動小数配列のオブジェクト－プリミティブ型間のキャスト処理を行います。<br>
-	 * 尚、オブジェクト配列内にnullが存在する場合は0が要素として設定されます。<br>
-	 * @param doubles 倍精度浮動小数オブジェクト配列
+	 * 配列内にnull要素が含まれる場合、該当要素は0として設定されます。<br>
+	 * @param values 倍精度浮動小数オブジェクト配列
 	 * @return 倍精度浮動小数配列
 	 */
-	public static double[] cast(Double[] doubles) {
-		if (doubles == null) {
+	public static double[] cast(Double[] values) {
+		if (values == null) {
 			return null;
 		}
-		double[] array = new double[doubles.length];
-		for (Loop<Double> loop : Loop.each(doubles)) {
+		double[] array = new double[values.length];
+		for (Loop<Double> loop : Loop.each(values)) {
 			int i = loop.index();
-			Double c = loop.value();
-			if (c == null) {
+			Double value = loop.value();
+			if (value == null) {
 				array[i] = 0;
 			} else {
-				array[i] = c;
+				array[i] = value;
 			}
 		}
 		return array;
