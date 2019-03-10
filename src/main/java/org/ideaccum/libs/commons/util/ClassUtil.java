@@ -422,7 +422,7 @@ public final class ClassUtil {
 
 	/**
 	 * 親クラスまで再帰的に検索して名称に合致するフィールド値を取得します。<br>
-	 * フィールド検索挙動仕様は{@link #getField(Object, String)}に準拠します。<br>
+	 * フィールド検索挙動仕様は{@link #getField(Class, String)}に準拠します。<br>
 	 * @param object 対象オブジェクト
 	 * @param name フィールド名
 	 * @return オブジェクトのクラスが提供するフィールド
@@ -455,7 +455,7 @@ public final class ClassUtil {
 
 	/**
 	 * 親クラスまで再帰的に検索して名称に合致するフィールド値を設定します。<br>
-	 * フィールド検索挙動仕様は{@link #getField(Object, String)}に準拠します。<br>
+	 * フィールド検索挙動仕様は{@link #getField(Class, String)}に準拠します。<br>
 	 * @param object 対象オブジェクト
 	 * @param name フィールド名
 	 * @param value フィールド値
@@ -488,7 +488,7 @@ public final class ClassUtil {
 
 	/**
 	 * 親クラスまで再帰的に検索して名称に合致するフィールド値を取得します。<br>
-	 * フィールド検索挙動仕様は{@link #getField(Object, String)}に準拠します。<br>
+	 * フィールド検索挙動仕様は{@link #getField(Class, String)}に準拠します。<br>
 	 * @param clazz 対象クラス
 	 * @param name フィールド名
 	 * @return オブジェクトのクラスが提供するフィールド
@@ -520,7 +520,7 @@ public final class ClassUtil {
 
 	/**
 	 * 親クラスまで再帰的に検索して名称に合致するフィールド値を設定します。<br>
-	 * フィールド検索挙動仕様は{@link #getField(Object, String)}に準拠します。<br>
+	 * フィールド検索挙動仕様は{@link #getField(Class, String)}に準拠します。<br>
 	 * @param clazz 対象クラス
 	 * @param name フィールド名
 	 * @param value フィールド値

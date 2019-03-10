@@ -192,8 +192,10 @@ public final class PropertiesUtil {
 	/**
 	 * 指定されたキーのプロパティ値を指定された列挙型として取得します。<br>
 	 * プロパティが存在しない場合や一致する列挙型が存在しない場合はnullを返却します。<br>
+	 * @param <E> 列挙型タイプ
 	 * @param properties 対象プロパティオブジェクト
 	 * @param name プロパティ名
+	 * @param enumClass 列挙型クラス
 	 * @return プロパティ値
 	 */
 	public static <E extends Enum<E>> E getEnum(Properties properties, String name, Class<E> enumClass) {

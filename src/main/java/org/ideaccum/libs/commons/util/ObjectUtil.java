@@ -145,6 +145,7 @@ public final class ObjectUtil {
 	/**
 	 * 入力ストリームからオブジェクトを読み込みます。<br>
 	 * @param stream 入力ストリーム
+	 * @param type 読み込む対象のオブジェクトクラス
 	 * @param <T> 読み込む対象のオブジェクト型
 	 * @return 読み込んだオブジェクト
 	 * @throws IOException ストリーム読み込み時に入出力例外が発生した場合にスローされます
@@ -171,6 +172,7 @@ public final class ObjectUtil {
 	/**
 	 * ファイルからオブジェクトを読み込みます。<br>
 	 * @param file ファイルオブジェクト
+	 * @param type 読み込む対象のオブジェクトクラス
 	 * @param <T> 読み込む対象のオブジェクト型
 	 * @return 読み込んだオブジェクト
 	 * @throws IOException ファイル読み込み時に入出力例外が発生した場合にスローされます
@@ -204,7 +206,9 @@ public final class ObjectUtil {
 	/**
 	 * ファイルからオブジェクトを読み込みます。<br>
 	 * @param path ファイルパス
+	 * @param type 読み込む対象のオブジェクトクラス
 	 * @param <T> 読み込む対象のオブジェクト型
+	 * @return 読み込んだオブジェクト
 	 * @throws IOException ファイル読み込み時に入出力例外が発生した場合にスローされます
 	 * @throws ClassNotFoundException 対象のオブジェクトのクラスが存在しない場合にスローされます
 	 */
@@ -215,6 +219,7 @@ public final class ObjectUtil {
 	/**
 	 * ファイルからオブジェクトを読み込みます。<br>
 	 * @param path ファイルパス
+	 * @return 読み込んだオブジェクト
 	 * @throws IOException ファイル読み込み時に入出力例外が発生した場合にスローされます
 	 * @throws ClassNotFoundException 対象のオブジェクトのクラスが存在しない場合にスローされます
 	 */

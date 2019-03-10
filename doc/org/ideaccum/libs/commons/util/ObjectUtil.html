@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9,"i9":9,"i10":9,"i11":9,"i12":9,"i13":9,"i14":9,"i15":9,"i16":9};
+var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9,"i9":9,"i10":9,"i11":9,"i12":9,"i13":9,"i14":9,"i15":9,"i16":9,"i17":9,"i18":9,"i19":9,"i20":9,"i21":9,"i22":9,"i23":9,"i24":9,"i25":9};
 var tabs = {65535:["t0","すべてのメソッド"],1:["t1","staticメソッド"],8:["t4","concreteメソッド"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -113,7 +113,7 @@ var activeTableTab = "activeTableTab";
 extends java.lang.Object</pre>
 <div class="block">オブジェクトに対する操作を行う際の支援的な操作メソッドを提供します。<br>
  <p>
- システム開発時に利用するオブジェクト操作で利用頻度の高い文字列操作をメソッドとして提供します。<br>
+ システム開発時に利用するオブジェクト操作で利用頻度の高い操作を提供します。<br>
  </p></div>
 <dl>
 <dt><span class="simpleTagLabel">作成者:</span></dt>
@@ -122,7 +122,7 @@ extends java.lang.Object</pre>
 <!--
  更新日            更新者                     更新内容
  2005/07/02     Kitagawa                新規作成
- 2018/05/02     Kitagawa                新規作成(最低保証バージョンをJava8として全面改訂)
+ 2018/05/02     Kitagawa                新規作成(SourceForge.jpからGitHubへの移行に併せて全面改訂)
 --></dd>
 </dl>
 </li>
@@ -247,6 +247,66 @@ extends java.lang.Object</pre>
 <div class="block">オブジェクト同士が同一オブジェクトであるか判定します。</div>
 </td>
 </tr>
+<tr id="i17" class="rowColor">
+<td class="colFirst"><code>static java.io.Serializable</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ObjectUtil.html#load-java.io.File-">load</a></span>(java.io.File&nbsp;file)</code>
+<div class="block">ファイルからオブジェクトを読み込みます。</div>
+</td>
+</tr>
+<tr id="i18" class="altColor">
+<td class="colFirst"><code>static &lt;T extends java.io.Serializable&gt;<br>T</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ObjectUtil.html#load-java.io.File-java.lang.Class-">load</a></span>(java.io.File&nbsp;file,
+    java.lang.Class&lt;T&gt;&nbsp;type)</code>
+<div class="block">ファイルからオブジェクトを読み込みます。</div>
+</td>
+</tr>
+<tr id="i19" class="rowColor">
+<td class="colFirst"><code>static java.io.Serializable</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ObjectUtil.html#load-java.io.InputStream-">load</a></span>(java.io.InputStream&nbsp;stream)</code>
+<div class="block">入力ストリームからオブジェクトを読み込みます。</div>
+</td>
+</tr>
+<tr id="i20" class="altColor">
+<td class="colFirst"><code>static &lt;T extends java.io.Serializable&gt;<br>T</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ObjectUtil.html#load-java.io.InputStream-java.lang.Class-">load</a></span>(java.io.InputStream&nbsp;stream,
+    java.lang.Class&lt;T&gt;&nbsp;type)</code>
+<div class="block">入力ストリームからオブジェクトを読み込みます。</div>
+</td>
+</tr>
+<tr id="i21" class="rowColor">
+<td class="colFirst"><code>static java.io.Serializable</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ObjectUtil.html#load-java.lang.String-">load</a></span>(java.lang.String&nbsp;path)</code>
+<div class="block">ファイルからオブジェクトを読み込みます。</div>
+</td>
+</tr>
+<tr id="i22" class="altColor">
+<td class="colFirst"><code>static &lt;T extends java.io.Serializable&gt;<br>T</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ObjectUtil.html#load-java.lang.String-java.lang.Class-">load</a></span>(java.lang.String&nbsp;path,
+    java.lang.Class&lt;T&gt;&nbsp;type)</code>
+<div class="block">ファイルからオブジェクトを読み込みます。</div>
+</td>
+</tr>
+<tr id="i23" class="rowColor">
+<td class="colFirst"><code>static void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ObjectUtil.html#save-java.io.Serializable-java.io.File-">save</a></span>(java.io.Serializable&nbsp;object,
+    java.io.File&nbsp;file)</code>
+<div class="block">シリアライズ可能なオブジェクトをファイルに出力します。</div>
+</td>
+</tr>
+<tr id="i24" class="altColor">
+<td class="colFirst"><code>static void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ObjectUtil.html#save-java.io.Serializable-java.io.OutputStream-">save</a></span>(java.io.Serializable&nbsp;object,
+    java.io.OutputStream&nbsp;stream)</code>
+<div class="block">シリアライズ可能なオブジェクトを出力ストリームに対して出力します。</div>
+</td>
+</tr>
+<tr id="i25" class="rowColor">
+<td class="colFirst"><code>static void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ObjectUtil.html#save-java.io.Serializable-java.lang.String-">save</a></span>(java.io.Serializable&nbsp;object,
+    java.lang.String&nbsp;path)</code>
+<div class="block">シリアライズ可能なオブジェクトをファイルに出力します。</div>
+</td>
+</tr>
 </table>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -333,6 +393,201 @@ extends java.lang.Object</pre>
 <dd><code>object</code> - ディープコピー対象オブジェクト</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>ディープコピーされたオブジェクト</dd>
+</dl>
+</li>
+</ul>
+<a name="save-java.io.Serializable-java.io.OutputStream-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>save</h4>
+<pre>public static&nbsp;void&nbsp;save(java.io.Serializable&nbsp;object,
+                        java.io.OutputStream&nbsp;stream)
+                 throws java.io.IOException</pre>
+<div class="block">シリアライズ可能なオブジェクトを出力ストリームに対して出力します。<br></div>
+<dl>
+<dt><span class="paramLabel">パラメータ:</span></dt>
+<dd><code>object</code> - シリアライズ可能なオブジェクト</dd>
+<dd><code>stream</code> - 出力ストリーム</dd>
+<dt><span class="throwsLabel">例外:</span></dt>
+<dd><code>java.io.IOException</code> - ストリーム出力時に入出力例外が発生した場合にスローされます</dd>
+</dl>
+</li>
+</ul>
+<a name="save-java.io.Serializable-java.io.File-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>save</h4>
+<pre>public static&nbsp;void&nbsp;save(java.io.Serializable&nbsp;object,
+                        java.io.File&nbsp;file)
+                 throws java.io.IOException</pre>
+<div class="block">シリアライズ可能なオブジェクトをファイルに出力します。<br></div>
+<dl>
+<dt><span class="paramLabel">パラメータ:</span></dt>
+<dd><code>object</code> - シリアライズ可能なオブジェクト</dd>
+<dd><code>file</code> - ファイルオブジェクト</dd>
+<dt><span class="throwsLabel">例外:</span></dt>
+<dd><code>java.io.IOException</code> - ファイル出力時に入出力例外が発生した場合にスローされます</dd>
+</dl>
+</li>
+</ul>
+<a name="save-java.io.Serializable-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>save</h4>
+<pre>public static&nbsp;void&nbsp;save(java.io.Serializable&nbsp;object,
+                        java.lang.String&nbsp;path)
+                 throws java.io.IOException</pre>
+<div class="block">シリアライズ可能なオブジェクトをファイルに出力します。<br></div>
+<dl>
+<dt><span class="paramLabel">パラメータ:</span></dt>
+<dd><code>object</code> - シリアライズ可能なオブジェクト</dd>
+<dd><code>path</code> - ファイルパス</dd>
+<dt><span class="throwsLabel">例外:</span></dt>
+<dd><code>java.io.IOException</code> - ファイル出力時に入出力例外が発生した場合にスローされます</dd>
+</dl>
+</li>
+</ul>
+<a name="load-java.io.InputStream-java.lang.Class-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>load</h4>
+<pre>public static&nbsp;&lt;T extends java.io.Serializable&gt;&nbsp;T&nbsp;load(java.io.InputStream&nbsp;stream,
+                                                      java.lang.Class&lt;T&gt;&nbsp;type)
+                                               throws java.io.IOException,
+                                                      java.lang.ClassNotFoundException</pre>
+<div class="block">入力ストリームからオブジェクトを読み込みます。<br></div>
+<dl>
+<dt><span class="paramLabel">型パラメータ:</span></dt>
+<dd><code>T</code> - 読み込む対象のオブジェクト型</dd>
+<dt><span class="paramLabel">パラメータ:</span></dt>
+<dd><code>stream</code> - 入力ストリーム</dd>
+<dd><code>type</code> - 読み込む対象のオブジェクトクラス</dd>
+<dt><span class="returnLabel">戻り値:</span></dt>
+<dd>読み込んだオブジェクト</dd>
+<dt><span class="throwsLabel">例外:</span></dt>
+<dd><code>java.io.IOException</code> - ストリーム読み込み時に入出力例外が発生した場合にスローされます</dd>
+<dd><code>java.lang.ClassNotFoundException</code> - 対象のオブジェクトのクラスが存在しない場合にスローされます</dd>
+</dl>
+</li>
+</ul>
+<a name="load-java.io.InputStream-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>load</h4>
+<pre>public static&nbsp;java.io.Serializable&nbsp;load(java.io.InputStream&nbsp;stream)
+                                 throws java.io.IOException,
+                                        java.lang.ClassNotFoundException</pre>
+<div class="block">入力ストリームからオブジェクトを読み込みます。<br></div>
+<dl>
+<dt><span class="paramLabel">パラメータ:</span></dt>
+<dd><code>stream</code> - 入力ストリーム</dd>
+<dt><span class="returnLabel">戻り値:</span></dt>
+<dd>読み込んだオブジェクト</dd>
+<dt><span class="throwsLabel">例外:</span></dt>
+<dd><code>java.io.IOException</code> - ストリーム読み込み時に入出力例外が発生した場合にスローされます</dd>
+<dd><code>java.lang.ClassNotFoundException</code> - 対象のオブジェクトのクラスが存在しない場合にスローされます</dd>
+</dl>
+</li>
+</ul>
+<a name="load-java.io.File-java.lang.Class-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>load</h4>
+<pre>public static&nbsp;&lt;T extends java.io.Serializable&gt;&nbsp;T&nbsp;load(java.io.File&nbsp;file,
+                                                      java.lang.Class&lt;T&gt;&nbsp;type)
+                                               throws java.io.IOException,
+                                                      java.lang.ClassNotFoundException</pre>
+<div class="block">ファイルからオブジェクトを読み込みます。<br></div>
+<dl>
+<dt><span class="paramLabel">型パラメータ:</span></dt>
+<dd><code>T</code> - 読み込む対象のオブジェクト型</dd>
+<dt><span class="paramLabel">パラメータ:</span></dt>
+<dd><code>file</code> - ファイルオブジェクト</dd>
+<dd><code>type</code> - 読み込む対象のオブジェクトクラス</dd>
+<dt><span class="returnLabel">戻り値:</span></dt>
+<dd>読み込んだオブジェクト</dd>
+<dt><span class="throwsLabel">例外:</span></dt>
+<dd><code>java.io.IOException</code> - ファイル読み込み時に入出力例外が発生した場合にスローされます</dd>
+<dd><code>java.lang.ClassNotFoundException</code> - 対象のオブジェクトのクラスが存在しない場合にスローされます</dd>
+</dl>
+</li>
+</ul>
+<a name="load-java.io.File-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>load</h4>
+<pre>public static&nbsp;java.io.Serializable&nbsp;load(java.io.File&nbsp;file)
+                                 throws java.io.IOException,
+                                        java.lang.ClassNotFoundException</pre>
+<div class="block">ファイルからオブジェクトを読み込みます。<br></div>
+<dl>
+<dt><span class="paramLabel">パラメータ:</span></dt>
+<dd><code>file</code> - ファイルオブジェクト</dd>
+<dt><span class="returnLabel">戻り値:</span></dt>
+<dd>読み込んだオブジェクト</dd>
+<dt><span class="throwsLabel">例外:</span></dt>
+<dd><code>java.io.IOException</code> - ファイル読み込み時に入出力例外が発生した場合にスローされます</dd>
+<dd><code>java.lang.ClassNotFoundException</code> - 対象のオブジェクトのクラスが存在しない場合にスローされます</dd>
+</dl>
+</li>
+</ul>
+<a name="load-java.lang.String-java.lang.Class-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>load</h4>
+<pre>public static&nbsp;&lt;T extends java.io.Serializable&gt;&nbsp;T&nbsp;load(java.lang.String&nbsp;path,
+                                                      java.lang.Class&lt;T&gt;&nbsp;type)
+                                               throws java.io.IOException,
+                                                      java.lang.ClassNotFoundException</pre>
+<div class="block">ファイルからオブジェクトを読み込みます。<br></div>
+<dl>
+<dt><span class="paramLabel">型パラメータ:</span></dt>
+<dd><code>T</code> - 読み込む対象のオブジェクト型</dd>
+<dt><span class="paramLabel">パラメータ:</span></dt>
+<dd><code>path</code> - ファイルパス</dd>
+<dd><code>type</code> - 読み込む対象のオブジェクトクラス</dd>
+<dt><span class="returnLabel">戻り値:</span></dt>
+<dd>読み込んだオブジェクト</dd>
+<dt><span class="throwsLabel">例外:</span></dt>
+<dd><code>java.io.IOException</code> - ファイル読み込み時に入出力例外が発生した場合にスローされます</dd>
+<dd><code>java.lang.ClassNotFoundException</code> - 対象のオブジェクトのクラスが存在しない場合にスローされます</dd>
+</dl>
+</li>
+</ul>
+<a name="load-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>load</h4>
+<pre>public static&nbsp;java.io.Serializable&nbsp;load(java.lang.String&nbsp;path)
+                                 throws java.io.IOException,
+                                        java.lang.ClassNotFoundException</pre>
+<div class="block">ファイルからオブジェクトを読み込みます。<br></div>
+<dl>
+<dt><span class="paramLabel">パラメータ:</span></dt>
+<dd><code>path</code> - ファイルパス</dd>
+<dt><span class="returnLabel">戻り値:</span></dt>
+<dd>読み込んだオブジェクト</dd>
+<dt><span class="throwsLabel">例外:</span></dt>
+<dd><code>java.io.IOException</code> - ファイル読み込み時に入出力例外が発生した場合にスローされます</dd>
+<dd><code>java.lang.ClassNotFoundException</code> - 対象のオブジェクトのクラスが存在しない場合にスローされます</dd>
 </dl>
 </li>
 </ul>

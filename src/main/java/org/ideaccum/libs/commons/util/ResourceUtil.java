@@ -219,10 +219,10 @@ public final class ResourceUtil {
 	 * @return 出力ストリームオブジェクト
 	 * @throws IOException リソース出力ストリームをオープンすることができなかった場合にスローされます
 	 */
-	public static OutputStream getOutputStream(String name) throws IOException {
-		URL url = getURL(name);
+	public static OutputStream getOutputStream(String path) throws IOException {
+		URL url = getURL(path);
 		if ("file".equals(url.getProtocol())) {
-			File file = new File(getURL(name).getFile());
+			File file = new File(getURL(path).getFile());
 			FileUtil.getDir(file).mkdirs();
 			if (!file.exists()) {
 				file.createNewFile();

@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9,"i9":9,"i10":9,"i11":9,"i12":9,"i13":9,"i14":9,"i15":9,"i16":9,"i17":9,"i18":9,"i19":9,"i20":9,"i21":9,"i22":9,"i23":9,"i24":9,"i25":9,"i26":9,"i27":9,"i28":9,"i29":9,"i30":9,"i31":9,"i32":9,"i33":9,"i34":9,"i35":9,"i36":9,"i37":9,"i38":9,"i39":9,"i40":9,"i41":9};
+var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9,"i9":9,"i10":9,"i11":9,"i12":9,"i13":9,"i14":9,"i15":9,"i16":9,"i17":9,"i18":9,"i19":9,"i20":9,"i21":9,"i22":9,"i23":9,"i24":9,"i25":9,"i26":9,"i27":9,"i28":9,"i29":9,"i30":9,"i31":9};
 var tabs = {65535:["t0","すべてのメソッド"],1:["t1","staticメソッド"],8:["t4","concreteメソッド"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -49,7 +49,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../org/ideaccum/libs/commons/util/CharLoop.html" title="org.ideaccum.libs.commons.util内のクラス"><span class="typeNameLink">前のクラス</span></a></li>
+<li>前のクラス</li>
 <li><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html" title="org.ideaccum.libs.commons.util内のクラス"><span class="typeNameLink">次のクラス</span></a></li>
 </ul>
 <ul class="navList">
@@ -122,7 +122,7 @@ extends java.lang.Object</pre>
 <!--
  更新日            更新者                     更新内容
  2012/10/02     Kitagawa                新規作成
- 2018/05/24     Kitagawa                再構築(最低保証バージョンをJava8として全面改訂)
+ 2018/05/24     Kitagawa                再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
 --></dd>
 </dl>
 </li>
@@ -160,96 +160,70 @@ extends java.lang.Object</pre>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>static &lt;A extends java.lang.annotation.Annotation&gt;<br>A</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getAnnotation-java.lang.Class-java.lang.Class-">getAnnotation</a></span>(java.lang.Class&lt;?&gt;&nbsp;clazz,
-             java.lang.Class&lt;A&gt;&nbsp;annotationClass)</code>
+             java.lang.Class&lt;A&gt;&nbsp;type)</code>
 <div class="block">クラスが提供するアノテーションを取得します。</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>static &lt;A extends java.lang.annotation.Annotation&gt;<br>A</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getAnnotation-java.lang.reflect.Field-java.lang.Class-">getAnnotation</a></span>(java.lang.reflect.Field&nbsp;field,
-             java.lang.Class&lt;A&gt;&nbsp;annotationClass)</code>
+             java.lang.Class&lt;A&gt;&nbsp;type)</code>
 <div class="block">フィールドが提供するアノテーションを取得します。</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>static &lt;A extends java.lang.annotation.Annotation&gt;<br>A</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getAnnotation-java.lang.reflect.Method-java.lang.Class-">getAnnotation</a></span>(java.lang.reflect.Method&nbsp;method,
-             java.lang.Class&lt;A&gt;&nbsp;annotationClass)</code>
+             java.lang.Class&lt;A&gt;&nbsp;type)</code>
 <div class="block">メソッドが提供するアノテーションを取得します。</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><code>static &lt;A extends java.lang.annotation.Annotation&gt;<br>A</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getAnnotation-java.lang.Object-java.lang.Class-">getAnnotation</a></span>(java.lang.Object&nbsp;object,
-             java.lang.Class&lt;A&gt;&nbsp;annotationClass)</code>
-<div class="block">オブジェクトのクラスが提供するアノテーションを取得します。</div>
+<td class="colFirst"><code>static java.lang.Class&lt;?&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getArrayComponent-java.lang.Class-">getArrayComponent</a></span>(java.lang.Class&lt;?&gt;&nbsp;clazz)</code>
+<div class="block">クラスの配列要素型を取得します。</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>static java.lang.Class&lt;?&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getComponentType-java.lang.Class-">getComponentType</a></span>(java.lang.Class&lt;?&gt;&nbsp;clazz)</code>
-<div class="block">クラスの配列要素型を取得します。</div>
-</td>
-</tr>
-<tr id="i7" class="rowColor">
-<td class="colFirst"><code>static java.lang.Class&lt;?&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getComponentType-java.lang.reflect.Field-">getComponentType</a></span>(java.lang.reflect.Field&nbsp;field)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getArrayComponent-java.lang.reflect.Field-">getArrayComponent</a></span>(java.lang.reflect.Field&nbsp;field)</code>
 <div class="block">フィールドの配列要素型を取得します。</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>static java.lang.reflect.Field</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getField-java.lang.Class-java.lang.String-">getField</a></span>(java.lang.Class&lt;?&gt;&nbsp;clazz,
         java.lang.String&nbsp;name)</code>
 <div class="block">クラスが提供するフィールドを親クラスまで再帰的に検索して名称に合致するフィールドを取得します。</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
-<td class="colFirst"><code>static java.lang.reflect.Field</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getField-java.lang.Object-java.lang.String-">getField</a></span>(java.lang.Object&nbsp;object,
-        java.lang.String&nbsp;name)</code>
-<div class="block">オブジェクトのクラスが提供するフィールドを親クラスまで再帰的に検索して名称に合致するフィールドを取得します。</div>
-</td>
-</tr>
-<tr id="i10" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>static java.lang.reflect.Field[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getFields-java.lang.Class-">getFields</a></span>(java.lang.Class&lt;?&gt;&nbsp;clazz)</code>
 <div class="block">クラスが提供するフィールドを親クラスまで再帰的に検索して取得します。</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
-<td class="colFirst"><code>static java.lang.reflect.Field[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getFields-java.lang.Object-">getFields</a></span>(java.lang.Object&nbsp;object)</code>
-<div class="block">オブジェクトのクラスが提供するフィールドを親クラスまで再帰的に検索して取得します。</div>
-</td>
-</tr>
-<tr id="i12" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getFieldValue-java.lang.Object-java.lang.reflect.Field-">getFieldValue</a></span>(java.lang.Object&nbsp;object,
              java.lang.reflect.Field&nbsp;field)</code>
 <div class="block">フィールドに設定されている値をリフレクションを利用して取得します。</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getFieldValue-java.lang.Object-java.lang.String-">getFieldValue</a></span>(java.lang.Object&nbsp;object,
              java.lang.String&nbsp;name)</code>
 <div class="block">親クラスまで再帰的に検索して名称に合致するフィールド値を取得します。</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>static java.lang.Class&lt;?&gt;[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getInterfaces-java.lang.Class-">getInterfaces</a></span>(java.lang.Class&lt;?&gt;&nbsp;clazz)</code>
 <div class="block">クラスが実装するインタフェースを親クラスまで再帰的に検索して提供します。</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
-<td class="colFirst"><code>static java.lang.Class&lt;?&gt;[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getInterfaces-java.lang.Object-">getInterfaces</a></span>(java.lang.Object&nbsp;object)</code>
-<div class="block">オブジェクトのクラスが実装するインタフェースを親クラスまで再帰的に検索して提供します。</div>
-</td>
-</tr>
-<tr id="i16" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>static java.lang.reflect.Method</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getMethod-java.lang.Class-java.lang.String-java.lang.Class...-">getMethod</a></span>(java.lang.Class&lt;?&gt;&nbsp;clazz,
          java.lang.String&nbsp;name,
@@ -257,59 +231,39 @@ extends java.lang.Object</pre>
 <div class="block">クラスが提供するメソッドを親クラスまで再帰的に検索して取得します。</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
-<td class="colFirst"><code>static java.lang.reflect.Method</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getMethod-java.lang.Object-java.lang.String-java.lang.Class...-">getMethod</a></span>(java.lang.Object&nbsp;object,
-         java.lang.String&nbsp;name,
-         java.lang.Class&lt;?&gt;...&nbsp;parameterTypes)</code>
-<div class="block">オブジェクトのクラスが提供するメソッドを親クラスまで再帰的に検索して取得します。</div>
-</td>
-</tr>
-<tr id="i18" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>static java.lang.reflect.Method[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getMethods-java.lang.Class-">getMethods</a></span>(java.lang.Class&lt;?&gt;&nbsp;clazz)</code>
 <div class="block">クラスが提供するメソッドを親クラスまで再帰的に検索して取得します。</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
-<td class="colFirst"><code>static java.lang.reflect.Method[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getMethods-java.lang.Object-">getMethods</a></span>(java.lang.Object&nbsp;object)</code>
-<div class="block">オブジェクトのクラスが提供するメソッドを親クラスまで再帰的に検索して取得します。</div>
-</td>
-</tr>
-<tr id="i20" class="altColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getStaticFieldValue-java.lang.Class-java.lang.String-">getStaticFieldValue</a></span>(java.lang.Class&lt;?&gt;&nbsp;clazz,
                    java.lang.String&nbsp;name)</code>
 <div class="block">親クラスまで再帰的に検索して名称に合致するフィールド値を取得します。</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getStaticFieldValue-java.lang.reflect.Field-">getStaticFieldValue</a></span>(java.lang.reflect.Field&nbsp;field)</code>
 <div class="block">フィールドに設定されている値をリフレクションを利用して取得します。</div>
 </td>
 </tr>
-<tr id="i22" class="altColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>static java.lang.Class&lt;?&gt;[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getSuperClasses-java.lang.Class-">getSuperClasses</a></span>(java.lang.Class&lt;?&gt;&nbsp;clazz)</code>
 <div class="block">クラスが継承する親クラス情報を再上位まで再帰的に検索して提供します。</div>
 </td>
 </tr>
-<tr id="i23" class="rowColor">
-<td class="colFirst"><code>static java.lang.Class&lt;?&gt;[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getSuperClasses-java.lang.Object-">getSuperClasses</a></span>(java.lang.Object&nbsp;object)</code>
-<div class="block">オブジェクトのクラスが継承する親クラス情報を再上位まで再帰的に検索して提供します。</div>
-</td>
-</tr>
-<tr id="i24" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#invokeMethod-java.lang.Class-java.lang.String-">invokeMethod</a></span>(java.lang.Class&lt;?&gt;&nbsp;clazz,
             java.lang.String&nbsp;name)</code>
 <div class="block">パラメータを持たないクラスメソッドを実行します。</div>
 </td>
 </tr>
-<tr id="i25" class="rowColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#invokeMethod-java.lang.Class-java.lang.String-java.lang.Class:A-java.lang.Object:A-">invokeMethod</a></span>(java.lang.Class&lt;?&gt;&nbsp;clazz,
             java.lang.String&nbsp;name,
@@ -318,14 +272,14 @@ extends java.lang.Object</pre>
 <div class="block">クラスメソッドを実行します。</div>
 </td>
 </tr>
-<tr id="i26" class="altColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#invokeMethod-java.lang.Object-java.lang.String-">invokeMethod</a></span>(java.lang.Object&nbsp;object,
             java.lang.String&nbsp;name)</code>
 <div class="block">パラメータを持たないオブジェクトメソッドを実行します。</div>
 </td>
 </tr>
-<tr id="i27" class="rowColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#invokeMethod-java.lang.Object-java.lang.String-java.lang.Class:A-java.lang.Object:A-">invokeMethod</a></span>(java.lang.Object&nbsp;object,
             java.lang.String&nbsp;name,
@@ -334,75 +288,54 @@ extends java.lang.Object</pre>
 <div class="block">オブジェクトメソッドを実行します。</div>
 </td>
 </tr>
-<tr id="i28" class="altColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code>static &lt;A extends java.lang.annotation.Annotation&gt;<br>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#isAnnotated-java.lang.Class-java.lang.Class-">isAnnotated</a></span>(java.lang.Class&lt;?&gt;&nbsp;clazz,
-           java.lang.Class&lt;A&gt;&nbsp;annotationClass)</code>
+           java.lang.Class&lt;A&gt;&nbsp;type)</code>
 <div class="block">クラスがアノテーションを提供するか判定します。</div>
 </td>
 </tr>
-<tr id="i29" class="rowColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code>static &lt;A extends java.lang.annotation.Annotation&gt;<br>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#isAnnotated-java.lang.reflect.Field-java.lang.Class-">isAnnotated</a></span>(java.lang.reflect.Field&nbsp;method,
-           java.lang.Class&lt;A&gt;&nbsp;annotationClass)</code>
+           java.lang.Class&lt;A&gt;&nbsp;type)</code>
 <div class="block">フィールドがアノテーションを提供するか判定します。</div>
 </td>
 </tr>
-<tr id="i30" class="altColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code>static &lt;A extends java.lang.annotation.Annotation&gt;<br>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#isAnnotated-java.lang.reflect.Method-java.lang.Class-">isAnnotated</a></span>(java.lang.reflect.Method&nbsp;method,
-           java.lang.Class&lt;A&gt;&nbsp;annotationClass)</code>
+           java.lang.Class&lt;A&gt;&nbsp;type)</code>
 <div class="block">メソッドがアノテーションを提供するか判定します。</div>
 </td>
 </tr>
-<tr id="i31" class="rowColor">
-<td class="colFirst"><code>static &lt;A extends java.lang.annotation.Annotation&gt;<br>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#isAnnotated-java.lang.Object-java.lang.Class-">isAnnotated</a></span>(java.lang.Object&nbsp;object,
-           java.lang.Class&lt;A&gt;&nbsp;annotationClass)</code>
-<div class="block">オブジェクトのクラスがアノテーションを提供するか判定します。</div>
-</td>
-</tr>
-<tr id="i32" class="altColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#isArray-java.lang.Class-">isArray</a></span>(java.lang.Class&lt;?&gt;&nbsp;clazz)</code>
 <div class="block">クラスが配列であるか判定します。</div>
 </td>
 </tr>
-<tr id="i33" class="rowColor">
+<tr id="i25" class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#isArray-java.lang.reflect.Field-">isArray</a></span>(java.lang.reflect.Field&nbsp;field)</code>
 <div class="block">フィールドが配列であるか判定します。</div>
 </td>
 </tr>
-<tr id="i34" class="altColor">
+<tr id="i26" class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#isImplemented-java.lang.Class-java.lang.Class-">isImplemented</a></span>(java.lang.Class&lt;?&gt;&nbsp;clazz,
-             java.lang.Class&lt;?&gt;&nbsp;interfaceClass)</code>
+             java.lang.Class&lt;?&gt;&nbsp;type)</code>
 <div class="block">クラスが指定されたインタフェースを実装するクラスであるか判定します。</div>
 </td>
 </tr>
-<tr id="i35" class="rowColor">
-<td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#isImplemented-java.lang.Object-java.lang.Class-">isImplemented</a></span>(java.lang.Object&nbsp;object,
-             java.lang.Class&lt;?&gt;&nbsp;interfaceClass)</code>
-<div class="block">オブジェクトのクラスが指定されたインタフェースを実装するクラスであるか判定します。</div>
-</td>
-</tr>
-<tr id="i36" class="altColor">
+<tr id="i27" class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#isInherited-java.lang.Class-java.lang.Class-">isInherited</a></span>(java.lang.Class&lt;?&gt;&nbsp;clazz,
-           java.lang.Class&lt;?&gt;&nbsp;superClass)</code>
+           java.lang.Class&lt;?&gt;&nbsp;type)</code>
 <div class="block">クラスが指定されたクラスを継承するクラスであるか判定します。</div>
 </td>
 </tr>
-<tr id="i37" class="rowColor">
-<td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#isInherited-java.lang.Object-java.lang.Class-">isInherited</a></span>(java.lang.Object&nbsp;object,
-           java.lang.Class&lt;?&gt;&nbsp;superClass)</code>
-<div class="block">オブジェクトのクラスが指定されたクラスを継承するクラスであるか判定します。</div>
-</td>
-</tr>
-<tr id="i38" class="altColor">
+<tr id="i28" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#setFieldValue-java.lang.Object-java.lang.reflect.Field-java.lang.Object-">setFieldValue</a></span>(java.lang.Object&nbsp;object,
              java.lang.reflect.Field&nbsp;field,
@@ -410,7 +343,7 @@ extends java.lang.Object</pre>
 <div class="block">フィールドに対してリフレクションを利用してフィールド値を設定します。</div>
 </td>
 </tr>
-<tr id="i39" class="rowColor">
+<tr id="i29" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#setFieldValue-java.lang.Object-java.lang.String-java.lang.Object-">setFieldValue</a></span>(java.lang.Object&nbsp;object,
              java.lang.String&nbsp;name,
@@ -418,7 +351,7 @@ extends java.lang.Object</pre>
 <div class="block">親クラスまで再帰的に検索して名称に合致するフィールド値を設定します。</div>
 </td>
 </tr>
-<tr id="i40" class="altColor">
+<tr id="i30" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#setStaticFieldValue-java.lang.Class-java.lang.String-java.lang.Object-">setStaticFieldValue</a></span>(java.lang.Class&lt;?&gt;&nbsp;clazz,
                    java.lang.String&nbsp;name,
@@ -426,7 +359,7 @@ extends java.lang.Object</pre>
 <div class="block">親クラスまで再帰的に検索して名称に合致するフィールド値を設定します。</div>
 </td>
 </tr>
-<tr id="i41" class="rowColor">
+<tr id="i31" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#setStaticFieldValue-java.lang.reflect.Field-java.lang.Object-">setStaticFieldValue</a></span>(java.lang.reflect.Field&nbsp;field,
                    java.lang.Object&nbsp;value)</code>
@@ -463,30 +396,12 @@ extends java.lang.Object</pre>
 <h4>getSuperClasses</h4>
 <pre>public static&nbsp;java.lang.Class&lt;?&gt;[]&nbsp;getSuperClasses(java.lang.Class&lt;?&gt;&nbsp;clazz)</pre>
 <div class="block">クラスが継承する親クラス情報を再上位まで再帰的に検索して提供します。<br>
- 提供される順序は対象としたクラスの直上のクラスを先頭にした最上位に向かったクラス継承順となります。<br></div>
+ 提供されるクラス順序は対象としたクラスが直接継承するクラスを先頭にした最上位に向かったクラス継承順となります。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>clazz</code> - 対象クラス</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>クラスが継承する親クラス配列</dd>
-</dl>
-</li>
-</ul>
-<a name="getSuperClasses-java.lang.Object-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getSuperClasses</h4>
-<pre>public static&nbsp;java.lang.Class&lt;?&gt;[]&nbsp;getSuperClasses(java.lang.Object&nbsp;object)</pre>
-<div class="block">オブジェクトのクラスが継承する親クラス情報を再上位まで再帰的に検索して提供します。<br>
- 提供される順序は対象としたオブジェクトクラスの直上のクラスを先頭にした最上位に向かったクラス継承順となります。<br>
- オブジェクトがnullの場合は空の情報が提供されることに注意して下さい。<br></div>
-<dl>
-<dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>object</code> - 対象オブジェクト</dd>
-<dt><span class="returnLabel">戻り値:</span></dt>
-<dd>オブジェクトのクラスが継承する親クラス配列</dd>
 </dl>
 </li>
 </ul>
@@ -506,23 +421,6 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a name="getInterfaces-java.lang.Object-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getInterfaces</h4>
-<pre>public static&nbsp;java.lang.Class&lt;?&gt;[]&nbsp;getInterfaces(java.lang.Object&nbsp;object)</pre>
-<div class="block">オブジェクトのクラスが実装するインタフェースを親クラスまで再帰的に検索して提供します。<br>
- オブジェクトがnullの場合は空の情報が提供されることに注意して下さい。<br></div>
-<dl>
-<dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>object</code> - 対象オブジェクト</dd>
-<dt><span class="returnLabel">戻り値:</span></dt>
-<dd>オブジェクトのクラスが実装するインタフェースクラス配列</dd>
-</dl>
-</li>
-</ul>
 <a name="getAnnotation-java.lang.Class-java.lang.Class-">
 <!--   -->
 </a>
@@ -530,7 +428,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getAnnotation</h4>
 <pre>public static&nbsp;&lt;A extends java.lang.annotation.Annotation&gt;&nbsp;A&nbsp;getAnnotation(java.lang.Class&lt;?&gt;&nbsp;clazz,
-                                                                          java.lang.Class&lt;A&gt;&nbsp;annotationClass)</pre>
+                                                                          java.lang.Class&lt;A&gt;&nbsp;type)</pre>
 <div class="block">クラスが提供するアノテーションを取得します。<br>
  アノテーションにおいてInheritが指定されていない場合でもクラスが継承する親クラスが持つアノテーションを検索します。<br></div>
 <dl>
@@ -538,30 +436,9 @@ extends java.lang.Object</pre>
 <dd><code>A</code> - アノテーションクラスタイプ</dd>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>clazz</code> - 対象クラス</dd>
-<dd><code>annotationClass</code> - 取得アノテーションクラス</dd>
+<dd><code>type</code> - 取得アノテーションクラス</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>アノテーションクラス</dd>
-</dl>
-</li>
-</ul>
-<a name="getAnnotation-java.lang.Object-java.lang.Class-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getAnnotation</h4>
-<pre>public static&nbsp;&lt;A extends java.lang.annotation.Annotation&gt;&nbsp;A&nbsp;getAnnotation(java.lang.Object&nbsp;object,
-                                                                          java.lang.Class&lt;A&gt;&nbsp;annotationClass)</pre>
-<div class="block">オブジェクトのクラスが提供するアノテーションを取得します。<br>
- アノテーションにおいてInheritが指定されていない場合でもクラスが継承する親クラスが持つアノテーションを検索します。<br></div>
-<dl>
-<dt><span class="paramLabel">型パラメータ:</span></dt>
-<dd><code>A</code> - アノテーションクラスタイプ</dd>
-<dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>object</code> - 対象オブジェクト</dd>
-<dd><code>annotationClass</code> - 取得アノテーションクラス</dd>
-<dt><span class="returnLabel">戻り値:</span></dt>
-<dd>オブジェクトのアノテーションクラス</dd>
 </dl>
 </li>
 </ul>
@@ -572,14 +449,14 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getAnnotation</h4>
 <pre>public static&nbsp;&lt;A extends java.lang.annotation.Annotation&gt;&nbsp;A&nbsp;getAnnotation(java.lang.reflect.Method&nbsp;method,
-                                                                          java.lang.Class&lt;A&gt;&nbsp;annotationClass)</pre>
+                                                                          java.lang.Class&lt;A&gt;&nbsp;type)</pre>
 <div class="block">メソッドが提供するアノテーションを取得します。<br></div>
 <dl>
 <dt><span class="paramLabel">型パラメータ:</span></dt>
 <dd><code>A</code> - アノテーションクラスタイプ</dd>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>method</code> - 対象メソッド</dd>
-<dd><code>annotationClass</code> - 取得アノテーションクラス</dd>
+<dd><code>type</code> - 取得アノテーションクラス</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>アノテーションクラス</dd>
 </dl>
@@ -592,14 +469,14 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getAnnotation</h4>
 <pre>public static&nbsp;&lt;A extends java.lang.annotation.Annotation&gt;&nbsp;A&nbsp;getAnnotation(java.lang.reflect.Field&nbsp;field,
-                                                                          java.lang.Class&lt;A&gt;&nbsp;annotationClass)</pre>
+                                                                          java.lang.Class&lt;A&gt;&nbsp;type)</pre>
 <div class="block">フィールドが提供するアノテーションを取得します。<br></div>
 <dl>
 <dt><span class="paramLabel">型パラメータ:</span></dt>
 <dd><code>A</code> - アノテーションクラスタイプ</dd>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>field</code> - 対象フィールド</dd>
-<dd><code>annotationClass</code> - 取得アノテーションクラス</dd>
+<dd><code>type</code> - 取得アノテーションクラス</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>アノテーションクラス</dd>
 </dl>
@@ -612,36 +489,14 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>isImplemented</h4>
 <pre>public static&nbsp;boolean&nbsp;isImplemented(java.lang.Class&lt;?&gt;&nbsp;clazz,
-                                    java.lang.Class&lt;?&gt;&nbsp;interfaceClass)</pre>
-<div class="block">クラスが指定されたインタフェースを実装するクラスであるか判定します。<br>
- 尚、自分自身のクラスが指定された場合も実装クラスとして判定されることに注意して下さい。<br>
- これは利用者が該当クラスに対してインタフェースが利用可能かの判定の為に利用することを目的に利用する事を想定した仕様です。<br></div>
+                                    java.lang.Class&lt;?&gt;&nbsp;type)</pre>
+<div class="block">クラスが指定されたインタフェースを実装するクラスであるか判定します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>clazz</code> - 対象クラス</dd>
-<dd><code>interfaceClass</code> - 判定対象インタフェースクラス</dd>
+<dd><code>type</code> - 判定対象インタフェースクラス</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>クラスが指定されたインタフェースを実装するクラスである場合にtrueを返却</dd>
-</dl>
-</li>
-</ul>
-<a name="isImplemented-java.lang.Object-java.lang.Class-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>isImplemented</h4>
-<pre>public static&nbsp;boolean&nbsp;isImplemented(java.lang.Object&nbsp;object,
-                                    java.lang.Class&lt;?&gt;&nbsp;interfaceClass)</pre>
-<div class="block">オブジェクトのクラスが指定されたインタフェースを実装するクラスであるか判定します。<br>
- 尚、自分自身のクラスが指定された場合も実装クラスとして判定されることに注意して下さい。<br>
- これは利用者が該当クラスに対してインタフェースが利用可能かの判定の為に利用することを目的に利用する事を想定した仕様です。<br></div>
-<dl>
-<dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>object</code> - 対象オブジェクト</dd>
-<dd><code>interfaceClass</code> - 判定対象インタフェースクラス</dd>
-<dt><span class="returnLabel">戻り値:</span></dt>
-<dd>オブジェクトのクラスが指定されたインタフェースを実装するクラスである場合にtrueを返却</dd>
 </dl>
 </li>
 </ul>
@@ -652,36 +507,14 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>isInherited</h4>
 <pre>public static&nbsp;boolean&nbsp;isInherited(java.lang.Class&lt;?&gt;&nbsp;clazz,
-                                  java.lang.Class&lt;?&gt;&nbsp;superClass)</pre>
-<div class="block">クラスが指定されたクラスを継承するクラスであるか判定します。<br>
- 尚、自分自身のクラスが指定された場合も継承クラスとして判定されることに注意して下さい。<br>
- これは利用者が該当クラスに対して継承元のクラスが利用可能かの判定の為に利用することを目的に利用する事を想定した仕様です。<br></div>
+                                  java.lang.Class&lt;?&gt;&nbsp;type)</pre>
+<div class="block">クラスが指定されたクラスを継承するクラスであるか判定します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>clazz</code> - 対象クラス</dd>
-<dd><code>superClass</code> - 判定対象親クラス</dd>
+<dd><code>type</code> - 判定対象親クラス</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>クラスが指定されたクラスを継承するクラスである場合にtrueを返却</dd>
-</dl>
-</li>
-</ul>
-<a name="isInherited-java.lang.Object-java.lang.Class-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>isInherited</h4>
-<pre>public static&nbsp;boolean&nbsp;isInherited(java.lang.Object&nbsp;object,
-                                  java.lang.Class&lt;?&gt;&nbsp;superClass)</pre>
-<div class="block">オブジェクトのクラスが指定されたクラスを継承するクラスであるか判定します。<br>
- 尚、自分自身のクラスが指定された場合も継承クラスとして判定されることに注意して下さい。<br>
- これは利用者が該当クラスに対して継承元のクラスが利用可能かの判定の為に利用することを目的に利用する事を想定した仕様です。<br></div>
-<dl>
-<dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>object</code> - 対象オブジェクト</dd>
-<dd><code>superClass</code> - 判定対象親クラス</dd>
-<dt><span class="returnLabel">戻り値:</span></dt>
-<dd>オブジェクトのクラスが指定されたクラスを継承するクラスである場合にtrueを返却</dd>
 </dl>
 </li>
 </ul>
@@ -692,36 +525,16 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>isAnnotated</h4>
 <pre>public static&nbsp;&lt;A extends java.lang.annotation.Annotation&gt;&nbsp;boolean&nbsp;isAnnotated(java.lang.Class&lt;?&gt;&nbsp;clazz,
-                                                                              java.lang.Class&lt;A&gt;&nbsp;annotationClass)</pre>
+                                                                              java.lang.Class&lt;A&gt;&nbsp;type)</pre>
 <div class="block">クラスがアノテーションを提供するか判定します。<br></div>
 <dl>
 <dt><span class="paramLabel">型パラメータ:</span></dt>
 <dd><code>A</code> - アノテーションクラスタイプ</dd>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>clazz</code> - 対象クラス</dd>
-<dd><code>annotationClass</code> - 判定対象アノテーションクラス</dd>
+<dd><code>type</code> - 判定対象アノテーションクラス</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>クラスがアノテーションを提供する場合にtrueを返却します</dd>
-</dl>
-</li>
-</ul>
-<a name="isAnnotated-java.lang.Object-java.lang.Class-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>isAnnotated</h4>
-<pre>public static&nbsp;&lt;A extends java.lang.annotation.Annotation&gt;&nbsp;boolean&nbsp;isAnnotated(java.lang.Object&nbsp;object,
-                                                                              java.lang.Class&lt;A&gt;&nbsp;annotationClass)</pre>
-<div class="block">オブジェクトのクラスがアノテーションを提供するか判定します。<br></div>
-<dl>
-<dt><span class="paramLabel">型パラメータ:</span></dt>
-<dd><code>A</code> - アノテーションクラスタイプ</dd>
-<dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>object</code> - 対象オブジェクト</dd>
-<dd><code>annotationClass</code> - 判定対象アノテーションクラス</dd>
-<dt><span class="returnLabel">戻り値:</span></dt>
-<dd>オブジェクトのクラスがアノテーションを提供する場合にtrueを返却します</dd>
 </dl>
 </li>
 </ul>
@@ -732,16 +545,16 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>isAnnotated</h4>
 <pre>public static&nbsp;&lt;A extends java.lang.annotation.Annotation&gt;&nbsp;boolean&nbsp;isAnnotated(java.lang.reflect.Method&nbsp;method,
-                                                                              java.lang.Class&lt;A&gt;&nbsp;annotationClass)</pre>
+                                                                              java.lang.Class&lt;A&gt;&nbsp;type)</pre>
 <div class="block">メソッドがアノテーションを提供するか判定します。<br></div>
 <dl>
 <dt><span class="paramLabel">型パラメータ:</span></dt>
 <dd><code>A</code> - アノテーションクラスタイプ</dd>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>method</code> - 対象メソッド</dd>
-<dd><code>annotationClass</code> - 判定対象アノテーションクラス</dd>
+<dd><code>type</code> - 判定対象アノテーションクラス</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
-<dd>オブジェクトのクラスがアノテーションを提供する場合にtrueを返却します</dd>
+<dd>メソッドがアノテーションを提供する場合にtrueを返却します</dd>
 </dl>
 </li>
 </ul>
@@ -752,16 +565,16 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>isAnnotated</h4>
 <pre>public static&nbsp;&lt;A extends java.lang.annotation.Annotation&gt;&nbsp;boolean&nbsp;isAnnotated(java.lang.reflect.Field&nbsp;method,
-                                                                              java.lang.Class&lt;A&gt;&nbsp;annotationClass)</pre>
+                                                                              java.lang.Class&lt;A&gt;&nbsp;type)</pre>
 <div class="block">フィールドがアノテーションを提供するか判定します。<br></div>
 <dl>
 <dt><span class="paramLabel">型パラメータ:</span></dt>
 <dd><code>A</code> - アノテーションクラスタイプ</dd>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>method</code> - 対象メソッド</dd>
-<dd><code>annotationClass</code> - 判定対象アノテーションクラス</dd>
+<dd><code>type</code> - 判定対象アノテーションクラス</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
-<dd>オブジェクトのクラスがアノテーションを提供する場合にtrueを返却します</dd>
+<dd>フィールドがアノテーションを提供する場合にtrueを返却します</dd>
 </dl>
 </li>
 </ul>
@@ -774,35 +587,14 @@ extends java.lang.Object</pre>
 <pre>public static&nbsp;java.lang.reflect.Field&nbsp;getField(java.lang.Class&lt;?&gt;&nbsp;clazz,
                                                java.lang.String&nbsp;name)</pre>
 <div class="block">クラスが提供するフィールドを親クラスまで再帰的に検索して名称に合致するフィールドを取得します。<br>
- 尚、ここで提供されるフィールドアクセス修飾子はpublicに限定しない全てのフィールドとなります。<br>
- また、継承している親クラスまでのフィールドを再帰検索する際に同一名称のフィールドが存在する場合は、自身から見て一番近いクラスのフィールドが提供されます。<br></div>
+ 継承している親クラスまでのフィールドを再帰検索する際に同一名称のフィールドが存在する場合は、自身から見て一番近いクラスのフィールドが提供されます。<br>
+ 尚、ここで提供されるフィールドアクセス修飾子はpublicに限定しない全てのフィールドとなります。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>clazz</code> - 対象クラス</dd>
 <dd><code>name</code> - フィールド名</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>クラスが提供するフィールド</dd>
-</dl>
-</li>
-</ul>
-<a name="getField-java.lang.Object-java.lang.String-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getField</h4>
-<pre>public static&nbsp;java.lang.reflect.Field&nbsp;getField(java.lang.Object&nbsp;object,
-                                               java.lang.String&nbsp;name)</pre>
-<div class="block">オブジェクトのクラスが提供するフィールドを親クラスまで再帰的に検索して名称に合致するフィールドを取得します。<br>
- 尚、ここで提供されるフィールドアクセス修飾子はpublicに限定しない全てのフィールドとなります。<br>
- また、継承している親クラスまでのフィールドを再帰検索する際に同一名称のフィールドが存在する場合は、自身から見て一番近いクラスのフィールドが提供されます。<br>
- オブジェクトがnullの場合は空の情報が提供されることに注意して下さい。<br></div>
-<dl>
-<dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>object</code> - 対象オブジェクト</dd>
-<dd><code>name</code> - フィールド名</dd>
-<dt><span class="returnLabel">戻り値:</span></dt>
-<dd>オブジェクトのクラスが提供するフィールド</dd>
 </dl>
 </li>
 </ul>
@@ -823,24 +615,6 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a name="getFields-java.lang.Object-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getFields</h4>
-<pre>public static&nbsp;java.lang.reflect.Field[]&nbsp;getFields(java.lang.Object&nbsp;object)</pre>
-<div class="block">オブジェクトのクラスが提供するフィールドを親クラスまで再帰的に検索して取得します。<br>
- 尚、ここで提供されるフィールドアクセス修飾子はpublicに限定しない全てのフィールドとなります。<br>
- オブジェクトがnullの場合は空の情報が提供されることに注意して下さい。<br></div>
-<dl>
-<dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>object</code> - 対象オブジェクト</dd>
-<dt><span class="returnLabel">戻り値:</span></dt>
-<dd>オブジェクトのクラスが提供するフィールド配列</dd>
-</dl>
-</li>
-</ul>
 <a name="getMethod-java.lang.Class-java.lang.String-java.lang.Class...-">
 <!--   -->
 </a>
@@ -851,8 +625,8 @@ extends java.lang.Object</pre>
                                                  java.lang.String&nbsp;name,
                                                  java.lang.Class&lt;?&gt;...&nbsp;parameterTypes)</pre>
 <div class="block">クラスが提供するメソッドを親クラスまで再帰的に検索して取得します。<br>
- 尚、ここで提供されるメソッドアクセス修飾子はpublicに限定しない全てのメソッドとなります。<br>
- また、継承している親クラスまでのメソッドを再帰検索する際に同一名称のメソッドが存在する場合は、自身から見て一番近いクラスのメソッドが提供されます。<br></div>
+ 継承している親クラスまでのメソッドを再帰検索する際に同一名称のメソッドが存在する場合は、自身から見て一番近いクラスのメソッドが提供されます。<br>
+ 尚、ここで提供されるメソッドアクセス修飾子はpublicに限定しない全てのメソッドとなります。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>clazz</code> - 対象クラス</dd>
@@ -860,28 +634,6 @@ extends java.lang.Object</pre>
 <dd><code>parameterTypes</code> - パラメータクラス</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>クラスが提供するメソッド</dd>
-</dl>
-</li>
-</ul>
-<a name="getMethod-java.lang.Object-java.lang.String-java.lang.Class...-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getMethod</h4>
-<pre>public static&nbsp;java.lang.reflect.Method&nbsp;getMethod(java.lang.Object&nbsp;object,
-                                                 java.lang.String&nbsp;name,
-                                                 java.lang.Class&lt;?&gt;...&nbsp;parameterTypes)</pre>
-<div class="block">オブジェクトのクラスが提供するメソッドを親クラスまで再帰的に検索して取得します。<br>
- 尚、ここで提供されるメソッドアクセス修飾子はpublicに限定しない全てのメソッドとなります。<br>
- また、継承している親クラスまでのメソッドを再帰検索する際に同一名称のメソッドが存在する場合は、自身から見て一番近いクラスのメソッドが提供されます。<br></div>
-<dl>
-<dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>object</code> - 対象オブジェクト</dd>
-<dd><code>name</code> - メソッド名</dd>
-<dd><code>parameterTypes</code> - パラメータクラス</dd>
-<dt><span class="returnLabel">戻り値:</span></dt>
-<dd>オブジェクトのクラスが提供するメソッド</dd>
 </dl>
 </li>
 </ul>
@@ -899,24 +651,6 @@ extends java.lang.Object</pre>
 <dd><code>clazz</code> - 対象クラス</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>クラスが提供するメソッド配列</dd>
-</dl>
-</li>
-</ul>
-<a name="getMethods-java.lang.Object-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getMethods</h4>
-<pre>public static&nbsp;java.lang.reflect.Method[]&nbsp;getMethods(java.lang.Object&nbsp;object)</pre>
-<div class="block">オブジェクトのクラスが提供するメソッドを親クラスまで再帰的に検索して取得します。<br>
- 尚、ここで提供されるメソッドアクセス修飾子はpublicに限定しない全てのメソッドとなります。<br>
- オブジェクトがnullの場合は空の情報が提供されることに注意して下さい。<br></div>
-<dl>
-<dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>object</code> - 対象オブジェクト</dd>
-<dt><span class="returnLabel">戻り値:</span></dt>
-<dd>オブジェクトのクラスが提供するメソッド配列</dd>
 </dl>
 </li>
 </ul>
@@ -952,13 +686,13 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a name="getComponentType-java.lang.Class-">
+<a name="getArrayComponent-java.lang.Class-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getComponentType</h4>
-<pre>public static&nbsp;java.lang.Class&lt;?&gt;&nbsp;getComponentType(java.lang.Class&lt;?&gt;&nbsp;clazz)</pre>
+<h4>getArrayComponent</h4>
+<pre>public static&nbsp;java.lang.Class&lt;?&gt;&nbsp;getArrayComponent(java.lang.Class&lt;?&gt;&nbsp;clazz)</pre>
 <div class="block">クラスの配列要素型を取得します。<br>
  クラスが配列でない場合は、自身のクラス型が提供されます。<br></div>
 <dl>
@@ -969,13 +703,13 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a name="getComponentType-java.lang.reflect.Field-">
+<a name="getArrayComponent-java.lang.reflect.Field-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getComponentType</h4>
-<pre>public static&nbsp;java.lang.Class&lt;?&gt;&nbsp;getComponentType(java.lang.reflect.Field&nbsp;field)</pre>
+<h4>getArrayComponent</h4>
+<pre>public static&nbsp;java.lang.Class&lt;?&gt;&nbsp;getArrayComponent(java.lang.reflect.Field&nbsp;field)</pre>
 <div class="block">フィールドの配列要素型を取得します。<br>
  フィールドが配列でない場合は、自身のフィールド型が提供されます。<br></div>
 <dl>
@@ -1014,7 +748,7 @@ extends java.lang.Object</pre>
 <pre>public static&nbsp;java.lang.Object&nbsp;getFieldValue(java.lang.Object&nbsp;object,
                                              java.lang.String&nbsp;name)</pre>
 <div class="block">親クラスまで再帰的に検索して名称に合致するフィールド値を取得します。<br>
- フィールド検索挙動仕様は<a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getField-java.lang.Object-java.lang.String-"><code>getField(Object, String)</code></a>に準拠します。<br></div>
+ フィールド検索挙動仕様は<a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getField-java.lang.Class-java.lang.String-"><code>getField(Class, String)</code></a>に準拠します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>object</code> - 対象オブジェクト</dd>
@@ -1053,7 +787,7 @@ extends java.lang.Object</pre>
                                  java.lang.String&nbsp;name,
                                  java.lang.Object&nbsp;value)</pre>
 <div class="block">親クラスまで再帰的に検索して名称に合致するフィールド値を設定します。<br>
- フィールド検索挙動仕様は<a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getField-java.lang.Object-java.lang.String-"><code>getField(Object, String)</code></a>に準拠します。<br></div>
+ フィールド検索挙動仕様は<a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getField-java.lang.Class-java.lang.String-"><code>getField(Class, String)</code></a>に準拠します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>object</code> - 対象オブジェクト</dd>
@@ -1088,7 +822,7 @@ extends java.lang.Object</pre>
 <pre>public static&nbsp;java.lang.Object&nbsp;getStaticFieldValue(java.lang.Class&lt;?&gt;&nbsp;clazz,
                                                    java.lang.String&nbsp;name)</pre>
 <div class="block">親クラスまで再帰的に検索して名称に合致するフィールド値を取得します。<br>
- フィールド検索挙動仕様は<a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getField-java.lang.Object-java.lang.String-"><code>getField(Object, String)</code></a>に準拠します。<br></div>
+ フィールド検索挙動仕様は<a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getField-java.lang.Class-java.lang.String-"><code>getField(Class, String)</code></a>に準拠します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>clazz</code> - 対象クラス</dd>
@@ -1125,7 +859,7 @@ extends java.lang.Object</pre>
                                        java.lang.String&nbsp;name,
                                        java.lang.Object&nbsp;value)</pre>
 <div class="block">親クラスまで再帰的に検索して名称に合致するフィールド値を設定します。<br>
- フィールド検索挙動仕様は<a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getField-java.lang.Object-java.lang.String-"><code>getField(Object, String)</code></a>に準拠します。<br></div>
+ フィールド検索挙動仕様は<a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html#getField-java.lang.Class-java.lang.String-"><code>getField(Class, String)</code></a>に準拠します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>clazz</code> - 対象クラス</dd>
@@ -1284,7 +1018,7 @@ extends java.lang.Object</pre>
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../org/ideaccum/libs/commons/util/CharLoop.html" title="org.ideaccum.libs.commons.util内のクラス"><span class="typeNameLink">前のクラス</span></a></li>
+<li>前のクラス</li>
 <li><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html" title="org.ideaccum.libs.commons.util内のクラス"><span class="typeNameLink">次のクラス</span></a></li>
 </ul>
 <ul class="navList">

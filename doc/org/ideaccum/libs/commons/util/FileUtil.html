@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9,"i9":9,"i10":9,"i11":9,"i12":9,"i13":9,"i14":9,"i15":9,"i16":9,"i17":9,"i18":9,"i19":9,"i20":9,"i21":9,"i22":9,"i23":9,"i24":9,"i25":9,"i26":9,"i27":9,"i28":9,"i29":9,"i30":9,"i31":9,"i32":9,"i33":9};
+var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9,"i9":9,"i10":9,"i11":9,"i12":9,"i13":9,"i14":9,"i15":9,"i16":9,"i17":9,"i18":9,"i19":9,"i20":9,"i21":9,"i22":9,"i23":9,"i24":9,"i25":9,"i26":9,"i27":9};
 var tabs = {65535:["t0","すべてのメソッド"],1:["t1","staticメソッド"],8:["t4","concreteメソッド"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -122,7 +122,7 @@ extends java.lang.Object</pre>
 <!--
  更新日            更新者                     更新内容
  2005/05/24     Kitagawa                新規作成
- 2018/05/24     Kitagawa                再構築(最低保証バージョンをJava8として全面改訂)
+ 2018/05/24     Kitagawa                再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
 --></dd>
 </dl>
 </li>
@@ -144,231 +144,193 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">メソッドと説明</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#compareByMD5Hash-java.io.File-java.io.File-">compareByMD5Hash</a></span>(java.io.File&nbsp;file1,
-                java.io.File&nbsp;file2)</code>
-<div class="block">ファイルハッシュ値(MD5)でファイルの比較を行います。</div>
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#connectPath-java.lang.String...-">connectPath</a></span>(java.lang.String...&nbsp;paths)</code>
+<div class="block">パス文字絵r津配列を全て接続したパス文字列として提供します。</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#connectPath-java.lang.String...-">connectPath</a></span>(java.lang.String...&nbsp;paths)</code>
-<div class="block">指定されたパスが定義されているパス配列を全て接続して提供します。</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#connectPath-java.lang.String-java.lang.String-">connectPath</a></span>(java.lang.String&nbsp;path1,
+           java.lang.String&nbsp;path2)</code>
+<div class="block">ファイルパス同士を接続したパス文字列を提供します。</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#connectPath-java.lang.String-java.lang.String-">connectPath</a></span>(java.lang.String&nbsp;path1,
-           java.lang.String&nbsp;path2)</code>
-<div class="block">指定されたディレクトリパスに対して対象のパス(ファイルパス、ディレクトリパス)を接続します。</div>
+<td class="colFirst"><code>static void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#copy-java.io.File-java.io.File-">copy</a></span>(java.io.File&nbsp;src,
+    java.io.File&nbsp;dst)</code>
+<div class="block">ファイルを指定されたファイルにコピーします。</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#copy-java.io.File-java.io.File-">copy</a></span>(java.io.File&nbsp;src,
-    java.io.File&nbsp;dst)</code>
-<div class="block">指定されたファイルパスを指定されたファイルパスにコピーします。</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#copy-java.lang.String-java.lang.String-">copy</a></span>(java.lang.String&nbsp;src,
+    java.lang.String&nbsp;dst)</code>
+<div class="block">ファイルを指定されたファイルにコピーします。</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>static void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#copy-java.io.File-java.io.File-java.io.FileFilter-">copy</a></span>(java.io.File&nbsp;src,
-    java.io.File&nbsp;dst,
-    java.io.FileFilter&nbsp;filter)</code>
-<div class="block">指定されたファイルパスを指定されたファイルパスにコピーします。</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#delete-java.io.File-">delete</a></span>(java.io.File&nbsp;path)</code>
+<div class="block">ファイルを削除します。</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#copy-java.lang.String-java.lang.String-">copy</a></span>(java.lang.String&nbsp;src,
-    java.lang.String&nbsp;dst)</code>
-<div class="block">指定されたファイルパスを指定されたファイルパスにコピーします。</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#delete-java.io.File-boolean-">delete</a></span>(java.io.File&nbsp;path,
+      boolean&nbsp;mark)</code>
+<div class="block">ファイルを削除します。</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>static void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#delete-java.io.File-">delete</a></span>(java.io.File&nbsp;path)</code>
-<div class="block">指定されたファイルパスを削除します。</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#delete-java.io.File-java.io.FileFilter-">delete</a></span>(java.io.File&nbsp;path,
+      java.io.FileFilter&nbsp;filter)</code>
+<div class="block">ファイルを削除します。</div>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#delete-java.io.File-boolean-">delete</a></span>(java.io.File&nbsp;path,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#delete-java.io.File-java.io.FileFilter-boolean-">delete</a></span>(java.io.File&nbsp;path,
+      java.io.FileFilter&nbsp;filter,
       boolean&nbsp;mark)</code>
-<div class="block">指定されたファイルパスを削除します。</div>
+<div class="block">ファイルを削除します。</div>
 </td>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>static void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#delete-java.io.File-java.io.FileFilter-">delete</a></span>(java.io.File&nbsp;path,
-      java.io.FileFilter&nbsp;filter)</code>
-<div class="block">指定されたファイルパスを削除します。</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#delete-java.lang.String-">delete</a></span>(java.lang.String&nbsp;path)</code>
+<div class="block">ファイルを削除します。</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#delete-java.io.File-java.io.FileFilter-boolean-">delete</a></span>(java.io.File&nbsp;path,
-      java.io.FileFilter&nbsp;filter,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#delete-java.lang.String-boolean-">delete</a></span>(java.lang.String&nbsp;path,
       boolean&nbsp;mark)</code>
-<div class="block">指定されたファイルパスを削除します。</div>
+<div class="block">ファイルを削除します。</div>
 </td>
 </tr>
 <tr id="i10" class="altColor">
-<td class="colFirst"><code>static void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#delete-java.lang.String-">delete</a></span>(java.lang.String&nbsp;path)</code>
-<div class="block">指定されたファイルパスを削除します。</div>
-</td>
-</tr>
-<tr id="i11" class="rowColor">
-<td class="colFirst"><code>static void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#delete-java.lang.String-boolean-">delete</a></span>(java.lang.String&nbsp;path,
-      boolean&nbsp;mark)</code>
-<div class="block">指定されたファイルパスを削除します。</div>
-</td>
-</tr>
-<tr id="i12" class="altColor">
 <td class="colFirst"><code>static java.io.File[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#dirs-java.io.File-boolean-">dirs</a></span>(java.io.File&nbsp;base,
     boolean&nbsp;hierarchical)</code>
-<div class="block">指定された基底パス配下のディレクトリを取得します。</div>
+<div class="block">基底パス配下のディレクトリを取得します。</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>static java.io.File[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#dirs-java.io.File-java.io.FileFilter-boolean-">dirs</a></span>(java.io.File&nbsp;base,
     java.io.FileFilter&nbsp;filter,
     boolean&nbsp;hierarchical)</code>
-<div class="block">指定された基底パス配下のディレクトリを取得します。</div>
+<div class="block">基底パス配下のディレクトリを取得します。</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>static java.io.File[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#filenames-java.io.File-boolean-">filenames</a></span>(java.io.File&nbsp;base,
          boolean&nbsp;hierarchical)</code>
-<div class="block">指定された基底パス配下のファイルを取得します。</div>
+<div class="block">基底パス配下のファイルを取得します。</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>static java.lang.String[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#filenames-java.lang.String-boolean-">filenames</a></span>(java.lang.String&nbsp;base,
          boolean&nbsp;hierarchical)</code>
-<div class="block">指定された基底パス配下のファイル名一覧を取得します。</div>
+<div class="block">基底パス配下のファイル名一覧を取得します。</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>static java.lang.String[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#filenames-java.lang.String-java.io.FileFilter-boolean-">filenames</a></span>(java.lang.String&nbsp;base,
          java.io.FileFilter&nbsp;filter,
          boolean&nbsp;hierarchical)</code>
-<div class="block">指定された基底パス配下のファイル名一覧を取得します。</div>
+<div class="block">基底パス配下のファイル名一覧を取得します。</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>static java.io.File[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#files-java.io.File-java.io.FileFilter-boolean-">files</a></span>(java.io.File&nbsp;base,
      java.io.FileFilter&nbsp;filter,
      boolean&nbsp;hierarchical)</code>
-<div class="block">指定された基底パス配下のファイルを取得します。</div>
+<div class="block">基底パス配下のファイルを取得します。</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>static java.io.File[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#files-java.io.File-java.io.FileFilter-java.io.FileFilter-boolean-">files</a></span>(java.io.File&nbsp;base,
      java.io.FileFilter&nbsp;dirFilter,
      java.io.FileFilter&nbsp;fileFilter,
      boolean&nbsp;hierarchical)</code>
-<div class="block">指定された基底パス配下のファイルを取得します。</div>
+<div class="block">基底パス配下のファイルを取得します。</div>
+</td>
+</tr>
+<tr id="i17" class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#getBasename-java.io.File-">getBasename</a></span>(java.io.File&nbsp;path)</code>
+<div class="block">ファイルパスから拡張子を除いたファイル名を取得します。</div>
+</td>
+</tr>
+<tr id="i18" class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#getBasename-java.lang.String-">getBasename</a></span>(java.lang.String&nbsp;path)</code>
+<div class="block">ファイルパスから拡張子を除いたファイル名を取得します。</div>
 </td>
 </tr>
 <tr id="i19" class="rowColor">
-<td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#getAutoIncrementFilename-java.lang.String-">getAutoIncrementFilename</a></span>(java.lang.String&nbsp;filename)</code>
-<div class="block">指定されたファイル名に[x]を付加してファイル名のインクリメントを行います。</div>
+<td class="colFirst"><code>static java.io.File</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#getDir-java.io.File-">getDir</a></span>(java.io.File&nbsp;path)</code>
+<div class="block">ファイルパスのディレクトリパス部分を取得します。</div>
 </td>
 </tr>
 <tr id="i20" class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#getBasename-java.io.File-">getBasename</a></span>(java.io.File&nbsp;path)</code>
-<div class="block">指定されたパスオブジェクトから拡張子を除いたファイル名を取得します。</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#getExtension-java.io.File-">getExtension</a></span>(java.io.File&nbsp;path)</code>
+<div class="block">ファイルパスから拡張子部を取得します。</div>
 </td>
 </tr>
 <tr id="i21" class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#getBasename-java.lang.String-">getBasename</a></span>(java.lang.String&nbsp;path)</code>
-<div class="block">指定されたパスオブジェクトから拡張子を除いたファイル名を取得します。</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#getExtension-java.lang.String-">getExtension</a></span>(java.lang.String&nbsp;path)</code>
+<div class="block">ファイルパスから拡張子部を取得します。</div>
 </td>
 </tr>
 <tr id="i22" class="altColor">
-<td class="colFirst"><code>static java.io.File</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#getDir-java.io.File-">getDir</a></span>(java.io.File&nbsp;path)</code>
-<div class="block">指定されたファイルパスのディレクトリパスを取得します。</div>
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#getIncrementPath-java.lang.String-">getIncrementPath</a></span>(java.lang.String&nbsp;path)</code>
+<div class="block">ファイルパスに"(x)"を付加してインクリメントされたファイルパスの取得を行います。</div>
 </td>
 </tr>
 <tr id="i23" class="rowColor">
-<td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#getExtension-java.io.File-">getExtension</a></span>(java.io.File&nbsp;path)</code>
-<div class="block">指定されたパスオブジェクトから拡張子名を取得します。</div>
+<td class="colFirst"><code>static boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#isBinaryFile-java.io.File-">isBinaryFile</a></span>(java.io.File&nbsp;file)</code>
+<div class="block">ファイルがバイナリファイルであるか判定します。</div>
 </td>
 </tr>
 <tr id="i24" class="altColor">
-<td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#getExtension-java.lang.String-">getExtension</a></span>(java.lang.String&nbsp;path)</code>
-<div class="block">指定されたパスオブジェクトから拡張子名を取得します。</div>
+<td class="colFirst"><code>static void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#mkdirs-java.io.File-">mkdirs</a></span>(java.io.File&nbsp;dir)</code>
+<div class="block">ディレクトリを作成します。</div>
 </td>
 </tr>
 <tr id="i25" class="rowColor">
-<td class="colFirst"><code>static java.io.File</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#getFile-java.lang.String-">getFile</a></span>(java.lang.String&nbsp;path)</code>
-<div class="block">指定されたパスからファイルオブジェクトを取得します。</div>
+<td class="colFirst"><code>static void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#mkdirs-java.lang.String-">mkdirs</a></span>(java.lang.String&nbsp;dir)</code>
+<div class="block">ディレクトリを作成します。</div>
 </td>
 </tr>
 <tr id="i26" class="altColor">
-<td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#getMD5Hash-java.io.File-">getMD5Hash</a></span>(java.io.File&nbsp;file)</code>
-<div class="block">ファイルのハッシュ値(MD5)を取得します。</div>
+<td class="colFirst"><code>static void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#move-java.io.File-java.io.File-">move</a></span>(java.io.File&nbsp;src,
+    java.io.File&nbsp;dst)</code>
+<div class="block">ファイルを指定されたファイルに移動します。</div>
 </td>
 </tr>
 <tr id="i27" class="rowColor">
-<td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#getSimpleURI-java.io.File-">getSimpleURI</a></span>(java.io.File&nbsp;file)</code>
-<div class="block">指定されたファイルオブジェクトのURI文字列を取得します。</div>
-</td>
-</tr>
-<tr id="i28" class="altColor">
-<td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#isBinaryFile-java.io.File-">isBinaryFile</a></span>(java.io.File&nbsp;file)</code>
-<div class="block">指定されたファイルがバイナリファイルであるか判定します。</div>
-</td>
-</tr>
-<tr id="i29" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#mkdirs-java.io.File-">mkdirs</a></span>(java.io.File&nbsp;dir)</code>
-<div class="block">指定したパスのディレクトリを作成します。</div>
-</td>
-</tr>
-<tr id="i30" class="altColor">
-<td class="colFirst"><code>static void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#mkdirs-java.lang.String-">mkdirs</a></span>(java.lang.String&nbsp;dir)</code>
-<div class="block">指定したパスのディレクトリを作成します。</div>
-</td>
-</tr>
-<tr id="i31" class="rowColor">
-<td class="colFirst"><code>static void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#renameWithDatePostfix-java.lang.String-">renameWithDatePostfix</a></span>(java.lang.String&nbsp;filename)</code>
-<div class="block">指定されたファイルが存在する場合、日付をポストフィクスとして付加し退避します。</div>
-</td>
-</tr>
-<tr id="i32" class="altColor">
-<td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#replacaInvalidateChar-java.lang.String-">replacaInvalidateChar</a></span>(java.lang.String&nbsp;filename)</code>
-<div class="block">指定されたファイル名から不正な文字を除去して返却します。</div>
-</td>
-</tr>
-<tr id="i33" class="rowColor">
-<td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#replacaInvalidateChar-java.lang.String-java.lang.String-">replacaInvalidateChar</a></span>(java.lang.String&nbsp;filename,
-                     java.lang.String&nbsp;replace)</code>
-<div class="block">指定されたファイル名から不正な文字を除去して返却します。</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#move-java.lang.String-java.lang.String-">move</a></span>(java.lang.String&nbsp;src,
+    java.lang.String&nbsp;dst)</code>
+<div class="block">ファイルを指定されたファイルに移動します。</div>
 </td>
 </tr>
 </table>
@@ -400,7 +362,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>mkdirs</h4>
 <pre>public static&nbsp;void&nbsp;mkdirs(java.io.File&nbsp;dir)</pre>
-<div class="block">指定したパスのディレクトリを作成します。<br>
+<div class="block">ディレクトリを作成します。<br>
  <code>File</code>クラスが持つメソッドですが、mkdir(String)との一貫性のために設けられました。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
@@ -415,7 +377,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>mkdirs</h4>
 <pre>public static&nbsp;void&nbsp;mkdirs(java.lang.String&nbsp;dir)</pre>
-<div class="block">指定したパスのディレクトリを作成します。<br></div>
+<div class="block">ディレクトリを作成します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>dir</code> - 作成するディレクトリパス</dd>
@@ -431,7 +393,7 @@ extends java.lang.Object</pre>
 <pre>public static&nbsp;void&nbsp;delete(java.io.File&nbsp;path,
                           java.io.FileFilter&nbsp;filter,
                           boolean&nbsp;mark)</pre>
-<div class="block">指定されたファイルパスを削除します。<br>
+<div class="block">ファイルを削除します。<br>
  ファイルパスがディレクトリの場合は、配下のリソースに対しても再帰的に削除します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
@@ -449,7 +411,7 @@ extends java.lang.Object</pre>
 <h4>delete</h4>
 <pre>public static&nbsp;void&nbsp;delete(java.io.File&nbsp;path,
                           java.io.FileFilter&nbsp;filter)</pre>
-<div class="block">指定されたファイルパスを削除します。<br>
+<div class="block">ファイルを削除します。<br>
  ファイルパスがディレクトリの場合は、配下のリソースに対しても再帰的に削除します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
@@ -466,7 +428,7 @@ extends java.lang.Object</pre>
 <h4>delete</h4>
 <pre>public static&nbsp;void&nbsp;delete(java.io.File&nbsp;path,
                           boolean&nbsp;mark)</pre>
-<div class="block">指定されたファイルパスを削除します。<br>
+<div class="block">ファイルを削除します。<br>
  ファイルパスがディレクトリの場合は、配下のリソースに対しても再帰的に削除します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
@@ -482,7 +444,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>delete</h4>
 <pre>public static&nbsp;void&nbsp;delete(java.io.File&nbsp;path)</pre>
-<div class="block">指定されたファイルパスを削除します。<br>
+<div class="block">ファイルを削除します。<br>
  ファイルパスがディレクトリの場合は、配下のリソースに対しても再帰的に削除します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
@@ -498,7 +460,7 @@ extends java.lang.Object</pre>
 <h4>delete</h4>
 <pre>public static&nbsp;void&nbsp;delete(java.lang.String&nbsp;path,
                           boolean&nbsp;mark)</pre>
-<div class="block">指定されたファイルパスを削除します。<br>
+<div class="block">ファイルを削除します。<br>
  ファイルパスがディレクトリの場合は、配下のリソースに対しても再帰的に削除します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
@@ -514,7 +476,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>delete</h4>
 <pre>public static&nbsp;void&nbsp;delete(java.lang.String&nbsp;path)</pre>
-<div class="block">指定されたファイルパスを削除します。<br>
+<div class="block">ファイルを削除します。<br>
  ファイルパスがディレクトリの場合は、配下のリソースに対しても再帰的に削除します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
@@ -522,22 +484,39 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a name="copy-java.io.File-java.io.File-java.io.FileFilter-">
+<a name="move-java.io.File-java.io.File-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>copy</h4>
-<pre>public static&nbsp;void&nbsp;copy(java.io.File&nbsp;src,
-                        java.io.File&nbsp;dst,
-                        java.io.FileFilter&nbsp;filter)
+<h4>move</h4>
+<pre>public static&nbsp;void&nbsp;move(java.io.File&nbsp;src,
+                        java.io.File&nbsp;dst)
                  throws java.io.IOException</pre>
-<div class="block">指定されたファイルパスを指定されたファイルパスにコピーします。<br></div>
+<div class="block">ファイルを指定されたファイルに移動します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>src</code> - コピー元ファイルパス</dd>
 <dd><code>dst</code> - コピー先ファイルパス</dd>
-<dd><code>filter</code> - コピー処理時のファイルフィルタオブジェクト</dd>
+<dt><span class="throwsLabel">例外:</span></dt>
+<dd><code>java.io.IOException</code> - コピー中に入出力例外が発生した場合にスローされます</dd>
+</dl>
+</li>
+</ul>
+<a name="move-java.lang.String-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>move</h4>
+<pre>public static&nbsp;void&nbsp;move(java.lang.String&nbsp;src,
+                        java.lang.String&nbsp;dst)
+                 throws java.io.IOException</pre>
+<div class="block">ファイルを指定されたファイルに移動します。<br></div>
+<dl>
+<dt><span class="paramLabel">パラメータ:</span></dt>
+<dd><code>src</code> - コピー元ファイルパス</dd>
+<dd><code>dst</code> - コピー先ファイルパス</dd>
 <dt><span class="throwsLabel">例外:</span></dt>
 <dd><code>java.io.IOException</code> - コピー中に入出力例外が発生した場合にスローされます</dd>
 </dl>
@@ -552,7 +531,8 @@ extends java.lang.Object</pre>
 <pre>public static&nbsp;void&nbsp;copy(java.io.File&nbsp;src,
                         java.io.File&nbsp;dst)
                  throws java.io.IOException</pre>
-<div class="block">指定されたファイルパスを指定されたファイルパスにコピーします。<br></div>
+<div class="block">ファイルを指定されたファイルにコピーします。<br>
+ ファイルパスがディレクトリの場合は、配下のリソースに対しても再帰的にコピーします。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>src</code> - コピー元ファイルパス</dd>
@@ -571,7 +551,8 @@ extends java.lang.Object</pre>
 <pre>public static&nbsp;void&nbsp;copy(java.lang.String&nbsp;src,
                         java.lang.String&nbsp;dst)
                  throws java.io.IOException</pre>
-<div class="block">指定されたファイルパスを指定されたファイルパスにコピーします。<br></div>
+<div class="block">ファイルを指定されたファイルにコピーします。<br>
+ ファイルパスがディレクトリの場合は、配下のリソースに対しても再帰的にコピーします。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>src</code> - コピー元ファイルオブジェクト</dd>
@@ -590,13 +571,13 @@ extends java.lang.Object</pre>
 <pre>public static&nbsp;java.io.File[]&nbsp;dirs(java.io.File&nbsp;base,
                                   java.io.FileFilter&nbsp;filter,
                                   boolean&nbsp;hierarchical)</pre>
-<div class="block">指定された基底パス配下のディレクトリを取得します。<br>
+<div class="block">基底パス配下のディレクトリを取得します。<br>
  提供されるディレクトリ配列には基底パスとして指定されたディレクトリ自体も含まれます。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>base</code> - 基底パス</dd>
 <dd><code>filter</code> - 検索フィルタ</dd>
-<dd><code>hierarchical</code> - 階層検索フラグ</dd>
+<dd><code>hierarchical</code> - サブディレクトリも含めて対象とする場合にtrueを指定</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>基底パス配下のディレクトリ</dd>
 </dl>
@@ -610,12 +591,12 @@ extends java.lang.Object</pre>
 <h4>dirs</h4>
 <pre>public static&nbsp;java.io.File[]&nbsp;dirs(java.io.File&nbsp;base,
                                   boolean&nbsp;hierarchical)</pre>
-<div class="block">指定された基底パス配下のディレクトリを取得します。<br>
+<div class="block">基底パス配下のディレクトリを取得します。<br>
  提供されるディレクトリ配列には基底パスとして指定されたディレクトリ自体も含まれます。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>base</code> - 基底パス</dd>
-<dd><code>hierarchical</code> - 階層検索フラグ</dd>
+<dd><code>hierarchical</code> - サブディレクトリも含めて対象とする場合にtrueを指定</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>基底パス配下のディレクトリ</dd>
 </dl>
@@ -631,13 +612,13 @@ extends java.lang.Object</pre>
                                    java.io.FileFilter&nbsp;dirFilter,
                                    java.io.FileFilter&nbsp;fileFilter,
                                    boolean&nbsp;hierarchical)</pre>
-<div class="block">指定された基底パス配下のファイルを取得します。<br></div>
+<div class="block">基底パス配下のファイルを取得します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>base</code> - 基底パス</dd>
 <dd><code>dirFilter</code> - 検索フィルタ(ディレクトリに対するフィルタ)</dd>
 <dd><code>fileFilter</code> - 検索フィルタ(ファイルに対するフィルタ)</dd>
-<dd><code>hierarchical</code> - 階層検索フラグ</dd>
+<dd><code>hierarchical</code> - サブディレクトリも含めて対象とする場合にtrueを指定</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>基底パス配下のディレクトリ</dd>
 </dl>
@@ -652,12 +633,12 @@ extends java.lang.Object</pre>
 <pre>public static&nbsp;java.io.File[]&nbsp;files(java.io.File&nbsp;base,
                                    java.io.FileFilter&nbsp;filter,
                                    boolean&nbsp;hierarchical)</pre>
-<div class="block">指定された基底パス配下のファイルを取得します。<br></div>
+<div class="block">基底パス配下のファイルを取得します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>base</code> - 基底パス</dd>
 <dd><code>filter</code> - 検索フィルタ(ファイルに対するフィルタ)</dd>
-<dd><code>hierarchical</code> - 階層検索フラグ</dd>
+<dd><code>hierarchical</code> - サブディレクトリも含めて対象とする場合にtrueを指定</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>基底パス配下のディレクトリ</dd>
 </dl>
@@ -672,12 +653,12 @@ extends java.lang.Object</pre>
 <pre>public static&nbsp;java.lang.String[]&nbsp;filenames(java.lang.String&nbsp;base,
                                            java.io.FileFilter&nbsp;filter,
                                            boolean&nbsp;hierarchical)</pre>
-<div class="block">指定された基底パス配下のファイル名一覧を取得します。<br></div>
+<div class="block">基底パス配下のファイル名一覧を取得します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>base</code> - 基底パス</dd>
 <dd><code>filter</code> - 検索フィルタ</dd>
-<dd><code>hierarchical</code> - 階層検索フラグ</dd>
+<dd><code>hierarchical</code> - サブディレクトリも含めて対象とする場合にtrueを指定</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>基底パス配下のディレクトリ</dd>
 </dl>
@@ -691,11 +672,11 @@ extends java.lang.Object</pre>
 <h4>filenames</h4>
 <pre>public static&nbsp;java.lang.String[]&nbsp;filenames(java.lang.String&nbsp;base,
                                            boolean&nbsp;hierarchical)</pre>
-<div class="block">指定された基底パス配下のファイル名一覧を取得します。<br></div>
+<div class="block">基底パス配下のファイル名一覧を取得します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>base</code> - 基底パス</dd>
-<dd><code>hierarchical</code> - 階層検索フラグ</dd>
+<dd><code>hierarchical</code> - サブディレクトリも含めて対象とする場合にtrueを指定</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>基底パス配下のディレクトリ</dd>
 </dl>
@@ -709,11 +690,11 @@ extends java.lang.Object</pre>
 <h4>filenames</h4>
 <pre>public static&nbsp;java.io.File[]&nbsp;filenames(java.io.File&nbsp;base,
                                        boolean&nbsp;hierarchical)</pre>
-<div class="block">指定された基底パス配下のファイルを取得します。<br></div>
+<div class="block">基底パス配下のファイルを取得します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>base</code> - 基底パス</dd>
-<dd><code>hierarchical</code> - 階層検索フラグ</dd>
+<dd><code>hierarchical</code> - サブディレクトリも含めて対象とする場合にtrueを指定</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>基底パス配下のディレクトリ</dd>
 </dl>
@@ -726,7 +707,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>isBinaryFile</h4>
 <pre>public static&nbsp;boolean&nbsp;isBinaryFile(java.io.File&nbsp;file)</pre>
-<div class="block">指定されたファイルがバイナリファイルであるか判定します。<br>
+<div class="block">ファイルがバイナリファイルであるか判定します。<br>
  このメソッドは\0を含む場合にバイナリファイルであると判断します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
@@ -744,11 +725,8 @@ extends java.lang.Object</pre>
 <h4>connectPath</h4>
 <pre>public static&nbsp;java.lang.String&nbsp;connectPath(java.lang.String&nbsp;path1,
                                            java.lang.String&nbsp;path2)</pre>
-<div class="block">指定されたディレクトリパスに対して対象のパス(ファイルパス、ディレクトリパス)を接続します。<br>
- 但し、接続対象パスがnullの場合は元のディレクトリパス、元のディレクトリパスがnullの場合はユーザーが指定した接続対象パスがそのまま返却されます。<br>
- また、接続対象パスが<code>File.separator</code>から始まるルートを示すパスである場合、接続元のパスは無視された接続対象のパスがそのまま返却されます。<br>
- 当メソッドはパス接続時のファイルセパレータの補完処理を都度考慮せずに作業を行うために設けられました。<br>
- また、ファイルセパレータに関しては当メソッドを介すことで、プラットフォームに依存したパスに変換されます。即ちUnix環境にてパス指定が\を使用している場合、提供されるパスセパレータは/となって返却されます。<br>
+<div class="block">ファイルパス同士を接続したパス文字列を提供します。<br>
+ このメソッドはパス文字列の結合時のパスセパレータ補完処理を考慮せずに実装を行うために設けられました。<br>
  <br>
  動作例：<br>
  <pre>
@@ -759,8 +737,8 @@ extends java.lang.Object</pre>
  </pre></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>path1</code> - 接続元ディレクトリ</dd>
-<dd><code>path2</code> - 接続対象パス</dd>
+<dd><code>path1</code> - 接続元ディレクトリパス</dd>
+<dd><code>path2</code> - 接続対象ディレクトリパス</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>接続されたパス</dd>
 </dl>
@@ -773,13 +751,14 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>connectPath</h4>
 <pre>public static&nbsp;java.lang.String&nbsp;connectPath(java.lang.String...&nbsp;paths)</pre>
-<div class="block">指定されたパスが定義されているパス配列を全て接続して提供します。<br>
- 動作仕様についてはconnectPath(String, String)に依存します。<br></div>
+<div class="block">パス文字絵r津配列を全て接続したパス文字列として提供します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>paths</code> - パス配列</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>接続されたパス</dd>
+<dt><span class="seeLabel">関連項目:</span></dt>
+<dd><a href="../../../../../org/ideaccum/libs/commons/util/FileUtil.html#connectPath-java.lang.String-java.lang.String-"><code>connectPath(String, String)</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -790,33 +769,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getDir</h4>
 <pre>public static&nbsp;java.io.File&nbsp;getDir(java.io.File&nbsp;path)</pre>
-<div class="block">指定されたファイルパスのディレクトリパスを取得します。<br>
+<div class="block">ファイルパスのディレクトリパス部分を取得します。<br>
  自身がディレクトパスの場合はそのままのパス情報として返却されます。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>path</code> - ファイルパス</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>ディレクトリパスを持つファイルオブジェクト</dd>
-</dl>
-</li>
-</ul>
-<a name="getFile-java.lang.String-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getFile</h4>
-<pre>public static&nbsp;java.io.File&nbsp;getFile(java.lang.String&nbsp;path)
-                            throws java.io.IOException</pre>
-<div class="block">指定されたパスからファイルオブジェクトを取得します。<br>
- ここで指定できるパスはシステムパス又は、クラスリソースパスとなります。<br></div>
-<dl>
-<dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>path</code> - システムパス又は、クラスリソースパス</dd>
-<dt><span class="returnLabel">戻り値:</span></dt>
-<dd>ファイルオブジェクト</dd>
-<dt><span class="throwsLabel">例外:</span></dt>
-<dd><code>java.io.IOException</code> - 指定されたパスからファイルオブジェクト生成が行えなかった場合にスローされます</dd>
 </dl>
 </li>
 </ul>
@@ -827,12 +786,12 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getBasename</h4>
 <pre>public static&nbsp;java.lang.String&nbsp;getBasename(java.io.File&nbsp;path)</pre>
-<div class="block">指定されたパスオブジェクトから拡張子を除いたファイル名を取得します。<br></div>
+<div class="block">ファイルパスから拡張子を除いたファイル名を取得します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>path</code> - 対象パスオブジェクト</dd>
+<dd><code>path</code> - ファイルパス</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
-<dd>ディレクトリパスオブジェクト</dd>
+<dd>拡張子を除いたファイル名(ディレクトリパスは含みません)</dd>
 </dl>
 </li>
 </ul>
@@ -843,12 +802,12 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getBasename</h4>
 <pre>public static&nbsp;java.lang.String&nbsp;getBasename(java.lang.String&nbsp;path)</pre>
-<div class="block">指定されたパスオブジェクトから拡張子を除いたファイル名を取得します。<br></div>
+<div class="block">ファイルパスから拡張子を除いたファイル名を取得します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>path</code> - 対象パス</dd>
+<dd><code>path</code> - ファイルパス</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
-<dd>ディレクトリパス</dd>
+<dd>拡張子を除いたファイル名(ディレクトリパスは含みません)</dd>
 </dl>
 </li>
 </ul>
@@ -859,12 +818,12 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getExtension</h4>
 <pre>public static&nbsp;java.lang.String&nbsp;getExtension(java.io.File&nbsp;path)</pre>
-<div class="block">指定されたパスオブジェクトから拡張子名を取得します。<br></div>
+<div class="block">ファイルパスから拡張子部を取得します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>path</code> - 対象パスオブジェクト</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
-<dd>ディレクトリパスオブジェクト</dd>
+<dd>ファイル拡張子文字列</dd>
 </dl>
 </li>
 </ul>
@@ -875,138 +834,29 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getExtension</h4>
 <pre>public static&nbsp;java.lang.String&nbsp;getExtension(java.lang.String&nbsp;path)</pre>
-<div class="block">指定されたパスオブジェクトから拡張子名を取得します。<br></div>
+<div class="block">ファイルパスから拡張子部を取得します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>path</code> - 対象パス</dd>
+<dd><code>path</code> - 対象パスオブジェクト</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
-<dd>ディレクトリパス</dd>
+<dd>ファイル拡張子文字列</dd>
 </dl>
 </li>
 </ul>
-<a name="getSimpleURI-java.io.File-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getSimpleURI</h4>
-<pre>public static&nbsp;java.lang.String&nbsp;getSimpleURI(java.io.File&nbsp;file)</pre>
-<div class="block">指定されたファイルオブジェクトのURI文字列を取得します。<br>
- 当メソッドが提供するURI文字列はプロトコル文字列(file:)は含まれません。<br></div>
-<dl>
-<dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>file</code> - ファイルオブジェクト</dd>
-<dt><span class="returnLabel">戻り値:</span></dt>
-<dd>プロトコル文字列を除くURI文字列</dd>
-</dl>
-</li>
-</ul>
-<a name="getMD5Hash-java.io.File-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getMD5Hash</h4>
-<pre>public static&nbsp;java.lang.String&nbsp;getMD5Hash(java.io.File&nbsp;file)
-                                   throws java.io.IOException,
-                                          java.security.NoSuchAlgorithmException</pre>
-<div class="block">ファイルのハッシュ値(MD5)を取得します。<br></div>
-<dl>
-<dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>file</code> - ファイルオブジェクト</dd>
-<dt><span class="returnLabel">戻り値:</span></dt>
-<dd>ファイルハッシュ値</dd>
-<dt><span class="throwsLabel">例外:</span></dt>
-<dd><code>java.io.IOException</code> - ファイルに対する入出力例外が発生した場合にスローされます</dd>
-<dd><code>java.security.NoSuchAlgorithmException</code> - ハッシュアルゴリズムが利用できない場合にスローされます</dd>
-</dl>
-</li>
-</ul>
-<a name="compareByMD5Hash-java.io.File-java.io.File-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>compareByMD5Hash</h4>
-<pre>public static&nbsp;boolean&nbsp;compareByMD5Hash(java.io.File&nbsp;file1,
-                                       java.io.File&nbsp;file2)
-                                throws java.io.IOException,
-                                       java.security.NoSuchAlgorithmException</pre>
-<div class="block">ファイルハッシュ値(MD5)でファイルの比較を行います。<br></div>
-<dl>
-<dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>file1</code> - ファイルオブジェクト</dd>
-<dd><code>file2</code> - ファイルオブジェクト</dd>
-<dt><span class="returnLabel">戻り値:</span></dt>
-<dd>ファイルがハッシュ値レベルで一致する場合にtrueを返却</dd>
-<dt><span class="throwsLabel">例外:</span></dt>
-<dd><code>java.io.IOException</code> - ファイルに対する入出力例外が発生した場合にスローされます</dd>
-<dd><code>java.security.NoSuchAlgorithmException</code> - ハッシュアルゴリズムが利用できない場合にスローされます</dd>
-</dl>
-</li>
-</ul>
-<a name="getAutoIncrementFilename-java.lang.String-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getAutoIncrementFilename</h4>
-<pre>public static&nbsp;java.lang.String&nbsp;getAutoIncrementFilename(java.lang.String&nbsp;filename)</pre>
-<div class="block">指定されたファイル名に[x]を付加してファイル名のインクリメントを行います。<br>
- 指定されたファイル名が存在しない場合はそのまま返却します。<br></div>
-<dl>
-<dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>filename</code> - ファイル名</dd>
-<dt><span class="returnLabel">戻り値:</span></dt>
-<dd>インクリメント処理をしたファイル名</dd>
-</dl>
-</li>
-</ul>
-<a name="renameWithDatePostfix-java.lang.String-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>renameWithDatePostfix</h4>
-<pre>public static&nbsp;void&nbsp;renameWithDatePostfix(java.lang.String&nbsp;filename)</pre>
-<div class="block">指定されたファイルが存在する場合、日付をポストフィクスとして付加し退避します。<br></div>
-<dl>
-<dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>filename</code> - 退避対象ファイル名</dd>
-</dl>
-</li>
-</ul>
-<a name="replacaInvalidateChar-java.lang.String-java.lang.String-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>replacaInvalidateChar</h4>
-<pre>public static&nbsp;java.lang.String&nbsp;replacaInvalidateChar(java.lang.String&nbsp;filename,
-                                                     java.lang.String&nbsp;replace)</pre>
-<div class="block">指定されたファイル名から不正な文字を除去して返却します。<br></div>
-<dl>
-<dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>filename</code> - 補正対象ファイル名</dd>
-<dd><code>replace</code> - 置換文字列</dd>
-<dt><span class="returnLabel">戻り値:</span></dt>
-<dd>補正後ファイル名</dd>
-</dl>
-</li>
-</ul>
-<a name="replacaInvalidateChar-java.lang.String-">
+<a name="getIncrementPath-java.lang.String-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>replacaInvalidateChar</h4>
-<pre>public static&nbsp;java.lang.String&nbsp;replacaInvalidateChar(java.lang.String&nbsp;filename)</pre>
-<div class="block">指定されたファイル名から不正な文字を除去して返却します。<br></div>
+<h4>getIncrementPath</h4>
+<pre>public static&nbsp;java.lang.String&nbsp;getIncrementPath(java.lang.String&nbsp;path)</pre>
+<div class="block">ファイルパスに"(x)"を付加してインクリメントされたファイルパスの取得を行います。<br>
+ 指定されたファイルパスが存在しない場合はそのまま返却します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>filename</code> - 補正対象ファイル名</dd>
+<dd><code>path</code> - ファイルパス</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
-<dd>補正後ファイル名</dd>
+<dd>インクリメントされたファイルパス</dd>
 </dl>
 </li>
 </ul>

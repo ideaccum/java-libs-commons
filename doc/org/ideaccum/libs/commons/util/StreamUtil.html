@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9};
+var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9};
 var tabs = {65535:["t0","すべてのメソッド"],1:["t1","staticメソッド"],8:["t4","concreteメソッド"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../../org/ideaccum/libs/commons/util/ResourceUtil.html" title="org.ideaccum.libs.commons.util内のクラス"><span class="typeNameLink">前のクラス</span></a></li>
-<li><a href="../../../../../org/ideaccum/libs/commons/util/StringUtil.html" title="org.ideaccum.libs.commons.util内のクラス"><span class="typeNameLink">次のクラス</span></a></li>
+<li><a href="../../../../../org/ideaccum/libs/commons/util/StringBelt.html" title="org.ideaccum.libs.commons.util内のクラス"><span class="typeNameLink">次のクラス</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?org/ideaccum/libs/commons/util/StreamUtil.html" target="_top">フレーム</a></li>
@@ -113,7 +113,7 @@ var activeTableTab = "activeTableTab";
 extends java.lang.Object</pre>
 <div class="block">入出力ストリーム操作を行う際の支援的な操作メソッドを提供します。<br>
  <p>
- システム開発時に利用するストリーム操作で利用頻度の高い文字列操作をメソッドとして提供します。<br>
+ システム開発時に利用するストリーム操作で利用頻度の高い操作を提供します。<br>
  </p></div>
 <dl>
 <dt><span class="simpleTagLabel">作成者:</span></dt>
@@ -122,7 +122,7 @@ extends java.lang.Object</pre>
 <!--
  更新日            更新者                     更新内容
  2008/11/05     Kitagawa                新規作成
- 2018/05/02     Kitagawa                再構築(最低保証バージョンをJava8として全面改訂)
+ 2018/05/02     Kitagawa                再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
 --></dd>
 </dl>
 </li>
@@ -145,8 +145,8 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/StreamUtil.html#BUFFER_SIZE">BUFFER_SIZE</a></span></code>
-<div class="block">ストリームバッファサイズ</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/StreamUtil.html#DEFAULT_BUFFER_SIZE">DEFAULT_BUFFER_SIZE</a></span></code>
+<div class="block">ディフォルトストリームバッファサイズ</div>
 </td>
 </tr>
 </table>
@@ -165,33 +165,55 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">メソッドと説明</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>static void</code></td>
+<td class="colFirst"><code>static int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/StreamUtil.html#pipe-java.io.InputStream-java.io.OutputStream-">pipe</a></span>(java.io.InputStream&nbsp;is,
     java.io.OutputStream&nbsp;os)</code>
 <div class="block">入力ストリームが提供するデータを別の出力ストリームに転送します。</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>static byte[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/StreamUtil.html#reads-java.io.InputStream-int-">reads</a></span>(java.io.InputStream&nbsp;is,
-     int&nbsp;length)</code>
-<div class="block">入力ストリームから指定された長さのバイトデータを取得します。</div>
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/StreamUtil.html#pipe-java.io.InputStream-java.io.OutputStream-int-">pipe</a></span>(java.io.InputStream&nbsp;is,
+    java.io.OutputStream&nbsp;os,
+    int&nbsp;bufferSize)</code>
+<div class="block">入力ストリームが提供するデータを別の出力ストリームに転送します。</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code>static byte[]</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/StreamUtil.html#reads-java.io.InputStream-">reads</a></span>(java.io.InputStream&nbsp;is)</code>
+<div class="block">入力ストリームからすべてのバイトデータを読み込み、バイトデータとして提供します。</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>static byte[]</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/StreamUtil.html#reads-java.io.InputStream-int-">reads</a></span>(java.io.InputStream&nbsp;is,
+     int&nbsp;length)</code>
+<div class="block">入力ストリームから指定された長さのデータを読み込み、バイトデータとして提供します。</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>static byte[]</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/StreamUtil.html#reads-java.io.InputStream-int-int-">reads</a></span>(java.io.InputStream&nbsp;is,
+     int&nbsp;length,
+     int&nbsp;bufferSize)</code>
+<div class="block">入力ストリームから指定された長さのデータを読み込み、バイトデータとして提供します。</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/StreamUtil.html#readString-java.io.InputStream-">readString</a></span>(java.io.InputStream&nbsp;is)</code>
 <div class="block">入力ストリームが提供する情報を文字列として読み込みます。</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/StreamUtil.html#readString-java.io.InputStream-java.lang.String-">readString</a></span>(java.io.InputStream&nbsp;is,
           java.lang.String&nbsp;charset)</code>
 <div class="block">入力ストリームが提供する情報を文字列として読み込みます。</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/StreamUtil.html#writes-java.io.OutputStream-byte:A-">writes</a></span>(java.io.OutputStream&nbsp;os,
       byte[]&nbsp;bytes)</code>
@@ -220,17 +242,17 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>フィールドの詳細</h3>
-<a name="BUFFER_SIZE">
+<a name="DEFAULT_BUFFER_SIZE">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>BUFFER_SIZE</h4>
-<pre>public static final&nbsp;int BUFFER_SIZE</pre>
-<div class="block">ストリームバッファサイズ</div>
+<h4>DEFAULT_BUFFER_SIZE</h4>
+<pre>public static final&nbsp;int DEFAULT_BUFFER_SIZE</pre>
+<div class="block">ディフォルトストリームバッファサイズ</div>
 <dl>
 <dt><span class="seeLabel">関連項目:</span></dt>
-<dd><a href="../../../../../constant-values.html#org.ideaccum.libs.commons.util.StreamUtil.BUFFER_SIZE">定数フィールド値</a></dd>
+<dd><a href="../../../../../constant-values.html#org.ideaccum.libs.commons.util.StreamUtil.DEFAULT_BUFFER_SIZE">定数フィールド値</a></dd>
 </dl>
 </li>
 </ul>
@@ -242,20 +264,71 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>メソッドの詳細</h3>
+<a name="pipe-java.io.InputStream-java.io.OutputStream-int-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>pipe</h4>
+<pre>public static&nbsp;int&nbsp;pipe(java.io.InputStream&nbsp;is,
+                       java.io.OutputStream&nbsp;os,
+                       int&nbsp;bufferSize)
+                throws java.io.IOException</pre>
+<div class="block">入力ストリームが提供するデータを別の出力ストリームに転送します。<br>
+ 出力ストリームにnullが指定された場合、入力ストリームが提供するデータはすべて切り捨てられます。<br></div>
+<dl>
+<dt><span class="paramLabel">パラメータ:</span></dt>
+<dd><code>is</code> - 入力ストリーム</dd>
+<dd><code>os</code> - 出力ストリーム</dd>
+<dd><code>bufferSize</code> - ストリーム処理時のバッファサイズ</dd>
+<dt><span class="returnLabel">戻り値:</span></dt>
+<dd>転送されたバイトサイズ</dd>
+<dt><span class="throwsLabel">例外:</span></dt>
+<dd><code>java.io.IOException</code> - ストリーム操作時に入出力例外が発生した場合にスローされます</dd>
+</dl>
+</li>
+</ul>
 <a name="pipe-java.io.InputStream-java.io.OutputStream-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>pipe</h4>
-<pre>public static&nbsp;void&nbsp;pipe(java.io.InputStream&nbsp;is,
-                        java.io.OutputStream&nbsp;os)
-                 throws java.io.IOException</pre>
+<pre>public static&nbsp;int&nbsp;pipe(java.io.InputStream&nbsp;is,
+                       java.io.OutputStream&nbsp;os)
+                throws java.io.IOException</pre>
 <div class="block">入力ストリームが提供するデータを別の出力ストリームに転送します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>is</code> - 入力ストリームオブジェクト</dd>
 <dd><code>os</code> - 出力ストリームオブジェクト</dd>
+<dt><span class="returnLabel">戻り値:</span></dt>
+<dd>転送されたバイトサイズ</dd>
+<dt><span class="throwsLabel">例外:</span></dt>
+<dd><code>java.io.IOException</code> - ストリーム操作時に入出力例外が発生した場合にスローされます</dd>
+</dl>
+</li>
+</ul>
+<a name="reads-java.io.InputStream-int-int-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>reads</h4>
+<pre>public static&nbsp;byte[]&nbsp;reads(java.io.InputStream&nbsp;is,
+                           int&nbsp;length,
+                           int&nbsp;bufferSize)
+                    throws java.io.IOException</pre>
+<div class="block">入力ストリームから指定された長さのデータを読み込み、バイトデータとして提供します。<br>
+ 尚、指定されたサイズまでのデータが存在しなかった場合は、読み込めたデータ長のバイト配列が返却されます。<br>
+ また、取得長に0以下の数値を指定した場合は、入力ストリームから読み込むことが可能な全てバイトデータを返却します。<br></div>
+<dl>
+<dt><span class="paramLabel">パラメータ:</span></dt>
+<dd><code>is</code> - Input入力ストリームオブジェクト</dd>
+<dd><code>length</code> - 取得するバイト長</dd>
+<dd><code>bufferSize</code> - ストリーム処理時のバッファサイズ</dd>
+<dt><span class="returnLabel">戻り値:</span></dt>
+<dd>取得されたバイトデータ</dd>
 <dt><span class="throwsLabel">例外:</span></dt>
 <dd><code>java.io.IOException</code> - ストリーム操作時に入出力例外が発生した場合にスローされます</dd>
 </dl>
@@ -270,13 +343,32 @@ extends java.lang.Object</pre>
 <pre>public static&nbsp;byte[]&nbsp;reads(java.io.InputStream&nbsp;is,
                            int&nbsp;length)
                     throws java.io.IOException</pre>
-<div class="block">入力ストリームから指定された長さのバイトデータを取得します。<br>
+<div class="block">入力ストリームから指定された長さのデータを読み込み、バイトデータとして提供します。<br>
  尚、指定されたサイズまでのデータが存在しなかった場合は、読み込めたデータ長のバイト配列が返却されます。<br>
  また、取得長に0以下の数値を指定した場合は、入力ストリームから読み込むことが可能な全てバイトデータを返却します。<br></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>is</code> - Input入力ストリームオブジェクト</dd>
 <dd><code>length</code> - 取得するバイト長</dd>
+<dt><span class="returnLabel">戻り値:</span></dt>
+<dd>取得されたバイトデータ</dd>
+<dt><span class="throwsLabel">例外:</span></dt>
+<dd><code>java.io.IOException</code> - ストリーム操作時に入出力例外が発生した場合にスローされます</dd>
+</dl>
+</li>
+</ul>
+<a name="reads-java.io.InputStream-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>reads</h4>
+<pre>public static&nbsp;byte[]&nbsp;reads(java.io.InputStream&nbsp;is)
+                    throws java.io.IOException</pre>
+<div class="block">入力ストリームからすべてのバイトデータを読み込み、バイトデータとして提供します。<br></div>
+<dl>
+<dt><span class="paramLabel">パラメータ:</span></dt>
+<dd><code>is</code> - Input入力ストリームオブジェクト</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>取得されたバイトデータ</dd>
 <dt><span class="throwsLabel">例外:</span></dt>
@@ -373,7 +465,7 @@ extends java.lang.Object</pre>
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../../org/ideaccum/libs/commons/util/ResourceUtil.html" title="org.ideaccum.libs.commons.util内のクラス"><span class="typeNameLink">前のクラス</span></a></li>
-<li><a href="../../../../../org/ideaccum/libs/commons/util/StringUtil.html" title="org.ideaccum.libs.commons.util内のクラス"><span class="typeNameLink">次のクラス</span></a></li>
+<li><a href="../../../../../org/ideaccum/libs/commons/util/StringBelt.html" title="org.ideaccum.libs.commons.util内のクラス"><span class="typeNameLink">次のクラス</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?org/ideaccum/libs/commons/util/StreamUtil.html" target="_top">フレーム</a></li>
