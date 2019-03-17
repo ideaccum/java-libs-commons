@@ -34,7 +34,6 @@ public final class CollectionUtil {
 	/**
 	 * 要素配列をもとに{@link java.util.LinkedList}オブジェクトを生成して提供します。<br>
 	 * @param <T> リスト要素タイプ
-	 * @param type リスト要素クラス
 	 * @param values 要素配列
 	 * @return {@link java.util.LinkedList}オブジェクト
 	 */
@@ -52,7 +51,6 @@ public final class CollectionUtil {
 	/**
 	 * 要素配列をもとに{@link java.util.ArrayList}オブジェクトを生成して提供します。<br>
 	 * @param <T> リスト要素タイプ
-	 * @param type リスト要素クラス
 	 * @param values 要素配列
 	 * @return {@link java.util.ArrayList}オブジェクト
 	 */
@@ -70,7 +68,6 @@ public final class CollectionUtil {
 	/**
 	 * 要素配列をもとに{@link java.util.Vector}オブジェクトを生成して提供します。<br>
 	 * @param <T> リスト要素タイプ
-	 * @param type リスト要素クラス
 	 * @param values 要素配列
 	 * @return {@link java.util.Vector}オブジェクト
 	 */
@@ -563,6 +560,7 @@ public final class CollectionUtil {
 	/**
 	 * 配列をコピーして別の配列インスタンスとして返却します。<br>
 	 * 配列内要素自体はシャローコピーとなります。<br>
+	 * @param <E> 配列要素型
 	 * @param array コピー対象配列
 	 * @return コピーされた配列
 	 */
@@ -700,6 +698,7 @@ public final class CollectionUtil {
 	/**
 	 * 配列要素の順序を逆順にした別インスタンスとしての配列を返却します。<br>
 	 * このメソッドの実行による元の配列内容は変更されません。<br>
+	 * @param <E> 配列要素型
 	 * @param array 処理対象配列
 	 * @return 要素順序が変更された別インスタンス配列
 	 */
@@ -717,6 +716,7 @@ public final class CollectionUtil {
 
 	/**
 	 * 配列同士を結合して別の配列インスタンスとして提供します。<br>
+	 * @param <E> 配列要素型
 	 * @param array1 結合対象配列
 	 * @param array2 結合対象配列
 	 * @return 結合された配列
@@ -763,7 +763,8 @@ public final class CollectionUtil {
 	/**
 	 * 配列の末端に新たな要素を追加した配列を提供します。<br>
 	 * この処理によって元の配列自体への変更は発生しないことに注意してください。<br>
-	 * @param arrays 対象配列
+	 * @param <E> 配列要素型
+	 * @param array 対象配列
 	 * @param e 追加要素
 	 * @return 新たな要素が追加された配列
 	 */
