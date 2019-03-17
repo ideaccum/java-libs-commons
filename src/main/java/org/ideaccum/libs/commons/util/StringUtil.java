@@ -31,6 +31,7 @@ import java.util.regex.Pattern;
  * 更新日		更新者			更新内容
  * 2005/07/02	Kitagawa		新規作成
  * 2018/05/02	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+ * 2019/03/17	Kitagawa		#replaceメソッドの巨大文字列操作時のsubstring処理におけるStackOverflow、OutOfMemoryバグ修正
  *-->
  */
 public final class StringUtil {
@@ -3439,19 +3440,43 @@ public final class StringUtil {
 	 * @return 編集後文字列
 	 */
 	public static String replace(String string, String before, String after) {
+		//		if (isEmpty(string)) {
+		//			return EMPTY;
+		//		}
+		//		if (string.indexOf(before) == -1) {
+		//			return string;
+		//		}
+		//		StringBuilder builder = new StringBuilder();
+		//		int index = string.indexOf(before);
+		//		builder.append(string.substring(0, index) + after);
+		//		if (index + before.length() < string.length()) {
+		//			String buffer = string.substring(index + before.length(), string.length());
+		//			builder.append(replace(buffer, before, after));
+		//		}
+		//		return builder.toString();
+		// 2018.03.17 string.substringによるStackOverflow、OutOfMemoryバグ修正
 		if (isEmpty(string)) {
 			return EMPTY;
 		}
-		if (string.indexOf(before) == -1) {
+		if (isEmpty(before) || isEmpty(after)) {
 			return string;
 		}
-		StringBuilder builder = new StringBuilder();
-		int index = string.indexOf(before);
-		builder.append(string.substring(0, index) + after);
-		if (index + before.length() < string.length()) {
-			String buffer = string.substring(index + before.length(), string.length());
-			builder.append(replace(buffer, before, after));
+		int start = 0;
+		int end = before.indexOf(before, start);
+		if (end == -1) {
+			return string;
 		}
+		int length = before.length();
+		int increase = after.length() - length;
+		increase = increase < 0 ? 0 : increase;
+		increase *= 16;
+		StringBuilder builder = new StringBuilder(string.length() + increase);
+		while (end != -1) {
+			builder.append(string, start, end).append(after);
+			start = end + length;
+			end = string.indexOf(before, start);
+		}
+		builder.append(string, start, string.length());
 		return builder.toString();
 	}
 
