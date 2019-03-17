@@ -1,5 +1,7 @@
 package org.ideaccum.libs.commons.util;
 
+import java.io.IOException;
+import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.net.URLDecoder;
@@ -3877,6 +3879,91 @@ public final class StringUtil {
 			}
 		}
 		return builder.toString();
+	}
+
+	/**
+	 * 文字列をユニーコード表記アスキー文字列として提供します。<br>
+	 * @param value 変換対象文字列
+	 * @return 変換後文字列
+	 */
+	public static String native2ascii(String value) {
+		StringBuilder result = new StringBuilder();
+		char[] chars = nvl(value).toCharArray();
+		for (int i = 0; i <= chars.length - 1; i++) {
+			if (chars[i] > '\177') {
+				result.append((char) 92);
+				result.append((char) 117);
+				String hex = Integer.toHexString(chars[i]);
+				StringBuilder buffer = new StringBuilder(hex);
+				buffer.reverse();
+				int l = 4 - buffer.length();
+				for (int i1 = 0; i1 < l; i1++) {
+					buffer.append('0');
+				}
+				for (int j1 = 0; j1 < 4; j1++) {
+					result.append(buffer.charAt(3 - j1));
+				}
+			} else {
+				result.append(chars[i]);
+			}
+		}
+		return result.toString();
+	}
+
+	/**
+	 * ユニコード表記アスキー文字列を通常の文字列に変換して提供します。<br>
+	 * @param value 変換対象文字列
+	 * @return 変換後文字列
+	 */
+	public static String ascii2native(String value) {
+		char[] sourceChars = value.toCharArray();
+		char[] trailChars = null;
+		StringReader in = new StringReader(value);
+		int k = 0;
+		int l = 0;
+		char ac1[] = new char[sourceChars.length];
+		boolean flag1 = false;
+		int j1 = 0;
+		try {
+			j1 = in.read(ac1, k, sourceChars.length - k);
+		} catch (IOException e) {
+			// ignore
+		}
+		if (j1 < 0) {
+			flag1 = true;
+			if (k == 0)
+				return "";
+		} else {
+			k += j1;
+		}
+		int k1 = 0;
+		do {
+			if (k1 >= k)
+				break;
+			char c = ac1[k1++];
+			if (c != '\\' || flag1 && k <= 5) {
+				sourceChars[l++] = c;
+				continue;
+			}
+			int l1 = k - k1;
+			if (l1 < 5) {
+				trailChars = new char[1 + l1];
+				trailChars[0] = c;
+				for (int i2 = 0; i2 < l1; i2++)
+					trailChars[1 + i2] = ac1[k1 + i2];
+				break;
+			}
+			c = ac1[k1++];
+			if (c != 'u') {
+				sourceChars[l++] = '\\';
+				sourceChars[l++] = c;
+			} else {
+				char c1 = (char) Integer.parseInt(new String(ac1, k1, 4), 16);
+				sourceChars[l++] = c1;
+				k1 += 4;
+			}
+		} while (true);
+		return new String(sourceChars, 0, l);
 	}
 
 	/**
