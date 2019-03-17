@@ -3440,20 +3440,20 @@ public final class StringUtil {
 	 * @return 編集後文字列
 	 */
 	public static String replace(String string, String before, String after) {
-		//		if (isEmpty(string)) {
-		//			return EMPTY;
-		//		}
-		//		if (string.indexOf(before) == -1) {
-		//			return string;
-		//		}
-		//		StringBuilder builder = new StringBuilder();
-		//		int index = string.indexOf(before);
-		//		builder.append(string.substring(0, index) + after);
-		//		if (index + before.length() < string.length()) {
-		//			String buffer = string.substring(index + before.length(), string.length());
-		//			builder.append(replace(buffer, before, after));
-		//		}
-		//		return builder.toString();
+		//if (isEmpty(string)) {
+		//	return EMPTY;
+		//}
+		//if (string.indexOf(before) == -1) {
+		//	return string;
+		//}
+		//StringBuilder builder = new StringBuilder();
+		//int index = string.indexOf(before);
+		//builder.append(string.substring(0, index) + after);
+		//if (index + before.length() < string.length()) {
+		//	String buffer = string.substring(index + before.length(), string.length());
+		//	builder.append(replace(buffer, before, after));
+		//}
+		//return builder.toString();
 		// 2018.03.17 string.substringによるStackOverflow、OutOfMemoryバグ修正
 		if (isEmpty(string)) {
 			return EMPTY;
