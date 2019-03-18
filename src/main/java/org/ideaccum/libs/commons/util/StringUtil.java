@@ -33,7 +33,9 @@ import java.util.regex.Pattern;
  * 更新日		更新者			更新内容
  * 2005/07/02	Kitagawa		新規作成
  * 2018/05/02	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
- * 2019/03/17	Kitagawa		#replaceメソッドの巨大文字列操作時のsubstring処理におけるStackOverflow、OutOfMemoryバグ修正
+ * 2019/03/17	Kitagawa		replaceメソッドの巨大文字列操作時のsubstring処理におけるStackOverflow、OutOfMemoryバグ修正
+ * 2019/03/18	Kitagawa		formatJapanesePhoneNumberメソッドを旧AddressUtilから移行
+ * 2019/03/18	Kitagawa		formatJapaneseZipCodeメソッドを旧AddressUtilから移行
  *-->
  */
 public final class StringUtil {
@@ -2855,6 +2857,34 @@ public final class StringUtil {
 		SimpleDateFormat format = new SimpleDateFormat(pattern);
 		String result = format.format(date);
 		return result;
+	}
+
+	/**
+	 * 日本国内の電話番号文字列を桁構成に合わせてフォーマットして提供します。<br>
+	 * @param phoneNumber 日本国内の電話番号文字列
+	 * @return 編集後文字列
+	 */
+	public static String formatJapanesePhoneNumber(String phoneNumber) {
+		return JapanesePhoneAreas.format(phoneNumber);
+	}
+
+	/**
+	 * 日本国内の郵便番号文字列を桁構成に合わせてフォーマットして提供します。<br>
+	 * @param zipCode 日本国内の郵便番号文字列
+	 * @return 編集後文字列
+	 */
+	public static String formatJapaneseZipCode(String zipCode) {
+		if (zipCode == null) {
+			return EMPTY;
+		}
+		StringBuilder buffer = new StringBuilder();
+		for (int i = 0; i <= zipCode.length() - 1; i++) {
+			buffer.append(zipCode.charAt(i));
+			if (i == 2) {
+				buffer.append("-");
+			}
+		}
+		return buffer.toString();
 	}
 
 	/**
