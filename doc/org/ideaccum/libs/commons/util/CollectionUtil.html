@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9,"i9":9,"i10":9,"i11":9,"i12":9,"i13":9,"i14":9,"i15":9,"i16":9,"i17":9,"i18":9,"i19":9,"i20":9,"i21":9,"i22":9,"i23":9,"i24":9,"i25":9,"i26":9,"i27":9,"i28":9,"i29":9,"i30":9,"i31":9,"i32":9,"i33":9,"i34":9,"i35":9,"i36":9,"i37":9,"i38":9,"i39":9,"i40":9,"i41":9,"i42":9,"i43":9};
+var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9,"i9":9,"i10":9,"i11":9,"i12":9,"i13":9,"i14":9,"i15":9,"i16":9,"i17":9,"i18":9,"i19":9,"i20":9,"i21":9,"i22":9,"i23":9,"i24":9,"i25":9,"i26":9,"i27":9,"i28":9,"i29":9,"i30":9,"i31":9,"i32":9,"i33":9,"i34":9,"i35":9,"i36":9,"i37":9,"i38":9,"i39":9,"i40":9,"i41":9,"i42":9,"i43":9,"i44":9,"i45":9};
 var tabs = {65535:["t0","すべてのメソッド"],1:["t1","staticメソッド"],8:["t4","concreteメソッド"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html" title="org.ideaccum.libs.commons.util内のクラス"><span class="typeNameLink">前のクラス</span></a></li>
-<li><a href="../../../../../org/ideaccum/libs/commons/util/ComparableValueset.html" title="org.ideaccum.libs.commons.util内のクラス"><span class="typeNameLink">次のクラス</span></a></li>
+<li><a href="../../../../../org/ideaccum/libs/commons/util/CollectionUtil.CollectionSelector.html" title="org.ideaccum.libs.commons.util内のインタフェース"><span class="typeNameLink">次のクラス</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?org/ideaccum/libs/commons/util/CollectionUtil.html" target="_top">フレーム</a></li>
@@ -74,7 +74,7 @@ var activeTableTab = "activeTableTab";
 <div>
 <ul class="subNavList">
 <li>サマリー:&nbsp;</li>
-<li>ネスト&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">ネスト</a>&nbsp;|&nbsp;</li>
 <li>フィールド&nbsp;|&nbsp;</li>
 <li>コンストラクタ&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">メソッド</a></li>
@@ -123,6 +123,7 @@ extends java.lang.Object</pre>
  更新日            更新者                     更新内容
  2018/05/02     Kitagawa                新規作成
  2018/05/24     Kitagawa                再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂に併せて、旧ListUtil、ArrayUtilを統合)
+ 2019/04/28     Kitagawa                コレクションを特定条件に絞って選択するselectメソッドを追加
 --></dd>
 </dl>
 </li>
@@ -131,6 +132,27 @@ extends java.lang.Object</pre>
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="nested.class.summary">
+<!--   -->
+</a>
+<h3>ネストされたクラスのサマリー</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="ネストされたクラスのサマリー表、ネストされたクラスのリストおよび説明">
+<caption><span>ネストされたクラス</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">修飾子とタイプ</th>
+<th class="colLast" scope="col">クラスと説明</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static interface&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/CollectionUtil.CollectionSelector.html" title="org.ideaccum.libs.commons.util内のインタフェース">CollectionUtil.CollectionSelector</a>&lt;<a href="../../../../../org/ideaccum/libs/commons/util/CollectionUtil.CollectionSelector.html" title="CollectionUtil.CollectionSelector内の型パラメータ">E</a>&gt;</span></code>
+<div class="block">コレクションを特定条件に絞って選択するための判定処理インタフェースを提供します。</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
 <!-- ========== METHOD SUMMARY =========== -->
 <ul class="blockList">
 <li class="blockList"><a name="method.summary">
@@ -417,6 +439,20 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i43" class="rowColor">
+<td class="colFirst"><code>static &lt;E&gt;&nbsp;E[]</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/CollectionUtil.html#select-E:A-org.ideaccum.libs.commons.util.CollectionUtil.CollectionSelector-">select</a></span>(E[]&nbsp;array,
+      <a href="../../../../../org/ideaccum/libs/commons/util/CollectionUtil.CollectionSelector.html" title="org.ideaccum.libs.commons.util内のインタフェース">CollectionUtil.CollectionSelector</a>&lt;E&gt;&nbsp;selector)</code>
+<div class="block">指定された配列から特定条件に合致するものだけを持つ配列を生成して提供します。</div>
+</td>
+</tr>
+<tr id="i44" class="altColor">
+<td class="colFirst"><code>static &lt;E&gt;&nbsp;java.util.List&lt;E&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/CollectionUtil.html#select-java.util.List-org.ideaccum.libs.commons.util.CollectionUtil.CollectionSelector-">select</a></span>(java.util.List&lt;E&gt;&nbsp;list,
+      <a href="../../../../../org/ideaccum/libs/commons/util/CollectionUtil.CollectionSelector.html" title="org.ideaccum.libs.commons.util内のインタフェース">CollectionUtil.CollectionSelector</a>&lt;E&gt;&nbsp;selector)</code>
+<div class="block">指定されたリストから特定条件に合致するものだけを持つリストを生成して提供します。</div>
+</td>
+</tr>
+<tr id="i45" class="rowColor">
 <td class="colFirst"><code>static &lt;T&gt;&nbsp;java.util.Vector&lt;T&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/util/CollectionUtil.html#vector-T...-">vector</a></span>(T...&nbsp;values)</code>
 <div class="block">要素配列をもとに<code>Vector</code>オブジェクトを生成して提供します。</div>
@@ -1218,7 +1254,7 @@ extends java.lang.Object</pre>
 </a><a name="add-E:A-E-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>add</h4>
 <pre>public static&nbsp;&lt;E&gt;&nbsp;E[]&nbsp;add(E[]&nbsp;array,
@@ -1233,6 +1269,48 @@ extends java.lang.Object</pre>
 <dd><code>e</code> - 追加要素</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>新たな要素が追加された配列</dd>
+</dl>
+</li>
+</ul>
+<a name="select-java.lang.Object:A-org.ideaccum.libs.commons.util.CollectionUtil.CollectionSelector-">
+<!--   -->
+</a><a name="select-E:A-org.ideaccum.libs.commons.util.CollectionUtil.CollectionSelector-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>select</h4>
+<pre>public static&nbsp;&lt;E&gt;&nbsp;E[]&nbsp;select(E[]&nbsp;array,
+                             <a href="../../../../../org/ideaccum/libs/commons/util/CollectionUtil.CollectionSelector.html" title="org.ideaccum.libs.commons.util内のインタフェース">CollectionUtil.CollectionSelector</a>&lt;E&gt;&nbsp;selector)</pre>
+<div class="block">指定された配列から特定条件に合致するものだけを持つ配列を生成して提供します。<br></div>
+<dl>
+<dt><span class="paramLabel">型パラメータ:</span></dt>
+<dd><code>E</code> - 配列要素タイプ</dd>
+<dt><span class="paramLabel">パラメータ:</span></dt>
+<dd><code>array</code> - 配列オブジェクト</dd>
+<dd><code>selector</code> - 判定処理オブジェクト</dd>
+<dt><span class="returnLabel">戻り値:</span></dt>
+<dd>合致する要素だけを持つ配列インスタンス</dd>
+</dl>
+</li>
+</ul>
+<a name="select-java.util.List-org.ideaccum.libs.commons.util.CollectionUtil.CollectionSelector-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>select</h4>
+<pre>public static&nbsp;&lt;E&gt;&nbsp;java.util.List&lt;E&gt;&nbsp;select(java.util.List&lt;E&gt;&nbsp;list,
+                                           <a href="../../../../../org/ideaccum/libs/commons/util/CollectionUtil.CollectionSelector.html" title="org.ideaccum.libs.commons.util内のインタフェース">CollectionUtil.CollectionSelector</a>&lt;E&gt;&nbsp;selector)</pre>
+<div class="block">指定されたリストから特定条件に合致するものだけを持つリストを生成して提供します。<br></div>
+<dl>
+<dt><span class="paramLabel">型パラメータ:</span></dt>
+<dd><code>E</code> - 配列要素タイプ</dd>
+<dt><span class="paramLabel">パラメータ:</span></dt>
+<dd><code>list</code> - リストオブジェクト</dd>
+<dd><code>selector</code> - 判定処理オブジェクト</dd>
+<dt><span class="returnLabel">戻り値:</span></dt>
+<dd>合致する要素だけを持つリストインスタンス</dd>
 </dl>
 </li>
 </ul>
@@ -1265,7 +1343,7 @@ extends java.lang.Object</pre>
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../../org/ideaccum/libs/commons/util/ClassUtil.html" title="org.ideaccum.libs.commons.util内のクラス"><span class="typeNameLink">前のクラス</span></a></li>
-<li><a href="../../../../../org/ideaccum/libs/commons/util/ComparableValueset.html" title="org.ideaccum.libs.commons.util内のクラス"><span class="typeNameLink">次のクラス</span></a></li>
+<li><a href="../../../../../org/ideaccum/libs/commons/util/CollectionUtil.CollectionSelector.html" title="org.ideaccum.libs.commons.util内のインタフェース"><span class="typeNameLink">次のクラス</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?org/ideaccum/libs/commons/util/CollectionUtil.html" target="_top">フレーム</a></li>
@@ -1289,7 +1367,7 @@ extends java.lang.Object</pre>
 <div>
 <ul class="subNavList">
 <li>サマリー:&nbsp;</li>
-<li>ネスト&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">ネスト</a>&nbsp;|&nbsp;</li>
 <li>フィールド&nbsp;|&nbsp;</li>
 <li>コンストラクタ&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">メソッド</a></li>

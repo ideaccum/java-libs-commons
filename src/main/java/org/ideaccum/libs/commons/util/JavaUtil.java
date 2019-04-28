@@ -213,7 +213,7 @@ public final class JavaUtil {
 
 	/**
 	 * Java仮想マシンで確保されているメモリ領域のフリーサイズを取得します。<br>
-	 * ここで提供されるフリーメモリサイズは割り当てられているメモリに対するフリー領域となります(最大メモリ領域(Xmx)から見たフリー容量は{@link #getMemorySizeOfUsable()}を利用します)。<br>
+	 * ここで提供されるフリーメモリサイズは割り当てられているメモリに対するフリー領域となります(最大メモリ領域(Xmx)から見たフリー容量は{@link #getMemorySizeOfUsable(MemorySizeUnit)}を利用します)。<br>
 	 * @param unit 取得時換算単位
 	 * @return Java仮想マシンで確保されているメモリ領域のフリーサイズ
 	 */

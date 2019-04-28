@@ -782,6 +782,7 @@ public final class CollectionUtil {
 
 	/**
 	 * 指定された配列から特定条件に合致するものだけを持つ配列を生成して提供します。<br>
+	 * @param <E> 配列要素タイプ
 	 * @param array 配列オブジェクト
 	 * @param selector 判定処理オブジェクト
 	 * @return 合致する要素だけを持つ配列インスタンス
@@ -801,6 +802,7 @@ public final class CollectionUtil {
 
 	/**
 	 * 指定されたリストから特定条件に合致するものだけを持つリストを生成して提供します。<br>
+	 * @param <E> 配列要素タイプ
 	 * @param list リストオブジェクト
 	 * @param selector 判定処理オブジェクト
 	 * @return 合致する要素だけを持つリストインスタンス
@@ -821,7 +823,7 @@ public final class CollectionUtil {
 	/**
 	 * コレクションを特定条件に絞って選択するための判定処理インタフェースを提供します。<br>
 	 * <p>
-	 * このインタフェースクラスは{@link CollectionUtil#select(Object[])}で要素を絞り込む際に利用されます。<br>
+	 * このインタフェースクラスは{@link CollectionUtil#select(Object[], CollectionSelector)}で要素を絞り込む際に利用されます。<br>
 	 * </p>
 	 * 
 	 * @author Kitagawa<br>

@@ -9,7 +9,6 @@ Commonsは、Java実装における利用頻度の高い操作を簡潔に実装
 
 ## Dependent Libraries
 このライブラリパッケージの依存ライブラリ及び、ライセンスは[LIBRARIES.md](https://github.com/ideaccum/org.ideaccum.libs.commons/blob/master/LIBRARIES.md)に記載しています。  
-`このライブラリパッケージの依存関係はありません。`  
 
 ## License
 プログラムソースは[MIT License](https://github.com/ideaccum/org.ideaccum.libs.commons/blob/master/LICENSE.md)です。  

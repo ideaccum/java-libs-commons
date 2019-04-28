@@ -26,4 +26,13 @@
 			</plugin>
 		</plugins>
 	</build>
+	<dependencies>
+		<dependency>
+			<groupId>net.lingala.zip4j</groupId>
+			<artifactId>zip4j</artifactId>
+			<version>1.3.2</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/zip4j-1.3.2.jar</systemPath>
+		</dependency>
+	</dependencies>
 </project>

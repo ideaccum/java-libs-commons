@@ -7,12 +7,12 @@ import java.util.NoSuchElementException;
  * 文字列を任意のデリミタワードで分割してそのトークンを取得するための処理を提供します。<br>
  * <p>
  * {@link java.util.StringTokenizer}類似の処理を提供するクラスですが、主に下記の機能が異なる仕様として提供されます。<br>
+ * </p>
  * <ul>
  * <li>デリミタを文字列で指定することが可能です</li>
  * <li>同時に複数のデリミタ文字を指定することが可能です</li>
  * <li>デリミタをエスケープするトークンクォート文字を指定することが可能です</li>
  * </ul>
- * </p>
  * 
  * @author Kitagawa<br>
  * 
