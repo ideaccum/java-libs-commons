@@ -11,7 +11,7 @@ import java.util.List;
  * 和暦情報は該当和暦の開始日付情報のみを管理し、和暦に対応する年の算出などの業務的な処理は利用者側に委譲するものとし、ここでは提供しません。<br>
  * </p>
  * <p>
- * この定義情報は2019.3.18時点の元号情報です。<br>
+ * この定義情報は2019.4.28時点の元号情報です。<br>
  * </p>
  * 
  * @author Kitagawa<br>
@@ -19,6 +19,7 @@ import java.util.List;
  *<!--
  * 更新日		更新者			更新内容
  * 2019/03/18	Kitagawa		新規作成
+ * 2019/04/28	Kitagawa		令和を追加
  *-->
  */
 public enum JapaneseEraNames {
@@ -763,6 +764,9 @@ public enum JapaneseEraNames {
 
 	/** 平成 */
 	HEISEI(1989, 1, 8, "平成", "Heisei"), //
+
+	/** 令和 */
+	REIWA(2019, 5, 1, "令和", "Reiwa"), //
 
 	;
 

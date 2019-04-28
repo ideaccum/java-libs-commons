@@ -201,7 +201,6 @@ public final class FileUtil {
 	 * @param dst コピー先ファイルパス
 	 * @throws IOException コピー中に入出力例外が発生した場合にスローされます
 	 */
-	@SuppressWarnings("resource")
 	public static void copy(File src, File dst) throws IOException {
 		if (src == null) {
 			return;

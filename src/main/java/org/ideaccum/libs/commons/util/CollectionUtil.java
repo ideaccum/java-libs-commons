@@ -20,6 +20,7 @@ import java.util.Vector;
  * 更新日		更新者			更新内容
  * 2018/05/02	Kitagawa		新規作成
  * 2018/05/24	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂に併せて、旧ListUtil、ArrayUtilを統合)
+ * 2019/04/28	Kitagawa		コレクションを特定条件に絞って選択するselectメソッドを追加
  *-->
  */
 public final class CollectionUtil {
@@ -777,5 +778,66 @@ public final class CollectionUtil {
 		System.arraycopy(array, 0, dest, 0, array.length);
 		dest[dest.length - 1] = e;
 		return dest;
+	}
+
+	/**
+	 * 指定された配列から特定条件に合致するものだけを持つ配列を生成して提供します。<br>
+	 * @param array 配列オブジェクト
+	 * @param selector 判定処理オブジェクト
+	 * @return 合致する要素だけを持つ配列インスタンス
+	 */
+	public static <E extends Object> E[] select(E[] array, CollectionSelector<E> selector) {
+		if (selector == null || array == null) {
+			return array;
+		}
+		List<E> buffer = new LinkedList<>();
+		for (E e : array) {
+			if (selector.match(e)) {
+				buffer.add(e);
+			}
+		}
+		return buffer.toArray(array);
+	}
+
+	/**
+	 * 指定されたリストから特定条件に合致するものだけを持つリストを生成して提供します。<br>
+	 * @param list リストオブジェクト
+	 * @param selector 判定処理オブジェクト
+	 * @return 合致する要素だけを持つリストインスタンス
+	 */
+	public static <E extends Object> List<E> select(List<E> list, CollectionSelector<E> selector) {
+		if (selector == null || list == null) {
+			return list;
+		}
+		List<E> buffer = new LinkedList<>();
+		for (E e : list) {
+			if (selector.match(e)) {
+				buffer.add(e);
+			}
+		}
+		return buffer;
+	}
+
+	/**
+	 * コレクションを特定条件に絞って選択するための判定処理インタフェースを提供します。<br>
+	 * <p>
+	 * このインタフェースクラスは{@link CollectionUtil#select(Object[])}で要素を絞り込む際に利用されます。<br>
+	 * </p>
+	 * 
+	 * @author Kitagawa<br>
+	 * 
+	 *<!--
+	 * 更新日		更新者			更新内容
+	 * 2019/04/28	Kitagawa		新規作成
+	 *-->
+	 */
+	public static interface CollectionSelector<E> {
+
+		/**
+		 * コレクション要素として選択する対象であるかを判定します。<br>
+		 * @param e 判定対象要素
+		 * @return 選択対象要素である場合にtrueを返却
+		 */
+		public boolean match(E e);
 	}
 }

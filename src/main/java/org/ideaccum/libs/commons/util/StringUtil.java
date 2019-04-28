@@ -21,6 +21,8 @@ import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.ideaccum.libs.commons.toys.StringBelt;
+
 /**
  * 文字列操作を行う際の支援的な操作メソッドを提供します。<br>
  * <p>
@@ -36,6 +38,7 @@ import java.util.regex.Pattern;
  * 2019/03/17	Kitagawa		replaceメソッドの巨大文字列操作時のsubstring処理におけるStackOverflow、OutOfMemoryバグ修正
  * 2019/03/18	Kitagawa		formatJapanesePhoneNumberメソッドを旧AddressUtilから移行
  * 2019/03/18	Kitagawa		formatJapaneseZipCodeメソッドを旧AddressUtilから移行
+ * 2019/03/26	Kitagawa		encodeRomanNumerals、decodeRomanNumeralsメソッドを旧NumberUtilから移行
  *-->
  */
 public final class StringUtil {
@@ -4322,6 +4325,146 @@ public final class StringUtil {
 		buffer = replace(buffer, "'", "&#039;");
 		buffer = replace(buffer, " ", "&nbsp;");
 		return buffer;
+	}
+
+	/**
+	 * 数値をローマ表記文字列として提供します。<br>
+	 * 尚、ローマ表記として表現可能な1以上の整数以外が指定された場合は空文字が返却されます。<br>
+	 * @param value 対象数値
+	 * @return エンコードされたローマ表記文字列
+	 */
+	public static String encodeRomanNumerals(int value) {
+		// 0以下の場合は空文字
+		if (value <= 0) {
+			return "";
+		}
+
+		StringBuilder builder = new StringBuilder();
+
+		// 1000位(ローマ表記では3000超過を許容しないが例外として3000を超える場合はそのまま"M"を羅列)
+		int i1000 = value / 1000;
+		for (int i = 1; i <= i1000; i++) {
+			builder.append("M");
+		}
+
+		// 100位
+		int i100 = (value - (i1000 * 1000)) / 100;
+		if (i100 == 9) {
+			builder.append("C");
+			builder.append("M");
+		} else if (i100 == 4) {
+			builder.append("C");
+			builder.append("D");
+		} else if (i100 >= 5) {
+			builder.append("D");
+			for (int i = 1; i <= i100 - 5; i++) {
+				builder.append("C");
+			}
+		} else {
+			for (int i = 1; i <= i100; i++) {
+				builder.append("C");
+			}
+		}
+
+		// 10位
+		int i10 = (value - (i1000 * 1000) - (i100 * 100)) / 10;
+		if (i10 == 9) {
+			builder.append("X");
+			builder.append("C");
+		} else if (i10 == 4) {
+			builder.append("X");
+			builder.append("L");
+		} else if (i10 >= 5) {
+			builder.append("L");
+			for (int i = 1; i <= i10 - 5; i++) {
+				builder.append("X");
+			}
+		} else {
+			for (int i = 1; i <= i10; i++) {
+				builder.append("X");
+			}
+		}
+
+		// 1位
+		int i1 = (value - (i1000 * 1000) - (i100 * 100) - (i10 * 10));
+		if (i1 == 9) {
+			builder.append("I");
+			builder.append("X");
+		} else if (i1 == 4) {
+			builder.append("I");
+			builder.append("V");
+		} else if (i1 >= 5) {
+			builder.append("V");
+			for (int i = 1; i <= i1 - 5; i++) {
+				builder.append("I");
+			}
+		} else {
+			for (int i = 1; i <= i1; i++) {
+				builder.append("I");
+			}
+		}
+
+		return builder.toString();
+	}
+
+	/**
+	 * ローマ表記として表現された数値文字列を整数値にデコードして提供します。<br>
+	 * @param string 対象文字列
+	 * @return デコード後数値
+	 */
+	public static int decodeRomanNumerals(String string) {
+		// 空文字は0として返却
+		if (StringUtil.isBlank(string)) {
+			return 0;
+		}
+		int total = 0;
+		for (int i = 0; i <= string.length() - 1;) {
+			String s1 = substr(string, i, 1);
+			String s2 = substr(string, i, 2);
+			if ("IV".equals(s2)) {
+				total += 4;
+				i += 2;
+			} else if ("IX".equals(s2)) {
+				total += 9;
+				i += 2;
+			} else if ("XL".equals(s2)) {
+				total += 40;
+				i += 2;
+			} else if ("XC".equals(s2)) {
+				total += 90;
+				i += 2;
+			} else if ("CD".equals(s2)) {
+				total += 400;
+				i += 2;
+			} else if ("CM".equals(s2)) {
+				total += 900;
+				i += 2;
+			} else if ("I".equals(s1)) {
+				total += 1;
+				i += 1;
+			} else if ("V".equals(s1)) {
+				total += 5;
+				i += 1;
+			} else if ("X".equals(s1)) {
+				total += 10;
+				i += 1;
+			} else if ("L".equals(s1)) {
+				total += 50;
+				i += 1;
+			} else if ("C".equals(s1)) {
+				total += 100;
+				i += 1;
+			} else if ("D".equals(s1)) {
+				total += 500;
+				i += 1;
+			} else if ("M".equals(s1)) {
+				total += 1000;
+				i += 1;
+			} else {
+				throw new IllegalArgumentException("Illegal roman numerial (" + string + ")");
+			}
+		}
+		return total;
 	}
 
 	/**
