@@ -1,6 +1,7 @@
 package org.ideaccum.libs.commons.toys;
 
 import java.io.Serializable;
+import java.util.Map.Entry;
 
 import org.ideaccum.libs.commons.util.ObjectUtil;
 
@@ -18,7 +19,7 @@ import org.ideaccum.libs.commons.util.ObjectUtil;
  * 2018/05/16	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
-public class SimpleEntry<K, V> implements Serializable, Cloneable {
+public class SimpleEntry<K, V> implements Serializable, Cloneable, Entry<K, V> {
 
 	/** キー */
 	private K key;
@@ -176,8 +177,11 @@ public class SimpleEntry<K, V> implements Serializable, Cloneable {
 	/**
 	 * 値を設定します。<br>
 	 * @param value 値
+	 * @return 元々設定されていた値
 	 */
-	public void setValue(V value) {
+	public V setValue(V value) {
+		V old = this.value;
 		this.value = value;
+		return old;
 	}
 }

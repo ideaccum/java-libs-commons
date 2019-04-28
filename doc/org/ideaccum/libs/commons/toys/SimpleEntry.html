@@ -109,13 +109,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>すべての実装されたインタフェース:</dt>
-<dd>java.io.Serializable, java.lang.Cloneable</dd>
+<dd>java.io.Serializable, java.lang.Cloneable, java.util.Map.Entry&lt;K,V&gt;</dd>
 </dl>
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">SimpleEntry&lt;K,V&gt;</span>
 extends java.lang.Object
-implements java.io.Serializable, java.lang.Cloneable</pre>
+implements java.io.Serializable, java.lang.Cloneable, java.util.Map.Entry&lt;K,V&gt;</pre>
 <div class="block">キーと値をペアで管理する汎用的なインタフェースを提供します。<br>
  <p>
  単純なキー／値管理を行うための汎用エントリクラスです。<br>
@@ -219,7 +219,7 @@ implements java.io.Serializable, java.lang.Cloneable</pre>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><code>void</code></td>
+<td class="colFirst"><code><a href="../../../../../org/ideaccum/libs/commons/toys/SimpleEntry.html" title="SimpleEntry内の型パラメータ">V</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/ideaccum/libs/commons/toys/SimpleEntry.html#setValue-V-">setValue</a></span>(<a href="../../../../../org/ideaccum/libs/commons/toys/SimpleEntry.html" title="SimpleEntry内の型パラメータ">V</a>&nbsp;value)</code>
 <div class="block">値を設定します。</div>
 </td>
@@ -237,6 +237,13 @@ implements java.io.Serializable, java.lang.Cloneable</pre>
 </a>
 <h3>クラスから継承されたメソッド&nbsp;java.lang.Object</h3>
 <code>finalize, getClass, notify, notifyAll, wait, wait, wait</code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.java.util.Map.Entry">
+<!--   -->
+</a>
+<h3>インタフェースから継承されたメソッド&nbsp;java.util.Map.Entry</h3>
+<code>comparingByKey, comparingByKey, comparingByValue, comparingByValue</code></li>
 </ul>
 </li>
 </ul>
@@ -315,6 +322,8 @@ implements java.io.Serializable, java.lang.Cloneable</pre>
 <pre>public&nbsp;int&nbsp;hashCode()</pre>
 <div class="block">オブジェクトハッシュコードを取得します。<br></div>
 <dl>
+<dt><span class="overrideSpecifyLabel">定義:</span></dt>
+<dd><code>hashCode</code>&nbsp;インタフェース内&nbsp;<code>java.util.Map.Entry&lt;<a href="../../../../../org/ideaccum/libs/commons/toys/SimpleEntry.html" title="SimpleEntry内の型パラメータ">K</a>,<a href="../../../../../org/ideaccum/libs/commons/toys/SimpleEntry.html" title="SimpleEntry内の型パラメータ">V</a>&gt;</code></dd>
 <dt><span class="overrideSpecifyLabel">オーバーライド:</span></dt>
 <dd><code>hashCode</code>&nbsp;クラス内&nbsp;<code>java.lang.Object</code></dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
@@ -333,6 +342,8 @@ implements java.io.Serializable, java.lang.Cloneable</pre>
 <pre>public&nbsp;boolean&nbsp;equals(java.lang.Object&nbsp;object)</pre>
 <div class="block">オブジェクト等価比較を行います。<br></div>
 <dl>
+<dt><span class="overrideSpecifyLabel">定義:</span></dt>
+<dd><code>equals</code>&nbsp;インタフェース内&nbsp;<code>java.util.Map.Entry&lt;<a href="../../../../../org/ideaccum/libs/commons/toys/SimpleEntry.html" title="SimpleEntry内の型パラメータ">K</a>,<a href="../../../../../org/ideaccum/libs/commons/toys/SimpleEntry.html" title="SimpleEntry内の型パラメータ">V</a>&gt;</code></dd>
 <dt><span class="overrideSpecifyLabel">オーバーライド:</span></dt>
 <dd><code>equals</code>&nbsp;クラス内&nbsp;<code>java.lang.Object</code></dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
@@ -390,6 +401,8 @@ implements java.io.Serializable, java.lang.Cloneable</pre>
 <pre>public&nbsp;<a href="../../../../../org/ideaccum/libs/commons/toys/SimpleEntry.html" title="SimpleEntry内の型パラメータ">K</a>&nbsp;getKey()</pre>
 <div class="block">キーを取得します。<br></div>
 <dl>
+<dt><span class="overrideSpecifyLabel">定義:</span></dt>
+<dd><code>getKey</code>&nbsp;インタフェース内&nbsp;<code>java.util.Map.Entry&lt;<a href="../../../../../org/ideaccum/libs/commons/toys/SimpleEntry.html" title="SimpleEntry内の型パラメータ">K</a>,<a href="../../../../../org/ideaccum/libs/commons/toys/SimpleEntry.html" title="SimpleEntry内の型パラメータ">V</a>&gt;</code></dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>キー</dd>
 </dl>
@@ -420,6 +433,8 @@ implements java.io.Serializable, java.lang.Cloneable</pre>
 <pre>public&nbsp;<a href="../../../../../org/ideaccum/libs/commons/toys/SimpleEntry.html" title="SimpleEntry内の型パラメータ">V</a>&nbsp;getValue()</pre>
 <div class="block">値を取得します。<br></div>
 <dl>
+<dt><span class="overrideSpecifyLabel">定義:</span></dt>
+<dd><code>getValue</code>&nbsp;インタフェース内&nbsp;<code>java.util.Map.Entry&lt;<a href="../../../../../org/ideaccum/libs/commons/toys/SimpleEntry.html" title="SimpleEntry内の型パラメータ">K</a>,<a href="../../../../../org/ideaccum/libs/commons/toys/SimpleEntry.html" title="SimpleEntry内の型パラメータ">V</a>&gt;</code></dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>値</dd>
 </dl>
@@ -433,11 +448,15 @@ implements java.io.Serializable, java.lang.Cloneable</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>setValue</h4>
-<pre>public&nbsp;void&nbsp;setValue(<a href="../../../../../org/ideaccum/libs/commons/toys/SimpleEntry.html" title="SimpleEntry内の型パラメータ">V</a>&nbsp;value)</pre>
+<pre>public&nbsp;<a href="../../../../../org/ideaccum/libs/commons/toys/SimpleEntry.html" title="SimpleEntry内の型パラメータ">V</a>&nbsp;setValue(<a href="../../../../../org/ideaccum/libs/commons/toys/SimpleEntry.html" title="SimpleEntry内の型パラメータ">V</a>&nbsp;value)</pre>
 <div class="block">値を設定します。<br></div>
 <dl>
+<dt><span class="overrideSpecifyLabel">定義:</span></dt>
+<dd><code>setValue</code>&nbsp;インタフェース内&nbsp;<code>java.util.Map.Entry&lt;<a href="../../../../../org/ideaccum/libs/commons/toys/SimpleEntry.html" title="SimpleEntry内の型パラメータ">K</a>,<a href="../../../../../org/ideaccum/libs/commons/toys/SimpleEntry.html" title="SimpleEntry内の型パラメータ">V</a>&gt;</code></dd>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>value</code> - 値</dd>
+<dt><span class="returnLabel">戻り値:</span></dt>
+<dd>元々設定されていた値</dd>
 </dl>
 </li>
 </ul>

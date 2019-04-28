@@ -4,6 +4,7 @@
         <javadoc access="protected"
                  classpath="
                  ../org.ideaccum.libs.commons/target/classes;
+                 ../org.ideaccum.libs.commons/lib/dom4j-1.6.1.jar;
                  ../org.ideaccum.libs.commons/lib/zip4j-1.3.2.jar;
                  "
                  doctitle="org.ideaccum.libs.commons"

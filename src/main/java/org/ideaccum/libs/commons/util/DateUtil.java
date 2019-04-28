@@ -23,7 +23,7 @@ import java.util.GregorianCalendar;
  * 2019/03/18	Kitagawa		和暦定義関連のアクセッサを追加
  *-->
  */
-public class DateUtil {
+public final class DateUtil {
 
 	/**
 	 * コンストラクタ<br>
