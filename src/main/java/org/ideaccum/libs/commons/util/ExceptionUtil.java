@@ -31,7 +31,7 @@ public final class ExceptionUtil {
 	 * @param throwable 例外オブジェクト
 	 * @return スタックトレース情報文字列
 	 */
-	public static String toStackTrace(Throwable throwable) {
+	public static String getStackTrace(Throwable throwable) {
 		if (throwable == null) {
 			return "";
 		}

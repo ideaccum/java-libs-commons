@@ -19,7 +19,7 @@ import org.ideaccum.libs.commons.util.StringUtil;
  * 2018/05/16	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
-public class SimpleCalculate {
+public class SimpleCalculator {
 
 	/** 内部保持値 */
 	private BigDecimal value;
@@ -37,7 +37,7 @@ public class SimpleCalculate {
 	 * コンストラクタ<br>
 	 * 内部数値は0として初期化し、ゼロ除算及び、パースエラーはエラーとせずにゼロ扱いとして動作するモードで初期化されます。<br>
 	 */
-	public SimpleCalculate() {
+	public SimpleCalculator() {
 		super();
 		this.error = false;
 		this.ignoreZeroDivide = true;
@@ -50,7 +50,7 @@ public class SimpleCalculate {
 	 * 指定された値で内部数値を初期化し、ゼロ除算及び、パースエラーはエラーとせずにゼロ扱いとして動作するモードで初期化されます。<br>
 	 * @param value 初期値(nullの場合は0扱いになります)
 	 */
-	public SimpleCalculate(BigDecimal value) {
+	public SimpleCalculator(BigDecimal value) {
 		this();
 		set(value);
 	}
@@ -60,7 +60,7 @@ public class SimpleCalculate {
 	 * 指定された値で内部数値を初期化し、ゼロ除算及び、パースエラーはエラーとせずにゼロ扱いとして動作するモードで初期化されます。<br>
 	 * @param value 初期値(nullの場合は0扱いになります)
 	 */
-	public SimpleCalculate(Double value) {
+	public SimpleCalculator(Double value) {
 		this();
 		set(value);
 	}
@@ -70,7 +70,7 @@ public class SimpleCalculate {
 	 * 指定された値で内部数値を初期化し、ゼロ除算及び、パースエラーはエラーとせずにゼロ扱いとして動作するモードで初期化されます。<br>
 	 * @param value 初期値(nullの場合は0扱いになります)
 	 */
-	public SimpleCalculate(Float value) {
+	public SimpleCalculator(Float value) {
 		this();
 		set(value);
 	}
@@ -80,7 +80,7 @@ public class SimpleCalculate {
 	 * 指定された値で内部数値を初期化し、ゼロ除算及び、パースエラーはエラーとせずにゼロ扱いとして動作するモードで初期化されます。<br>
 	 * @param value 初期値(nullの場合は0扱いになります)
 	 */
-	public SimpleCalculate(Long value) {
+	public SimpleCalculator(Long value) {
 		this();
 		set(value);
 	}
@@ -90,7 +90,7 @@ public class SimpleCalculate {
 	 * 指定された値で内部数値を初期化し、ゼロ除算及び、パースエラーはエラーとせずにゼロ扱いとして動作するモードで初期化されます。<br>
 	 * @param value 初期値(nullの場合は0扱いになります)
 	 */
-	public SimpleCalculate(Integer value) {
+	public SimpleCalculator(Integer value) {
 		this();
 		set(value);
 	}
@@ -100,7 +100,7 @@ public class SimpleCalculate {
 	 * 指定された値で内部数値を初期化し、ゼロ除算及び、パースエラーはエラーとせずにゼロ扱いとして動作するモードで初期化されます。<br>
 	 * @param value 初期値(nullの場合は0扱いになります)
 	 */
-	public SimpleCalculate(Short value) {
+	public SimpleCalculator(Short value) {
 		this();
 		set(value);
 	}
@@ -111,7 +111,7 @@ public class SimpleCalculate {
 	 * @param value 初期値(nullの場合は0扱いになります)
 	 * @param pattern 数値文字列書式
 	 */
-	public SimpleCalculate(String value, String pattern) {
+	public SimpleCalculator(String value, String pattern) {
 		this();
 		set(value, pattern);
 	}
@@ -121,7 +121,7 @@ public class SimpleCalculate {
 	 * 指定された値で内部数値を初期化し、ゼロ除算及び、パースエラーはエラーとせずにゼロ扱いとして動作するモードで初期化されます。<br>
 	 * @param value 初期値(nullの場合は0扱いになります)
 	 */
-	public SimpleCalculate(String value) {
+	public SimpleCalculator(String value) {
 		this();
 		set(value);
 	}
@@ -199,7 +199,7 @@ public class SimpleCalculate {
 		if (getClass() != object.getClass()) {
 			return false;
 		}
-		SimpleCalculate other = (SimpleCalculate) object;
+		SimpleCalculator other = (SimpleCalculator) object;
 		if (ignoreParseError != other.ignoreParseError) {
 			return false;
 		}
@@ -402,7 +402,7 @@ public class SimpleCalculate {
 	 * このメソッドが呼び出されることで管理される値が0に初期化され、発生しているエラーも初期化されます。<br>
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate clear() {
+	public SimpleCalculator clear() {
 		set(BigDecimal.ZERO);
 		this.error = false;
 		return this;
@@ -414,7 +414,7 @@ public class SimpleCalculate {
 	 * @return 自身のインスタンス
 	 * @see java.math.BigDecimal#setScale(int, java.math.RoundingMode)
 	 */
-	public SimpleCalculate roundUp(int scale) {
+	public SimpleCalculator roundUp(int scale) {
 		this.value = this.value.setScale(scale, BigDecimal.ROUND_UP);
 		return this;
 	}
@@ -425,7 +425,7 @@ public class SimpleCalculate {
 	 * @return 自身のインスタンス
 	 * @see java.math.BigDecimal#setScale(int, java.math.RoundingMode)
 	 */
-	public SimpleCalculate roundDown(int scale) {
+	public SimpleCalculator roundDown(int scale) {
 		this.value = this.value.setScale(scale, BigDecimal.ROUND_DOWN);
 		return this;
 	}
@@ -436,7 +436,7 @@ public class SimpleCalculate {
 	 * @return 自身のインスタンス
 	 * @see java.math.BigDecimal#setScale(int, java.math.RoundingMode)
 	 */
-	public SimpleCalculate roundHalfUp(int scale) {
+	public SimpleCalculator roundHalfUp(int scale) {
 		this.value = this.value.setScale(scale, BigDecimal.ROUND_HALF_UP);
 		return this;
 	}
@@ -446,7 +446,7 @@ public class SimpleCalculate {
 	 * @param value セットする値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate set(BigDecimal value) {
+	public SimpleCalculator set(BigDecimal value) {
 		this.value = toValue(value);
 		return this;
 	}
@@ -456,7 +456,7 @@ public class SimpleCalculate {
 	 * @param value セットする値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate set(Double value) {
+	public SimpleCalculator set(Double value) {
 		return set(toValue(value));
 	}
 
@@ -465,7 +465,7 @@ public class SimpleCalculate {
 	 * @param value セットする値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate set(Float value) {
+	public SimpleCalculator set(Float value) {
 		return set(toValue(value));
 	}
 
@@ -474,7 +474,7 @@ public class SimpleCalculate {
 	 * @param value セットする値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate set(Long value) {
+	public SimpleCalculator set(Long value) {
 		return set(toValue(value));
 	}
 
@@ -483,7 +483,7 @@ public class SimpleCalculate {
 	 * @param value セットする値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate set(Integer value) {
+	public SimpleCalculator set(Integer value) {
 		return set(toValue(value));
 	}
 
@@ -492,7 +492,7 @@ public class SimpleCalculate {
 	 * @param value セットする値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate set(Short value) {
+	public SimpleCalculator set(Short value) {
 		return set(toValue(value));
 	}
 
@@ -502,7 +502,7 @@ public class SimpleCalculate {
 	 * @param pattern 数値文字列書式
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate set(String value, String pattern) {
+	public SimpleCalculator set(String value, String pattern) {
 		return set(toValue(value, pattern));
 	}
 
@@ -511,7 +511,7 @@ public class SimpleCalculate {
 	 * @param value セットする値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate set(String value) {
+	public SimpleCalculator set(String value) {
 		return set(toValue(value));
 	}
 
@@ -521,7 +521,7 @@ public class SimpleCalculate {
 	 * @return 自身のインスタンス
 	 * @see java.math.BigDecimal#add(BigDecimal)
 	 */
-	public SimpleCalculate add(BigDecimal value) {
+	public SimpleCalculator add(BigDecimal value) {
 		this.value = this.value.add(toValue(value));
 		return this;
 	}
@@ -531,7 +531,7 @@ public class SimpleCalculate {
 	 * @param value 加算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate add(Double value) {
+	public SimpleCalculator add(Double value) {
 		return add(toValue(value));
 	}
 
@@ -540,7 +540,7 @@ public class SimpleCalculate {
 	 * @param value 加算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate add(Float value) {
+	public SimpleCalculator add(Float value) {
 		return add(toValue(value));
 	}
 
@@ -549,7 +549,7 @@ public class SimpleCalculate {
 	 * @param value 加算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate add(Long value) {
+	public SimpleCalculator add(Long value) {
 		return add(toValue(value));
 	}
 
@@ -558,7 +558,7 @@ public class SimpleCalculate {
 	 * @param value 加算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate add(Integer value) {
+	public SimpleCalculator add(Integer value) {
 		return add(toValue(value));
 	}
 
@@ -567,7 +567,7 @@ public class SimpleCalculate {
 	 * @param value 加算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate add(Short value) {
+	public SimpleCalculator add(Short value) {
 		return add(toValue(value));
 	}
 
@@ -577,7 +577,7 @@ public class SimpleCalculate {
 	 * @param pattern 数値文字列書式
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate add(String value, String pattern) {
+	public SimpleCalculator add(String value, String pattern) {
 		return add(toValue(value, pattern));
 	}
 
@@ -586,7 +586,7 @@ public class SimpleCalculate {
 	 * @param value 加算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate add(String value) {
+	public SimpleCalculator add(String value) {
 		return add(toValue(value));
 	}
 
@@ -595,7 +595,7 @@ public class SimpleCalculate {
 	 * @param value 減算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate subtract(BigDecimal value) {
+	public SimpleCalculator subtract(BigDecimal value) {
 		this.value = this.value.subtract(toValue(value));
 		return this;
 	}
@@ -605,7 +605,7 @@ public class SimpleCalculate {
 	 * @param value 減算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate subtract(Double value) {
+	public SimpleCalculator subtract(Double value) {
 		return subtract(toValue(value));
 	}
 
@@ -614,7 +614,7 @@ public class SimpleCalculate {
 	 * @param value 減算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate subtract(Float value) {
+	public SimpleCalculator subtract(Float value) {
 		return subtract(toValue(value));
 	}
 
@@ -623,7 +623,7 @@ public class SimpleCalculate {
 	 * @param value 減算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate subtract(Long value) {
+	public SimpleCalculator subtract(Long value) {
 		return subtract(toValue(value));
 	}
 
@@ -632,7 +632,7 @@ public class SimpleCalculate {
 	 * @param value 減算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate subtract(Integer value) {
+	public SimpleCalculator subtract(Integer value) {
 		return subtract(toValue(value));
 	}
 
@@ -641,7 +641,7 @@ public class SimpleCalculate {
 	 * @param value 減算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate subtract(Short value) {
+	public SimpleCalculator subtract(Short value) {
 		return subtract(toValue(value));
 	}
 
@@ -651,7 +651,7 @@ public class SimpleCalculate {
 	 * @param pattern 数値文字列書式
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate subtract(String value, String pattern) {
+	public SimpleCalculator subtract(String value, String pattern) {
 		return subtract(toValue(value, pattern));
 	}
 
@@ -660,7 +660,7 @@ public class SimpleCalculate {
 	 * @param value 減算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate subtract(String value) {
+	public SimpleCalculator subtract(String value) {
 		return subtract(toValue(value));
 	}
 
@@ -669,7 +669,7 @@ public class SimpleCalculate {
 	 * @param value 乗算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate multiply(BigDecimal value) {
+	public SimpleCalculator multiply(BigDecimal value) {
 		this.value = this.value.multiply(toValue(value));
 		return this;
 	}
@@ -679,7 +679,7 @@ public class SimpleCalculate {
 	 * @param value 乗算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate multiply(Double value) {
+	public SimpleCalculator multiply(Double value) {
 		return multiply(toValue(value));
 	}
 
@@ -688,7 +688,7 @@ public class SimpleCalculate {
 	 * @param value 乗算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate multiply(Float value) {
+	public SimpleCalculator multiply(Float value) {
 		return multiply(toValue(value));
 	}
 
@@ -697,7 +697,7 @@ public class SimpleCalculate {
 	 * @param value 乗算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate multiply(Long value) {
+	public SimpleCalculator multiply(Long value) {
 		return multiply(toValue(value));
 	}
 
@@ -706,7 +706,7 @@ public class SimpleCalculate {
 	 * @param value 乗算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate multiply(Integer value) {
+	public SimpleCalculator multiply(Integer value) {
 		return multiply(toValue(value));
 	}
 
@@ -715,7 +715,7 @@ public class SimpleCalculate {
 	 * @param value 乗算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate multiply(Short value) {
+	public SimpleCalculator multiply(Short value) {
 		return multiply(toValue(value));
 	}
 
@@ -725,7 +725,7 @@ public class SimpleCalculate {
 	 * @param pattern 数値文字列書式
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate multiply(String value, String pattern) {
+	public SimpleCalculator multiply(String value, String pattern) {
 		return multiply(toValue(value, pattern));
 	}
 
@@ -734,7 +734,7 @@ public class SimpleCalculate {
 	 * @param value 乗算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate multiply(String value) {
+	public SimpleCalculator multiply(String value) {
 		return multiply(toValue(value));
 	}
 
@@ -743,7 +743,7 @@ public class SimpleCalculate {
 	 * @param value 除算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate divide(BigDecimal value) {
+	public SimpleCalculator divide(BigDecimal value) {
 		if (value == null) {
 			value = BigDecimal.ZERO;
 		}
@@ -765,7 +765,7 @@ public class SimpleCalculate {
 	 * @param value 除算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate divide(Double value) {
+	public SimpleCalculator divide(Double value) {
 		return divide(toValue(value));
 	}
 
@@ -774,7 +774,7 @@ public class SimpleCalculate {
 	 * @param value 除算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate divide(Float value) {
+	public SimpleCalculator divide(Float value) {
 		return divide(toValue(value));
 	}
 
@@ -783,7 +783,7 @@ public class SimpleCalculate {
 	 * @param value 除算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate divide(Long value) {
+	public SimpleCalculator divide(Long value) {
 		return divide(toValue(value));
 	}
 
@@ -792,7 +792,7 @@ public class SimpleCalculate {
 	 * @param value 除算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate divide(Integer value) {
+	public SimpleCalculator divide(Integer value) {
 		return divide(toValue(value));
 	}
 
@@ -801,7 +801,7 @@ public class SimpleCalculate {
 	 * @param value 除算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate divide(Short value) {
+	public SimpleCalculator divide(Short value) {
 		return divide(toValue(value));
 	}
 
@@ -811,7 +811,7 @@ public class SimpleCalculate {
 	 * @param pattern 数値文字列書式
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate divide(String value, String pattern) {
+	public SimpleCalculator divide(String value, String pattern) {
 		return divide(toValue(value, pattern));
 	}
 
@@ -820,7 +820,7 @@ public class SimpleCalculate {
 	 * @param value 除算値(nullの場合は0扱いになります)
 	 * @return 自身のインスタンス
 	 */
-	public SimpleCalculate divide(String value) {
+	public SimpleCalculator divide(String value) {
 		return divide(toValue(value));
 	}
 }
