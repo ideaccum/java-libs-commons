@@ -127,6 +127,7 @@ extends java.lang.Object</pre>
  2019/03/18     Kitagawa                formatJapanesePhoneNumberメソッドを旧AddressUtilから移行
  2019/03/18     Kitagawa                formatJapaneseZipCodeメソッドを旧AddressUtilから移行
  2019/03/26     Kitagawa                encodeRomanNumerals、decodeRomanNumeralsメソッドを旧NumberUtilから移行
+ 2019/04/29     Kitagawa                replaceメソッド処理はJDK1.5より提供される<code>String.replace(CharSequence, CharSequence)</code>に委譲するように変更
 --></dd>
 </dl>
 </li>
@@ -4996,7 +4997,8 @@ extends java.lang.Object</pre>
                                        java.lang.String&nbsp;after)</pre>
 <div class="block">文字列内の特定文字列を置換してその結果を提供します。<br>
  尚、当メソッドは<code>String.replaceAll(String, String)</code>とは異なり、正規表現による置換は行いません。<br>
- また、nullが指定された場合は空文字列として返却されます(nullのまま返却されない事に注意して下さい)。<br></div>
+ また、nullが指定された場合は空文字列として返却されます(nullのまま返却されない事に注意して下さい)。<br>
+ <b>このメソッド処理は2019.04.29にJDK1.5より提供される<code>String.replace(CharSequence, CharSequence)</code>に委譲するように変更されました。</b></div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>string</code> - 対象文字列</dd>

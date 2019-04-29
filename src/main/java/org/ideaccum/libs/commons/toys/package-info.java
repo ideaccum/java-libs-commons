@@ -9,7 +9,7 @@
  * 
  *<!--
  * 更新日		更新者			更新内容
- * 2018/07/11	Kitagawa		新規作成
+ * 2018/07/11	Kitagawa		新規作成(SourceForge.jpからGitHubへの移行に併せて全面改訂(旧commons.util配下のクラスの一部を移動))
  *-->
  */
 package org.ideaccum.libs.commons.toys;

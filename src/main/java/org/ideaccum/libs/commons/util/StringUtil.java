@@ -39,6 +39,7 @@ import org.ideaccum.libs.commons.toys.StringBelt;
  * 2019/03/18	Kitagawa		formatJapanesePhoneNumberメソッドを旧AddressUtilから移行
  * 2019/03/18	Kitagawa		formatJapaneseZipCodeメソッドを旧AddressUtilから移行
  * 2019/03/26	Kitagawa		encodeRomanNumerals、decodeRomanNumeralsメソッドを旧NumberUtilから移行
+ * 2019/04/29	Kitagawa		replaceメソッド処理はJDK1.5より提供される{@link java.lang.String#replace(CharSequence, CharSequence)}に委譲するように変更
  *-->
  */
 public final class StringUtil {
@@ -3469,15 +3470,16 @@ public final class StringUtil {
 	 * 文字列内の特定文字列を置換してその結果を提供します。<br>
 	 * 尚、当メソッドは{@link java.lang.String#replaceAll(String, String)}とは異なり、正規表現による置換は行いません。<br>
 	 * また、nullが指定された場合は空文字列として返却されます(nullのまま返却されない事に注意して下さい)。<br>
+	 * <b>このメソッド処理は2019.04.29にJDK1.5より提供される{@link java.lang.String#replace(CharSequence, CharSequence)}に委譲するように変更されました。</b>
 	 * @param string 対象文字列
 	 * @param before 置換前の文字列
 	 * @param after 置換後の文字列
 	 * @return 編集後文字列
 	 */
 	public static String replace(String string, String before, String after) {
-		//if (isEmpty(string)) {
-		//	return EMPTY;
-		//}
+		if (isEmpty(string)) {
+			return EMPTY;
+		}
 		//if (string.indexOf(before) == -1) {
 		//	return string;
 		//}
@@ -3490,29 +3492,7 @@ public final class StringUtil {
 		//}
 		//return builder.toString();
 		// 2018.03.17 string.substringによるStackOverflow、OutOfMemoryバグ修正
-		if (isEmpty(string)) {
-			return EMPTY;
-		}
-		if (isEmpty(before) || isEmpty(after)) {
-			return string;
-		}
-		int start = 0;
-		int end = before.indexOf(before, start);
-		if (end == -1) {
-			return string;
-		}
-		int length = before.length();
-		int increase = after.length() - length;
-		increase = increase < 0 ? 0 : increase;
-		increase *= 16;
-		StringBuilder builder = new StringBuilder(string.length() + increase);
-		while (end != -1) {
-			builder.append(string, start, end).append(after);
-			start = end + length;
-			end = string.indexOf(before, start);
-		}
-		builder.append(string, start, string.length());
-		return builder.toString();
+		return string.replace(before, after);
 	}
 
 	/**

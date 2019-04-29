@@ -9,6 +9,7 @@
  *<!--
  * 更新日		更新者			更新内容
  * 2017/06/09	Kitagawa		新規作成
+ * 2018/05/16	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 package org.ideaccum.libs.commons.io;
