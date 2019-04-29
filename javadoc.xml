@@ -27,7 +27,7 @@
                  use="true"
                  version="true"
                  splitindex="true"
-                 destdir="./doc"
+                 destdir="../org.ideaccum.github.io/javadoc/org.ideaccum.libs.commons"
                  overview="./src/main/java/javadoc-overview.html"
                  stylesheetfile="./src/main/java/javadoc-style.css"
                  sourcepath="src/main/java;src/main/resources"
