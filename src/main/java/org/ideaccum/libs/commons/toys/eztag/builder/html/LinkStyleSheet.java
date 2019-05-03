@@ -101,7 +101,6 @@ public class LinkStyleSheet extends AbstractLink<LinkStyleSheet> {
 	 */
 	@Override
 	public String getMedia() {
-		// TODO メソッド
 		return super.getMedia();
 	}
 
