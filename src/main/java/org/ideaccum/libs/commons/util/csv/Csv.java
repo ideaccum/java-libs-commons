@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 
 import org.ideaccum.libs.commons.util.Loop;
@@ -23,13 +24,14 @@ import org.ideaccum.libs.commons.util.StreamUtil;
  * CSVリソースの読み込みは指定され入力リソースを一括で読み込む動きとして実装が提供されています(改行を含むカラム値等を判定するために全量情報を一括読み込み)。<br>
  * そのため、巨大なCSVリソースを扱う場合、大量のヒープサイズが消費されることがあるため、注意してください。<br>
  * </p>
- * 
+ *
  * @author Kitagawa<br>
- * 
+ *
  *<!--
  * 更新日		更新者			更新内容
  * 2007/02/16	Kitagawa		新規作成
  * 2018/05/02	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+ * 2019/08/30	Kitagawa		CSVレコード読み込み部を{@link org.ideaccum.libs.commons.util.csv.CsvReader}に分割委譲
  *-->
  */
 public class Csv {
@@ -55,71 +57,87 @@ public class Csv {
 	public static CsvData load(String csvSource) {
 		CsvData data = new CsvData();
 
-		boolean quoting = false;
-		CsvRecord record = new CsvRecord();
-		StringBuilder buffer = new StringBuilder();
-		for (int i = 0; i <= csvSource.length() - 1; i++) {
-			String s1 = String.valueOf(csvSource.charAt(i));
-			String s2 = i < csvSource.length() - 1 ? String.valueOf(csvSource.charAt(i + 1)) : "";
-			if (!quoting) {
-				/*
-				 * クォートトークン解析中ではない場合
-				 */
-				if (CsvColumn.SEPARATOR.equals(s1)) {
-					// 解析文字がカンマである場合はトークン解析を終了
-					record.add(new CsvColumn(CsvColumn.decode(buffer.toString())));
-					buffer = new StringBuilder();
-				} else if (CsvColumn.LINEFEED.equals(s1)) {
-					// 解析文字が改行である場合はレコード解析を終了
-					record.add(new CsvColumn(CsvColumn.decode(buffer.toString())));
+		//boolean quoting = false;
+		//CsvRecord record = new CsvRecord();
+		//StringBuilder buffer = new StringBuilder();
+		//for (int i = 0; i <= csvSource.length() - 1; i++) {
+		//	String s1 = String.valueOf(csvSource.charAt(i));
+		//	String s2 = i < csvSource.length() - 1 ? String.valueOf(csvSource.charAt(i + 1)) : "";
+		//	if (!quoting) {
+		//		/*
+		//		 * クォートトークン解析中ではない場合
+		//		 */
+		//		if (CsvColumn.SEPARATOR.equals(s1)) {
+		//			// 解析文字がカンマである場合はトークン解析を終了
+		//			record.add(new CsvColumn(CsvColumn.decode(buffer.toString())));
+		//			buffer = new StringBuilder();
+		//		} else if (CsvColumn.LINEFEED.equals(s1)) {
+		//			// 解析文字が改行である場合はレコード解析を終了
+		//			record.add(new CsvColumn(CsvColumn.decode(buffer.toString())));
+		//			data.add(record);
+		//			buffer = new StringBuilder();
+		//			record = new CsvRecord();
+		//		} else if (CsvColumn.QUOTE.equals(s1)) {
+		//			// 解析文字がクォートである場合はクォート解析フラグを立てる
+		//			buffer.append(s1);
+		//			quoting = true;
+		//		} else {
+		//			// 通常文字の場合はバッファに文字を追加
+		//			buffer.append(s1);
+		//		}
+		//	} else {
+		//		/*
+		//		 * クォートトークン解析中での場合
+		//		 */
+		//		if (CsvColumn.SEPARATOR.equals(s1)) {
+		//			// 解析文字がカンマだとしても文字として追加
+		//			buffer.append(s1);
+		//		} else if (CsvColumn.LINEFEED.equals(s1)) {
+		//			// 解析文字が改行だとしても文字として追加
+		//			buffer.append(s1);
+		//		} else if (CsvColumn.QUOTE.equals(s1) && CsvColumn.QUOTE.equals(s2)) {
+		//			// 解析文字においてクォートが連続で存在する場合は文字を追加して添字をインクリメント
+		//			buffer.append(s1);
+		//			buffer.append(s2);
+		//			i++;
+		//		} else if (CsvColumn.QUOTE.equals(s1) && !CsvColumn.QUOTE.equals(s2)) {
+		//			// 解析文字においてクォートが単独で存在する場合は文字を追加してクォート解析フラグを解除
+		//			buffer.append(s1);
+		//			quoting = false;
+		//		} else {
+		//			// 通常文字の場合はバッファに文字を追加
+		//			buffer.append(s1);
+		//		}
+		//	}
+		//}
+		//if (buffer.length() > 0) {
+		//	record.add(new CsvColumn(CsvColumn.decode(buffer.toString())));
+		//	buffer = new StringBuilder();
+		//}
+		//if (record.size() > 0) {
+		//	data.add(record);
+		//}
+
+		try {
+			CsvReader reader = new CsvReader(new StringReader(csvSource));
+			for (CsvRecord record; (record = reader.readRecord()) != null;) {
+				if (record.size() > 0) {
 					data.add(record);
-					buffer = new StringBuilder();
-					record = new CsvRecord();
-				} else if (CsvColumn.QUOTE.equals(s1)) {
-					// 解析文字がクォートである場合はクォート解析フラグを立てる
-					buffer.append(s1);
-					quoting = true;
-				} else {
-					// 通常文字の場合はバッファに文字を追加
-					buffer.append(s1);
-				}
-			} else {
-				/*
-				 * クォートトークン解析中での場合
-				 */
-				if (CsvColumn.SEPARATOR.equals(s1)) {
-					// 解析文字がカンマだとしても文字として追加
-					buffer.append(s1);
-				} else if (CsvColumn.LINEFEED.equals(s1)) {
-					// 解析文字が改行だとしても文字として追加
-					buffer.append(s1);
-				} else if (CsvColumn.QUOTE.equals(s1) && CsvColumn.QUOTE.equals(s2)) {
-					// 解析文字においてクォートが連続で存在する場合は文字を追加して添字をインクリメント
-					buffer.append(s1);
-					buffer.append(s2);
-					i++;
-				} else if (CsvColumn.QUOTE.equals(s1) && !CsvColumn.QUOTE.equals(s2)) {
-					// 解析文字においてクォートが単独で存在する場合は文字を追加してクォート解析フラグを解除
-					buffer.append(s1);
-					quoting = false;
-				} else {
-					// 通常文字の場合はバッファに文字を追加
-					buffer.append(s1);
 				}
 			}
+		} catch (IOException e) {
+			// StringReaderによる読み込みであり例外は発生しない
 		}
-		if (buffer.length() > 0) {
-			record.add(new CsvColumn(CsvColumn.decode(buffer.toString())));
-			buffer = new StringBuilder();
-		}
-		if (record.size() > 0) {
-			data.add(record);
-		}
+
 		return data;
 	}
 
 	/**
 	 * 入力ストリームからCSV形式の文字列を読み込みCSVレコード情報として提供します。<br>
+	 * <p>
+	 * このメソッドでは提供される入力ストリームから一括でレコードを読み込みます。<br>
+	 * 大量データを扱う場合、必要に応じて{@link org.ideaccum.libs.commons.util.csv.CsvReader}を利用したレコード単位の読み込みを検討してください。<br>
+	 * </p>
 	 * @param stream 入力ストリーム
 	 * @param charset キャラクタセット
 	 * @return CSVレコード情報
@@ -136,6 +154,10 @@ public class Csv {
 	/**
 	 * 入力ストリームからCSV形式の文字列を読み込みCSVレコード情報として提供します。<br>
 	 * このメソッドによる入力処理時のキャラクタセットはWindows-31Jとなります。<br>
+	 * <p>
+	 * このメソッドでは提供される入力ストリームから一括でレコードを読み込みます。<br>
+	 * 大量データを扱う場合、必要に応じて{@link org.ideaccum.libs.commons.util.csv.CsvReader}を利用したレコード単位の読み込みを検討してください。<br>
+	 * </p>
 	 * @param stream 入力ストリーム
 	 * @return CSVレコード情報
 	 * @throws IOException InputStreamオブジェクトからの読み込み中に入出力例外がスローされた場合に発生
@@ -146,6 +168,10 @@ public class Csv {
 
 	/**
 	 * ファイルからCSV形式の文字列を読み込みCSVレコード情報として提供します。<br>
+	 * <p>
+	 * このメソッドではファイルリソースから一括でレコードを読み込みます。<br>
+	 * 大量データを扱う場合、必要に応じて{@link org.ideaccum.libs.commons.util.csv.CsvReader}を利用したレコード単位の読み込みを検討してください。<br>
+	 * </p>
 	 * @param file CSVファイル
 	 * @param charset キャラクタセット
 	 * @return CSVレコード情報
@@ -170,6 +196,10 @@ public class Csv {
 	/**
 	 * ファイルからCSV形式の文字列を読み込みCSVレコード情報として提供します。<br>
 	 * このメソッドによる入力処理時のキャラクタセットはWindows-31Jとなります。<br>
+	 * <p>
+	 * このメソッドではファイルリソースから一括でレコードを読み込みます。<br>
+	 * 大量データを扱う場合、必要に応じて{@link org.ideaccum.libs.commons.util.csv.CsvReader}を利用したレコード単位の読み込みを検討してください。<br>
+	 * </p>
 	 * @param file CSVファイル
 	 * @return CSVレコード情報
 	 * @throws IOException Fileオブジェクトからの読み込み中に入出力例外がスローされた場合に発生
@@ -186,7 +216,8 @@ public class Csv {
 	 * @param linefeed 改行コード
 	 * @throws UnsupportedEncodingException サポートされないキャラクタセットが指定された場合にスローされます
 	 */
-	public static void save(CsvData csvData, OutputStream stream, String charset, String linefeed) throws UnsupportedEncodingException {
+	public static void save(CsvData csvData, OutputStream stream, String charset, String linefeed)
+			throws UnsupportedEncodingException {
 		final int FLUSH_RECORD_COUNT = 100;
 		if (csvData == null) {
 			return;
@@ -231,11 +262,12 @@ public class Csv {
 	 * @param append ファイルに対して追加書き込みを行う場合にtrueを返却
 	 * @throws IOException ファイルに対する入出力例外が発生した場合にスローされます
 	 */
-	public static void save(CsvData csvData, File file, String charset, String linefeed, boolean append) throws IOException {
+	public static void save(CsvData csvData, File file, String charset, String linefeed, boolean append)
+			throws IOException {
 		FileOutputStream stream = null;
 		try {
 			stream = new FileOutputStream(file, append);
-			save(csvData, file, charset, linefeed, append);
+			save(csvData, stream, charset, linefeed);
 		} finally {
 			if (stream != null) {
 				stream.close();
