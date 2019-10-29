@@ -61,6 +61,12 @@ public final class ResourceUtil {
 		URL url = null;
 
 		/*
+		 * パス文字列補正
+		 */
+		path = path.replaceAll("//", "/");
+		path = path.replaceAll("\\\\\\\\", "\\");
+
+		/*
 		 * カレントクラスローダーによるロード試行
 		 */
 		loader = Thread.currentThread().getContextClassLoader();
