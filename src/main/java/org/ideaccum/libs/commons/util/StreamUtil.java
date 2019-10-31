@@ -1,6 +1,5 @@
 package org.ideaccum.libs.commons.util;
 
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
@@ -45,13 +44,11 @@ public final class StreamUtil {
 	 * @return 転送されたバイトサイズ
 	 * @throws IOException ストリーム操作時に入出力例外が発生した場合にスローされます
 	 */
-	@SuppressWarnings("resource")
 	public static int pipe(InputStream is, OutputStream os, int bufferSize) throws IOException {
 		if (is == null) {
 			return 0;
 		}
 		int total = 0;
-		BufferedOutputStream bos = os == null ? null : new BufferedOutputStream(os);
 		while (true) {
 			byte[] data = new byte[bufferSize];
 			int readed = is.read(data);
@@ -59,13 +56,9 @@ public final class StreamUtil {
 				break;
 			}
 			total += readed;
-			if (bos != null) {
-				bos.write(data, 0, readed);
-				bos.flush();
+			if (os != null) {
+				os.write(data, 0, readed);
 			}
-		}
-		if (bos != null) {
-			bos.flush();
 		}
 		return total;
 	}
