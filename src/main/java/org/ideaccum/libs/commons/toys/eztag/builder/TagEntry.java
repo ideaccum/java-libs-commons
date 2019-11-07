@@ -10,11 +10,9 @@ import java.io.Serializable;
  * 
  * @param <T> 自身のクラス型
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2018/07/12	Kitagawa		新規作成
+ * 更新日      更新者           更新内容
+ * 2018/07/12  Kitagawa         新規作成
  *-->
  */
 public abstract class TagEntry<T extends TagEntry<T>> implements Serializable, Cloneable {

@@ -14,9 +14,9 @@ import org.ideaccum.libs.commons.util.ObjectUtil;
  * @author Hisanori<br>
  * 
  *<!--
- * 更新日		更新者			更新内容
- * 2018/02/22	Kitagawa		新規作成
- * 2018/05/16	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+ * 更新日      更新者           更新内容
+ * 2018/02/22  Kitagawa         新規作成
+ * 2018/05/16  Kitagawa         再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 public class SimpleEntry<K, V> implements Serializable, Cloneable, Entry<K, V> {

@@ -10,12 +10,10 @@ import org.ideaccum.libs.commons.util.StringUtil;
  * このクラスは簡易的なコマンド実行を行うための{@link org.ideaccum.libs.commons.toys.CommandProcess}クラスでコマンドを実行した際の実行結果情報を管理します。<br>
  * </p>
  *
- * @author Kitagawa<br>
- *
  *<!--
- * 更新日		更新者			更新内容
- * 2008/11/05	Kitagawa		新規作成
- * 2018/05/02	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+ * 更新日      更新者           更新内容
+ * 2008/11/05  Kitagawa         新規作成
+ * 2018/05/02  Kitagawa         再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 public final class CommandResult implements Serializable {

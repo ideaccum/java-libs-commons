@@ -8,11 +8,9 @@ package org.ideaccum.libs.commons.toys.eztag.builder;
  * 
  * @param <T> 自身のクラス型
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2018/07/13	Kitagawa		新規作成
+ * 更新日      更新者           更新内容
+ * 2018/07/13  Kitagawa         新規作成
  *-->
  */
 public abstract class TagBuildableEntry<T extends TagBuildableEntry<T>> extends TagEntry<T> {

@@ -14,13 +14,11 @@ import java.util.Vector;
  * リスト及び、配列操作で利用頻度の高いリスト操作を提供します。<br>
  * </p>
  *
- * @author Kitagawa<br>
- *
  *<!--
- * 更新日		更新者			更新内容
- * 2018/05/02	Kitagawa		新規作成
- * 2018/05/24	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂に併せて、旧ListUtil、ArrayUtilを統合)
- * 2019/04/28	Kitagawa		コレクションを特定条件に絞って選択するselectメソッドを追加
+ * 更新日      更新者           更新内容
+ * 2018/05/02  Kitagawa         新規作成
+ * 2018/05/24  Kitagawa         再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂に併せて、旧ListUtil、ArrayUtilを統合)
+ * 2019/04/28  Kitagawa         コレクションを特定条件に絞って選択するselectメソッドを追加
  *-->
  */
 public final class CollectionUtil {
@@ -829,8 +827,8 @@ public final class CollectionUtil {
 	 * @author Kitagawa<br>
 	 * 
 	 *<!--
-	 * 更新日		更新者			更新内容
-	 * 2019/04/28	Kitagawa		新規作成
+	 * 更新日      更新者           更新内容
+	 * 2019/04/28  Kitagawa         新規作成
 	 *-->
 	 */
 	public static interface CollectionSelector<E> {

@@ -3,11 +3,9 @@ package org.ideaccum.libs.commons.toys.eztag.builder.html;
 /**
  * スタイルシートに特化したlinkタグを管理するインタフェースを提供します。<br>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2018/07/13	Kitagawa		新規作成
+ * 更新日      更新者           更新内容
+ * 2018/07/13  Kitagawa         新規作成
  *-->
  */
 public class LinkStyleSheet extends AbstractLink<LinkStyleSheet> {

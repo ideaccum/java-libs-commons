@@ -38,12 +38,10 @@ import java.util.List;
  * 当該クラスで提供する逆順反復は指定された反復オブジェクトを一旦末端までイテレートするため、対象要素を保持するリストの場合にはレスポンスに注意して下さい。<br>
  * </b>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2016/09/14	Kitagawa		新規作成
- * 2018/06/29	Kitagawa		新規作成(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+ * 更新日      更新者           更新内容
+ * 2016/09/14  Kitagawa         新規作成
+ * 2018/06/29  Kitagawa         新規作成(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 public final class Loop<T> {

@@ -12,12 +12,10 @@ import java.util.Set;
  * このクラスで管理される値を{@link java.lang.Object#equals(Object)}比較する際、保持される値要素のすべてが同一である場合に、それは同一として判断します。<br>
  * </p>
  *
- * @author Kitagawa<br>
- *
  *<!--
- * 更新日		更新者			更新内容
- * 2012/10/23	Kitagawa		新規作成
- * 2018/05/24	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂、旧PairedValue)
+ * 更新日      更新者           更新内容
+ * 2012/10/23  Kitagawa         新規作成
+ * 2018/05/24  Kitagawa         再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂、旧PairedValue)
  *-->
  */
 public class Valueset<T> {

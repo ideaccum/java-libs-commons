@@ -10,11 +10,9 @@ import java.lang.annotation.Target;
 /**
  * タグクラスに対する各種属性情報を管理するためのアノテーションです。<br>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2018/07/11	Kitagawa		新規作成
+ * 更新日      更新者           更新内容
+ * 2018/07/11  Kitagawa         新規作成
  *-->
  */
 @Inherited

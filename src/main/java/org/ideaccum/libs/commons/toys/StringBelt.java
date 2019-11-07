@@ -16,11 +16,9 @@ import org.ideaccum.libs.commons.util.StringUtil;
  * String line = loop.next(80);
  * </code>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2018/05/15	Kitagawa		新規作成
+ * 更新日      更新者           更新内容
+ * 2018/05/15  Kitagawa         新規作成
  *-->
  */
 public class StringBelt implements Serializable {

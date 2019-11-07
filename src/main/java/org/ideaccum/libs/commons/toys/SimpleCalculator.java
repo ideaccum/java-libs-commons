@@ -11,12 +11,10 @@ import org.ideaccum.libs.commons.util.StringUtil;
  * 内部的な数値管理や計算処理は{@link java.math.BigDecimal}に委譲し、文字列やプリミティブな値を直接パラメータとして指定する簡略実装のために設置されました。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2016/03/03	Kitagawa		新規作成
- * 2018/05/16	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+ * 更新日      更新者           更新内容
+ * 2016/03/03  Kitagawa         新規作成
+ * 2018/05/16  Kitagawa         再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 public class SimpleCalculator {

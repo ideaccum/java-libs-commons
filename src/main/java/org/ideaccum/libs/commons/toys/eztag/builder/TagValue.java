@@ -13,11 +13,9 @@ import org.ideaccum.libs.commons.util.StringUtil;
  * 
  * @param <T> 属性値型
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2018/07/11	Kitagawa		新規作成
+ * 更新日      更新者           更新内容
+ * 2018/07/11  Kitagawa         新規作成
  *-->
  */
 public class TagValue<T> extends TagBuildableEntry<TagValue<T>> {

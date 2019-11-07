@@ -9,11 +9,9 @@ import org.ideaccum.libs.commons.util.StringUtil;
  * {@link org.ideaccum.libs.commons.toys.eztag.builder.TagBuilder}に対して属性を設定する際に文字列として値管理ではなく、オブジェクトとして値管理を行う事を可能とする為に設置されました。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2018/07/11	Kitagawa		新規作成
+ * 更新日      更新者           更新内容
+ * 2018/07/11  Kitagawa         新規作成
  *-->
  */
 public class TagAttribute<T> extends TagBuildableEntry<TagAttribute<T>> {

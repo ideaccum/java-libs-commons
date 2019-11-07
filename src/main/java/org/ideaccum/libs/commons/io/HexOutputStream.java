@@ -12,12 +12,10 @@ import java.io.PrintWriter;
  * システム連携時などにおいて、文字として扱えない文字を一部含む文字列データをパラメータで受け渡す事が困難な場合等に利用します。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2017/06/09	Kitagawa		新規作成
- * 2018/05/02	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+ * 更新日      更新者           更新内容
+ * 2017/06/09  Kitagawa         新規作成
+ * 2018/05/02  Kitagawa         再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 public class HexOutputStream extends OutputStream {

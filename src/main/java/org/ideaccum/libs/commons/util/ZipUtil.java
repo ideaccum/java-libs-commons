@@ -20,14 +20,12 @@ import net.lingala.zip4j.util.Zip4jConstants;
  * このクラスにおけるZIPファイル操作では、2バイト文字を扱うためにApache Antが提供するorg.apache.tools.zipパッケージのクラスを利用しています。<br>
  * </p>
  *
- * @author Kitagawa<br>
- *
  *<!--
- * 更新日		更新者			更新内容
- * 2007/01/16	Kitagawa		新規作成
- * 2007/05/24	Kitagawa		Zipファイル解凍インタフェースの追加
- * 2018/05/16	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
- * 2019/04/28	Kitagawa		Zip操作ユーティリティを標準JavaAPI、Apache、Zip4jの3種類としていたが、Zip4jのみに限定
+ * 更新日      更新者           更新内容
+ * 2007/01/16  Kitagawa         新規作成
+ * 2007/05/24  Kitagawa         Zipファイル解凍インタフェースの追加
+ * 2018/05/16  Kitagawa         再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+ * 2019/04/28  Kitagawa         Zip操作ユーティリティを標準JavaAPI、Apache、Zip4jの3種類としていたが、Zip4jのみに限定
  *-->
  */
 public final class ZipUtil {

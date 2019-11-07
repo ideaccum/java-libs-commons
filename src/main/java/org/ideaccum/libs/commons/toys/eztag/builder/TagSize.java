@@ -6,11 +6,9 @@ package org.ideaccum.libs.commons.toys.eztag.builder;
  * このクラスではタグ属性やスタイル属性におけるサイズ情報を一元的に管理するために設置されました。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2018/07/11	Kitagawa		新規作成
+ * 更新日      更新者           更新内容
+ * 2018/07/11  Kitagawa         新規作成
  *-->
  */
 public class TagSize extends TagEntry<TagSize> {

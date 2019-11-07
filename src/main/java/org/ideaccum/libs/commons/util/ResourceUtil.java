@@ -25,12 +25,10 @@ import javax.swing.ImageIcon;
  * クラスローダーから参照出来るリソース、ファイルシステム上のリソースへの操作で利用頻度の高い文字列操作をメソッドとして提供します。<br>
  * </p>
  *
- * @author Kitagawa<br>
- *
  *<!--
- * 更新日		更新者			更新内容
- * 2009/04/16	Kitagawa		新規作成
- * 2018/05/16	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+ * 更新日      更新者           更新内容
+ * 2009/04/16  Kitagawa         新規作成
+ * 2018/05/16  Kitagawa         再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 public final class ResourceUtil {

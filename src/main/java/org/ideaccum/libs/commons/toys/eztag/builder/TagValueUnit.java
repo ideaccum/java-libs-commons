@@ -13,11 +13,9 @@ import org.ideaccum.libs.commons.util.StringUtil;
  * 列挙値として提供されない単位の属性値を利用する場合は、属性値設定時に単位を含めた値を設定する必要があります。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2018/07/11	Kitagawa		新規作成
+ * 更新日      更新者           更新内容
+ * 2018/07/11  Kitagawa         新規作成
  *-->
  */
 public final class TagValueUnit implements Serializable {

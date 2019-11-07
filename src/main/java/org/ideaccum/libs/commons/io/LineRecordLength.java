@@ -9,12 +9,10 @@ import java.io.Serializable;
  * 即ち入力ストリームに対して、このクラスインスタンスを指定した場合は、改行コードのタイミングで改行コードが読み飛ばされる動きを行います。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2017/06/08	Kitagawa		新規作成
- * 2018/05/02	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+ * 更新日      更新者           更新内容
+ * 2017/06/08  Kitagawa         新規作成
+ * 2018/05/02  Kitagawa         再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 public final class LineRecordLength implements Serializable {

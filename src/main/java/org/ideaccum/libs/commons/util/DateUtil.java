@@ -13,14 +13,12 @@ import java.util.GregorianCalendar;
  * システム開発時に利用する日付操作で利用頻度の高い操作を提供します。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2012/07/26	Kitagawa		新規作成
- * 2018/05/02	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
- * 2019/03/18	Kitagawa		和暦定義列挙型(JapaneseYearType)を追加
- * 2019/03/18	Kitagawa		和暦定義関連のアクセッサを追加
+ * 更新日      更新者           更新内容
+ * 2012/07/26  Kitagawa         新規作成
+ * 2018/05/02  Kitagawa         再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+ * 2019/03/18  Kitagawa         和暦定義列挙型(JapaneseYearType)を追加
+ * 2019/03/18  Kitagawa         和暦定義関連のアクセッサを追加
  *-->
  */
 public final class DateUtil {
@@ -507,8 +505,8 @@ public final class DateUtil {
 	 * @author Kitagawa<br>
 	 * 
 	 *<!--
-	 * 更新日		更新者			更新内容
-	 * 2018/03/15	Kitagawa		新規作成
+	 * 更新日      更新者           更新内容
+	 * 2018/03/15  Kitagawa         新規作成
 	 *-->
 	 */
 	public static enum DayOfWeek {

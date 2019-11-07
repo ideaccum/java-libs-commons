@@ -10,12 +10,10 @@ package org.ideaccum.libs.commons.util;
  * この定義情報は2017.3.27時点の総務省公開情報に準拠します。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2017/03/27	Kitagawa		新規作成
- * 2018/05/16	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂、AddressUtilから分離)
+ * 更新日      更新者           更新内容
+ * 2017/03/27  Kitagawa         新規作成
+ * 2018/05/16  Kitagawa         再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂、AddressUtilから分離)
  *-->
  */
 public enum JapanesePhoneAreas {

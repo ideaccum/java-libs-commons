@@ -9,12 +9,10 @@ import java.io.UnsupportedEncodingException;
  * このクラスでは単純に単一の項目情報(文字列や数値といった項目扱う際の単位)の相互変換を行います。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2014/02/14	Kitagawa		新規作成
- * 2018/05/02	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+ * 更新日      更新者           更新内容
+ * 2014/02/14  Kitagawa         新規作成
+ * 2018/05/02  Kitagawa         再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 public class BinaryConverter {

@@ -8,11 +8,9 @@ import org.ideaccum.libs.commons.util.StringUtil;
  * ここで提供する各種メソッドは{@link org.ideaccum.libs.commons.toys.eztag.builder.TagBuilder}を始めとするタグ操作ユーティリティ関連のクラスのみで利用します。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2018/07/11	Kitagawa		新規作成
+ * 更新日      更新者           更新内容
+ * 2018/07/11  Kitagawa         新規作成
  *-->
  */
 final class TagOperateUtil {

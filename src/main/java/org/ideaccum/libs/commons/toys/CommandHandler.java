@@ -11,12 +11,10 @@ import java.io.OutputStream;
  * このクラスは簡易的なコマンド実行を行うための{@link org.ideaccum.libs.commons.toys.CommandProcess}クラスでコマンド実行を行った際のプロセスに対するハンドラ処理インタフェースを提供します。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2014/09/10	Kitagawa		新規作成
- * 2018/05/02	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+ * 更新日      更新者           更新内容
+ * 2014/09/10  Kitagawa         新規作成
+ * 2018/05/02  Kitagawa         再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 public abstract class CommandHandler {
@@ -98,8 +96,8 @@ public abstract class CommandHandler {
 	 * @author Kitagawa<br>
 	 * 
 	 *<!--
-	 * 更新日		更新者			更新内容
-	 * 2014/09/10	Kitagawa		新規作成
+	 * 更新日      更新者           更新内容
+	 * 2014/09/10  Kitagawa         新規作成
 	 *-->
 	 */
 	public static final class CommandDefaultHandler extends CommandHandler {

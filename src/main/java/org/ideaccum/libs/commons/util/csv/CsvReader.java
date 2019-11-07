@@ -10,11 +10,9 @@ import java.io.Reader;
  * このクラスはクラス名にReaderの名称を持ちますが、{@link java.io.Reader}のインタフェースを継承したクラスではありません。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2019/08/30	Kitagawa		新規作成
+ * 更新日      更新者           更新内容
+ * 2019/08/30  Kitagawa         新規作成
  *-->
  */
 public class CsvReader {

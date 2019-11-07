@@ -14,12 +14,10 @@ import org.ideaccum.libs.commons.util.Loop;
  * このクラスはCSVリソースが持つCSVレコード情報を一元的に管理するためのクラスです。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2007/02/16	Kitagawa		新規作成
- * 2018/05/02	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+ * 更新日      更新者           更新内容
+ * 2007/02/16  Kitagawa         新規作成
+ * 2018/05/02  Kitagawa         再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 public class CsvData implements List<CsvRecord> {

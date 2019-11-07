@@ -13,12 +13,10 @@ import java.util.List;
  * ランタイム上から提供される各種情報に対する利用頻度の高い操作を提供します。<br>
  * </p>
  *
- * @author Kitagawa<br>
- *
  *<!--
- * 更新日		更新者			更新内容
- * 2007/05/17	Kitagawa		新規作成
- * 2018/05/02	Kitagawa		新規作成(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+ * 更新日      更新者           更新内容
+ * 2007/05/17  Kitagawa         新規作成
+ * 2018/05/02  Kitagawa         新規作成(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 public final class JavaUtil {
@@ -247,8 +245,8 @@ public final class JavaUtil {
 	 * @author Kitagawa<br>
 	 * 
 	 *<!--
-	 * 更新日		更新者			更新内容
-	 * 2018/05/02	Kitagawa		新規作成
+	 * 更新日      更新者           更新内容
+	 * 2018/05/02  Kitagawa         新規作成
 	 *-->
 	 */
 	public enum MemorySizeUnit {

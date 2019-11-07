@@ -14,12 +14,10 @@ import java.util.List;
  * この定義情報は2019.4.28時点の元号情報です。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2019/03/18	Kitagawa		新規作成
- * 2019/04/28	Kitagawa		令和を追加
+ * 更新日      更新者           更新内容
+ * 2019/03/18  Kitagawa         新規作成
+ * 2019/04/28  Kitagawa         令和を追加
  *-->
  */
 public enum JapaneseEraNames {

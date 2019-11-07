@@ -12,12 +12,10 @@ import java.io.OutputStream;
  * 尚、行編成として扱う際のレコード長はあくまでも固定長データのレコード長であり、16進表記データ時の行長ではないことに注意して下さい。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2017/06/09	Kitagawa		新規作成
- * 2018/05/02	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+ * 更新日      更新者           更新内容
+ * 2017/06/09  Kitagawa         新規作成
+ * 2018/05/02  Kitagawa         再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 public class HexLineOutputStream extends OutputStream {

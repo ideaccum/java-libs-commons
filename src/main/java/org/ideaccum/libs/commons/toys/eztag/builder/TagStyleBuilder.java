@@ -12,11 +12,9 @@ import org.ideaccum.libs.commons.util.StringUtil;
  * 要素タグにおけるスタイル属性内容を構築するための操作インタフェースを提供します。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2018/07/11	Kitagawa		新規作成
+ * 更新日      更新者           更新内容
+ * 2018/07/11  Kitagawa         新規作成
  *-->
  */
 public class TagStyleBuilder extends TagBuildableEntry<TagStyleBuilder> {

@@ -5,12 +5,10 @@
  * CSVリソースを扱い際にユーザーはトークンにおけるエスケープ処理に注意する必要があったりしますが、ここで提供されるクラスはそれらを内部的に補完する処理を内包して提供します。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2007/02/16	Kitagawa		新規作成
- * 2018/05/16	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+ * 更新日      更新者           更新内容
+ * 2007/02/16  Kitagawa         新規作成
+ * 2018/05/16  Kitagawa         再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 package org.ideaccum.libs.commons.util.csv;

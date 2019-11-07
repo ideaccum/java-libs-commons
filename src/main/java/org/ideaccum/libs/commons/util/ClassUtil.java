@@ -14,12 +14,10 @@ import java.util.List;
  * リフレクションを利用したシステム実装基板開発等でクラスに対する各種操作の簡略化目的とした操作メソッドを提供します。<br>
  * </p>
  *
- * @author Kitagawa<br>
- *
  *<!--
- * 更新日		更新者			更新内容
- * 2012/10/02	Kitagawa		新規作成
- * 2018/05/24	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+ * 更新日      更新者           更新内容
+ * 2012/10/02  Kitagawa         新規作成
+ * 2018/05/24  Kitagawa         再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 public final class ClassUtil {

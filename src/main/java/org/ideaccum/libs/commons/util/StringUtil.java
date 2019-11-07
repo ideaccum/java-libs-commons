@@ -29,17 +29,15 @@ import org.ideaccum.libs.commons.toys.StringBelt;
  * システム開発時に利用する文字列操作で利用頻度の高い操作を提供します。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2005/07/02	Kitagawa		新規作成
- * 2018/05/02	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
- * 2019/03/17	Kitagawa		replaceメソッドの巨大文字列操作時のsubstring処理におけるStackOverflow、OutOfMemoryバグ修正
- * 2019/03/18	Kitagawa		formatJapanesePhoneNumberメソッドを旧AddressUtilから移行
- * 2019/03/18	Kitagawa		formatJapaneseZipCodeメソッドを旧AddressUtilから移行
- * 2019/03/26	Kitagawa		encodeRomanNumerals、decodeRomanNumeralsメソッドを旧NumberUtilから移行
- * 2019/04/29	Kitagawa		replaceメソッド処理はJDK1.5より提供される{@link java.lang.String#replace(CharSequence, CharSequence)}に委譲するように変更
+ * 更新日      更新者           更新内容
+ * 2005/07/02  Kitagawa         新規作成
+ * 2018/05/02  Kitagawa         再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+ * 2019/03/17  Kitagawa         replaceメソッドの巨大文字列操作時のsubstring処理におけるStackOverflow、OutOfMemoryバグ修正
+ * 2019/03/18  Kitagawa         formatJapanesePhoneNumberメソッドを旧AddressUtilから移行
+ * 2019/03/18  Kitagawa         formatJapaneseZipCodeメソッドを旧AddressUtilから移行
+ * 2019/03/26  Kitagawa         encodeRomanNumerals、decodeRomanNumeralsメソッドを旧NumberUtilから移行
+ * 2019/04/29  Kitagawa         replaceメソッド処理はJDK1.5より提供される{@link java.lang.String#replace(CharSequence, CharSequence)}に委譲するように変更
  *-->
  */
 public final class StringUtil {
@@ -874,9 +872,9 @@ public final class StringUtil {
 	 * @author Kitagawa<br>
 	 * 
 	 *<!--
-	 * 更新日		更新者			更新内容
-	 * 2011/05/17	Kitagawa		新規作成
-	 * 2018/05/02	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+	 * 更新日      更新者           更新内容
+	 * 2011/05/17  Kitagawa         新規作成
+	 * 2018/05/02  Kitagawa         再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
 	 *-->
 	 */
 	public enum EBCDICType {

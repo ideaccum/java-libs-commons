@@ -16,12 +16,10 @@ import javax.xml.bind.DatatypeConverter;
  * {@link java.security.MessageDigest}インスタンスを生成してハッシュ化するコードを簡略化する際などに利用することを想定して設置されました。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2005/07/02	Kitagawa		新規作成
- * 2018/05/02	Kitagawa		新規作成(SourceForge.jpからGitHubへの移行に併せて全面改訂(旧StringUtilから分割))
+ * 更新日      更新者           更新内容
+ * 2005/07/02  Kitagawa         新規作成
+ * 2018/05/02  Kitagawa         新規作成(SourceForge.jpからGitHubへの移行に併せて全面改訂(旧StringUtilから分割))
  *-->
  */
 public final class HashUtil {

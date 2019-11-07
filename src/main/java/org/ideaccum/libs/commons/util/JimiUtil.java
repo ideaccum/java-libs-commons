@@ -19,12 +19,10 @@ import com.sun.jimi.core.Jimi;
  * このクラスではイメージ変換などの操作を行う際の利用頻度の高い処理をラップしたインタフェースを提供します。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2013/08/29	Kitagawa		新規作成
- * 2018/05/24	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+ * 更新日      更新者           更新内容
+ * 2013/08/29  Kitagawa         新規作成
+ * 2018/05/24  Kitagawa         再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 public class JimiUtil {

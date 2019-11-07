@@ -15,13 +15,11 @@ import java.util.Set;
  * ここで提供するエントリ操作インタフェースを利用してエントリを作成し、{@link ZipUtil}または、{@link ZipUtil}を利用してZIPリソースを生成します。<br>
  * </p>
  *
- * @author Kitagawa<br>
- *
  *<!--
- * 更新日		更新者			更新内容
- * 2007/01/16	Kitagawa		新規作成
- * 2007/01/16	Kitagawa		ストリームエントリー対応
- * 2018/05/16	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+ * 更新日      更新者           更新内容
+ * 2007/01/16  Kitagawa         新規作成
+ * 2007/01/16  Kitagawa         ストリームエントリー対応
+ * 2018/05/16  Kitagawa         再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 public final class ZipEntries {

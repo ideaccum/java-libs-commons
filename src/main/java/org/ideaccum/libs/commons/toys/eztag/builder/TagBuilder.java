@@ -11,11 +11,9 @@ import org.ideaccum.libs.commons.util.StringUtil;
  * タグ文字列構築の際の構築実装を簡略化するためのインタフェースを提供します。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2018/07/11	Kitagawa		新規作成
+ * 更新日      更新者           更新内容
+ * 2018/07/11  Kitagawa         新規作成
  *-->
  */
 public class TagBuilder extends TagBuildableEntry<TagBuilder> {

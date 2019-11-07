@@ -25,12 +25,10 @@ import org.xml.sax.SAXException;
  * 当クラスは{@link org.w3c.dom.Document}及び、{@link org.dom4j.Document}を利用したドキュメントオブジェクトモデルの操作インタフェースを提供します。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2010/07/03	Kitagawa		新規作成
- * 2018/05/24	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+ * 更新日      更新者           更新内容
+ * 2010/07/03  Kitagawa         新規作成
+ * 2018/05/24  Kitagawa         再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 public final class DOMUtil {

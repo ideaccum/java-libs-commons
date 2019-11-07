@@ -14,11 +14,9 @@ import org.ideaccum.libs.commons.util.StringUtil;
  * 要素タグにおける属性内容を構築するための操作が提供されます。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2018/07/11	Kitagawa		新規作成
+ * 更新日      更新者           更新内容
+ * 2018/07/11  Kitagawa         新規作成
  *-->
  */
 public class TagAttributeBuilder extends TagBuildableEntry<TagAttributeBuilder> {

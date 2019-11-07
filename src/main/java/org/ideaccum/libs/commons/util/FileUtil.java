@@ -18,12 +18,10 @@ import java.util.List;
  * システム開発時にファイルに対する各種操作処理実装上の判定や分岐処理実装を簡略化することを目的とした操作メソッドを提供します。<br>
  * </p>
  *
- * @author Kitagawa<br>
- *
  *<!--
- * 更新日		更新者			更新内容
- * 2005/05/24	Kitagawa		新規作成
- * 2018/05/24	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+ * 更新日      更新者           更新内容
+ * 2005/05/24  Kitagawa         新規作成
+ * 2018/05/24  Kitagawa         再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 public final class FileUtil {

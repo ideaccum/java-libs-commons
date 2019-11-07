@@ -25,13 +25,11 @@ import org.ideaccum.libs.commons.util.StreamUtil;
  * そのため、巨大なCSVリソースを扱う場合、大量のヒープサイズが消費されることがあるため、注意してください。<br>
  * </p>
  *
- * @author Kitagawa<br>
- *
  *<!--
- * 更新日		更新者			更新内容
- * 2007/02/16	Kitagawa		新規作成
- * 2018/05/02	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
- * 2019/08/30	Kitagawa		CSVレコード読み込み部を{@link org.ideaccum.libs.commons.util.csv.CsvReader}に分割委譲
+ * 更新日      更新者           更新内容
+ * 2007/02/16  Kitagawa         新規作成
+ * 2018/05/02  Kitagawa         再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+ * 2019/08/30  Kitagawa         CSVレコード読み込み部を{@link org.ideaccum.libs.commons.util.csv.CsvReader}に分割委譲
  *-->
  */
 public class Csv {

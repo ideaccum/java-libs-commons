@@ -21,12 +21,10 @@ import org.ideaccum.libs.commons.toys.SimpleEntry;
  * 尚、このクラスが扱うプロパティリソースは{@link java.util.Properties}と同様にユニコードエンコードされたプロパティリソースを前提とします。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2014/07/08	Kitagawa		新規作成
- * 2018/05/16	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+ * 更新日      更新者           更新内容
+ * 2014/07/08  Kitagawa         新規作成
+ * 2018/05/16  Kitagawa         再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 public class MultipleProperties implements Map<String, String[]>, Cloneable, Serializable {

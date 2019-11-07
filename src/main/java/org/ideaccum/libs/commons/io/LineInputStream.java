@@ -12,12 +12,10 @@ import java.io.InputStream;
  * {@link org.ideaccum.libs.commons.io.LineRecordLength#getLinefeedLength()}が提供する改行コード分のバイト情報を自動で読み飛ばす挙動となります。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2017/06/09	Kitagawa		新規作成
- * 2018/05/02	Kitagawa		再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
+ * 更新日      更新者           更新内容
+ * 2017/06/09  Kitagawa         新規作成
+ * 2018/05/02  Kitagawa         再構築(SourceForge.jpからGitHubへの移行に併せて全面改訂)
  *-->
  */
 public class LineInputStream extends InputStream {

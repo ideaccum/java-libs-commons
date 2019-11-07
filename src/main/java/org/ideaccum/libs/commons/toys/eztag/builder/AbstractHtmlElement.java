@@ -13,11 +13,9 @@ import org.ideaccum.libs.commons.util.ObjectUtil;
  * 各タグクラスはこのクラスを継承したクラスとして提供されます。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2018/07/11	Kitagawa		新規作成
+ * 更新日      更新者           更新内容
+ * 2018/07/11  Kitagawa         新規作成
  *-->
  */
 public abstract class AbstractHtmlElement<T extends AbstractHtmlElement<T>> implements Serializable, Cloneable {

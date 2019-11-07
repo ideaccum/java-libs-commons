@@ -9,11 +9,9 @@ import org.ideaccum.libs.commons.util.StringUtil;
  * textareaタグやcodeタグ等ではエスケープ(改行を&lt;br&gt;変換など)が不要である為、エスケープ不要として利用します。<br>
  * </p>
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2018/07/11	Kitagawa		新規作成
+ * 更新日      更新者           更新内容
+ * 2018/07/11  Kitagawa         新規作成
  *-->
  */
 public class TagText extends TagBuildableEntry<TagText> {

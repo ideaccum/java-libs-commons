@@ -11,11 +11,9 @@ import org.ideaccum.libs.commons.util.StringUtil;
  * 
  * @param <T> スタイル属性値の型
  * 
- * @author Kitagawa<br>
- * 
  *<!--
- * 更新日		更新者			更新内容
- * 2018/07/11	Kitagawa		新規作成
+ * 更新日      更新者           更新内容
+ * 2018/07/11  Kitagawa         新規作成
  *-->
  */
 public class TagStyle<T> extends TagBuildableEntry<TagStyle<T>> {
