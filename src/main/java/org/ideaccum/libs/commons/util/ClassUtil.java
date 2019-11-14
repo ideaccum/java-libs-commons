@@ -1,13 +1,9 @@
 package org.ideaccum.libs.commons.util;
 
-import java.io.File;
-import java.io.FileFilter;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -628,97 +624,6 @@ public final class ClassUtil {
 	 */
 	public static Object invokeMethod(Class<?> clazz, String name) {
 		return invokeMethod(clazz, name, new Class[0], new Object[0]);
-	}
-
-	/**
-	 * 指定されたパス配下のJarライブラリをもとにクラスローダーを生成します。<br>
-	 * @param libPaths ライブラリパス
-	 * @param hierarchical ライブラリパスサブディレクトリまで対象とする場合にtrueを指定
-	 * @param parent 親クラスローダーオブジェクト
-	 * @param priorityRegexps ライブラリ追加優先順序
-	 * @return クラスローダー
-	 */
-	public static URLClassLoader createClassLoader(File[] libPaths, boolean hierarchical, ClassLoader parent, String[] priorityRegexps) {
-		try {
-			/*
-			 * ライブラリリソースパス検索
-			 */
-			List<URL> urls = new LinkedList<>();
-			for (File libPath : libPaths) {
-				File[] jars = FileUtil.files(libPath, new FileFilter() {
-					@Override
-					public boolean accept(File path) {
-						if (path.isDirectory()) {
-							return true;
-						}
-						if (!path.getName().toLowerCase().endsWith(".jar")) {
-							return false;
-						}
-						return true;
-					}
-				}, hierarchical);
-				for (File jar : jars) {
-					urls.add(jar.toURI().toURL());
-				}
-			}
-
-			/*
-			 * 優先順位ソート
-			 */
-			if (priorityRegexps != null) {
-				List<URL> buffer = new LinkedList<>();
-				for (String priorityRegexp : priorityRegexps) {
-					for (URL url : urls) {
-						String name = url.getFile();
-						if (name.matches(".*/" + priorityRegexp + "$")) {
-							buffer.add(url);
-						}
-					}
-				}
-				for (URL url : urls) {
-					if (!buffer.contains(url)) {
-						buffer.add(url);
-					}
-				}
-				urls.clear();
-				urls.addAll(buffer);
-			}
-
-			/*
-			 * クラスローダー生成
-			 */
-			URLClassLoader classLoader;
-			if (parent == null) {
-				classLoader = new URLClassLoader(urls.toArray(new URL[0]));
-			} else {
-				classLoader = new URLClassLoader(urls.toArray(new URL[0]), parent);
-			}
-
-			return classLoader;
-		} catch (Throwable e) {
-			throw new RuntimeException("Failed to create ClassLoader", e);
-		}
-	}
-
-	/**
-	 * 指定されたパス配下のJarライブラリをもとにクラスローダーを生成します。<br>
-	 * @param libPaths ライブラリパス
-	 * @param hierarchical ライブラリパスサブディレクトリまで対象とする場合にtrueを指定
-	 * @param parent 親クラスローダーオブジェクト
-	 * @return クラスローダー
-	 */
-	public static URLClassLoader createClassLoader(File[] libPaths, boolean hierarchical, ClassLoader parent) {
-		return createClassLoader(libPaths, hierarchical, parent, null);
-	}
-
-	/**
-	 * 指定されたパス配下のJarライブラリをもとにクラスローダーを生成します。<br>
-	 * @param libPaths ライブラリパス
-	 * @param hierarchical ライブラリパスサブディレクトリまで対象とする場合にtrueを指定
-	 * @return クラスローダー
-	 */
-	public static URLClassLoader createClassLoader(File[] libPaths, boolean hierarchical) {
-		return createClassLoader(libPaths, hierarchical, null, null);
 	}
 
 	/**
