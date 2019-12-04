@@ -176,7 +176,8 @@ public final class ResourceUtil {
 	 */
 	public static File getFile(String path) {
 		URI uri = getURI(path);
-		return Paths.get(uri).toFile();
+		//return Paths.get(uri).toFile();
+		return new File(uri);
 	}
 
 	/**
