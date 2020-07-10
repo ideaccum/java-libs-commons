@@ -4858,6 +4858,12 @@ public final class StringUtil {
 					buffer.append("　");
 					continue;
 				}
+				// 0x40**の場合は半角スペース変換(シフト状態の変更はしない)
+				if ("40".equals(valueH)) {
+					buffer.append(" ");
+					i -= 2;
+					continue;
+				}
 			}
 
 			/*
