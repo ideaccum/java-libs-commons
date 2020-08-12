@@ -240,6 +240,14 @@ public final class JavaUtil {
 	}
 
 	/**
+	 * オペレーションシステムがWindowsであるか判定します。<br>
+	 * @return オペレーションシステムがWindowsである場合にtrueを返却
+	 */
+	public static boolean isWindows() {
+		return StringUtil.nvl(System.getProperty("os.name")).toLowerCase().startsWith("windows");
+	}
+
+	/**
 	 * メモリサイズを取得する際の単位を列挙型で提供します。<br>
 	 * 
 	 * @author Kitagawa<br>
